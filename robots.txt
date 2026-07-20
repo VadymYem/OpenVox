@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://vadymyem.github.io/OpenVox/sitemap.xml

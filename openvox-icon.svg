@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="OpenVox Studio">
+  <defs>
+    <radialGradient id="bg" cx="35%" cy="25%" r="80%"><stop offset="0" stop-color="#152443"/><stop offset=".55" stop-color="#060d1f"/><stop offset="1" stop-color="#030712"/></radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f6e2b6"/><stop offset=".45" stop-color="#c8a96e"/><stop offset="1" stop-color="#8f6d39"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="512" height="512" rx="128" fill="url(#bg)"/>
+  <circle cx="256" cy="256" r="160" fill="none" stroke="#c8a96e" stroke-opacity=".18" stroke-width="2"/>
+  <path d="M112 258c26-50 52-50 78 0s52 50 78 0 52-50 78 0 52 50 78 0" fill="none" stroke="url(#gold)" stroke-width="18" stroke-linecap="round" filter="url(#glow)"/>
+  <circle cx="256" cy="256" r="18" fill="#e8d0a0"/>
+</svg>
