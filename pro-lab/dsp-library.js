@@ -10,14 +10,9 @@
       const phase = (2 * Math.PI * i) / (n - 1);
       return 0.42 - 0.5 * Math.cos(phase) + 0.08 * Math.cos(2 * phase);
     },
-    "blackman-harris": (i, n) => {
+    'blackman-harris': (i, n) => {
       const phase = (2 * Math.PI * i) / (n - 1);
-      return (
-        0.35875 -
-        0.48829 * Math.cos(phase) +
-        0.14128 * Math.cos(2 * phase) -
-        0.01168 * Math.cos(3 * phase)
-      );
+      return 0.35875 - 0.48829 * Math.cos(phase) + 0.14128 * Math.cos(2 * phase) - 0.01168 * Math.cos(3 * phase);
     },
     flattop: (i, n) => {
       const phase = (2 * Math.PI * i) / (n - 1);
@@ -28,7 +23,7 @@
         0.083578947 * Math.cos(3 * phase) +
         0.006947368 * Math.cos(4 * phase)
       );
-    },
+    }
   };
 
   function normalizeSize(size) {
@@ -37,7 +32,7 @@
 
   function getWindow(type, requestedSize) {
     const size = normalizeSize(requestedSize);
-    const normalizedType = Object.hasOwn(windowFunctions, type) ? type : "hann";
+    const normalizedType = Object.hasOwn(windowFunctions, type) ? type : 'hann';
     const key = `${normalizedType}:${size}`;
     const cached = windowCache.get(key);
     if (cached) return cached;
@@ -78,6 +73,6 @@
     },
     cacheSize() {
       return windowCache.size + twiddleCache.size;
-    },
+    }
   };
 })();
