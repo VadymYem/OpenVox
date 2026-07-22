@@ -1,6 +1,6 @@
 # Capability inventory
 
-This document describes the functional surface of OpenVox Studio `1.0.0-alpha.2` and distinguishes stable local workflows from browser-dependent or experimental behavior.
+This document describes the functional surface of OpenVox Studio `1.0.0-alpha.5` and distinguishes stable local workflows from browser-dependent or experimental behavior.
 
 ## Live Voice Studio
 

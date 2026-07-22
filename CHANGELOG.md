@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.0-alpha.5
+
+### Fixed
+
+- Isolated persisted language and theme preferences between application tests so the language-switch test cannot leak Ukrainian UI state into later English UI assertions.
+- Made application UI tests explicitly start in English while keeping automatic system-language detection covered separately by dedicated preference tests.
+- Restored the GitHub Pages quality pipeline past the remaining five Vitest failures.
+
+### Changed
+
+- Removed CI-side automatic Prettier rewriting from the Pages deployment workflow; committed source must now pass the formatting gate without being modified during deployment.
+- Synchronized release metadata and public version references.
+
+
 
 ## 1.0.0-alpha.4
 

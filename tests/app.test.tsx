@@ -1,9 +1,15 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { App } from '../src/app/App';
 import { AppProvider } from '../src/app/AppContext';
+
+beforeEach(() => {
+  localStorage.clear();
+  localStorage.setItem('openvox.language', 'en');
+  localStorage.setItem('openvox.theme', 'system');
+});
 
 function renderRoute(path: string) {
   return render(

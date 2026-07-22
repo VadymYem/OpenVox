@@ -1,6 +1,6 @@
 import 'fake-indexeddb/auto';
 import { cleanup } from '@testing-library/react';
-import { afterEach, vi } from 'vitest';
+import { afterEach, beforeEach, vi } from 'vitest';
 
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
@@ -43,6 +43,10 @@ if (!globalThis.crypto?.randomUUID) {
     }
   });
 }
+
+beforeEach(() => {
+  localStorage.clear();
+});
 
 afterEach(async () => {
   cleanup();
