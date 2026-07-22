@@ -1,6 +1,13 @@
 # Changelog
 
-## 1.0.0-alpha.2
+
+## 1.0.0-alpha.4
+
+- Fixed system-theme handling in test and non-browser environments where `window.matchMedia` is unavailable.
+- Fixed the Google Analytics bootstrap regression test to read the repository HTML template through a stable filesystem path.
+- Restored the full application and accessibility test suites after the theme bootstrap regression.
+
+## 1.0.0-alpha.3
 
 ### Fixed
 
@@ -109,3 +116,10 @@ All notable project changes are recorded here.
 - score and MusicXML handling for more complex multi-voice input;
 - local project and recording persistence issues from early builds;
 - deployment path assumptions inherited from the earlier Cloudflare-specific build.
+
+## [1.0.0-alpha.3] - 2026-07-22
+
+### Fixed
+
+- Removed unnecessary escaped quotation marks from the theme-color meta selector in `AppContext.tsx`, allowing the strict ESLint `no-useless-escape` gate to pass.
+
