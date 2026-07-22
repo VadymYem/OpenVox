@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.0.0-alpha.7
+
+- Fixed legacy score notes where the visible note label and stored MIDI pitch could disagree.
+- Made explicit score notation such as `C5` authoritative for staff placement.
+- Added automatic pitch synchronization when projects are loaded, saved, or imported.
+- Added regression coverage proving that `C5` renders above `C2` and that stale `C2` MIDI data cannot pull a visible `C5` note downward.
+
+## 1.0.0-alpha.6
+
+- Restored deterministic CI formatting normalization before the formatting quality gate.
+- Keeps the alpha.5 test-isolation fixes for persisted language and theme preferences.
+- Prevents GitHub Pages deployment from being blocked by formatting drift in uploaded source archives.
+
+# Changelog
+
 ## 1.0.0-alpha.5
 
 ### Fixed

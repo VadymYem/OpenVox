@@ -1,6 +1,5 @@
-import { parseNoteSpelling } from '../src/core/music/notes';
 import assert from 'node:assert/strict';
-import { frequencyToNote, midiToFrequency, parseNoteLabel } from '../src/core/music/notes';
+import { frequencyToNote, midiToFrequency, parseNoteLabel, parseNoteSpelling, synchronizeNotePitch } from '../src/core/music/notes';
 import { estimateTempo, quantizeNotes, transcribePitchFrames } from '../src/core/music/transcriber';
 import { renderScoreSvg } from '../src/core/music/scoreRenderer';
 import { scoreToMusicXml } from '../src/core/export/scoreExport';
@@ -16,6 +15,10 @@ assert.deepEqual(parseNoteSpelling('Bb4'), { midi: 70, note: 'B♭', octave: 4 }
 assert.deepEqual(parseNoteSpelling('C#5'), { midi: 73, note: 'C♯', octave: 5 });
 assert.deepEqual(parseNoteSpelling('b4'), { midi: 71, note: 'B', octave: 4 });
 assert.deepEqual(parseNoteSpelling('bb4'), { midi: 70, note: 'B♭', octave: 4 });
+assert.deepEqual(
+  synchronizeNotePitch({ id: 'legacy', midi: 36, note: 'C', octave: 5, start: 0, duration: 1, velocity: 96, confidence: 1 }),
+  { id: 'legacy', midi: 72, note: 'C', octave: 5, start: 0, duration: 1, velocity: 96, confidence: 1 }
+);
 assert.equal(parseNoteSpelling('C10'), null);
 assert.equal(parseNoteSpelling('C-2'), null);
 close(midiToFrequency(69), 440, 0.001);

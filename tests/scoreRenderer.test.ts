@@ -55,10 +55,22 @@ describe('score renderer pitch placement', () => {
     expect(svg).toContain('>♭</text>');
   });
 
-  it('repairs inconsistent stored labels from canonical MIDI pitch during rendering', () => {
-    const svg = renderScoreSvg(scoreWith([note('broken', 72, 'G', 2)]));
+  it('uses the explicit score label as the notation source of truth when legacy MIDI data is stale', () => {
+    const svg = renderScoreSvg(scoreWith([note('legacy-c5', 36, 'C', 5)]));
     expect(svg).toContain('>C5</text>');
-    expect(svg).not.toContain('>G2</text>');
+    expect(svg).not.toContain('>C2</text>');
     expect(cyFor(svg, 'C5')).toBe(120);
+  });
+
+  it('keeps higher octaves visually above lower octaves', () => {
+    const svg = renderScoreSvg(
+      scoreWith([
+        note('c2', 36, 'C', 2),
+        { ...note('c5', 72, 'C', 5), start: 1 }
+      ])
+    );
+    expect(cyFor(svg, 'C5')).toBeLessThan(cyFor(svg, 'C2'));
+    expect(cyFor(svg, 'C5')).toBe(120);
+    expect(cyFor(svg, 'C2')).toBe(225);
   });
 });
