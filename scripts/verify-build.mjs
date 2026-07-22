@@ -56,6 +56,11 @@ for (const file of required) await access(resolve(dist, file));
 
 const html = await readFile(resolve(dist, 'index.html'), 'utf8');
 if (html.includes('%BASE_URL%')) throw new Error('Unresolved Vite base token found in index.html.');
+if (html.includes('/src/main.tsx')) throw new Error('Raw Vite source entry found in production index.html.');
+if (!html.includes(`href=\"${normalizedBase}manifest.webmanifest\"`))
+  throw new Error('Production manifest URL does not use the configured Pages base.');
+if (!html.includes(`href=\"${normalizedBase}openvox-icon.svg\"`))
+  throw new Error('Production icon URL does not use the configured Pages base.');
 if (!html.includes(`<link rel="canonical" href="${publicUrl}/" />`))
   throw new Error('Home canonical URL is incorrect.');
 if (!html.includes('https://www.googletagmanager.com/gtag/js?id=G-6LN7QL6SP2'))

@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.0.0-alpha.2
+
+### Fixed
+
+- Hardened GitHub Pages deployment against accidentally publishing the raw Vite source tree.
+- Removed `%BASE_URL%` placeholders from source HTML asset references and rely on Vite URL rebasing during production builds.
+- Added a source-deployment diagnostic screen instead of a blank page when GitHub Pages is misconfigured to publish the repository branch directly.
+- Added production verification that rejects raw `/src/main.tsx` entries and incorrect manifest/icon base paths.
+- Updated the Pages workflow checkout action and added an explicit raw-source artifact gate.
+- Added dedicated GitHub Pages troubleshooting documentation.
+
+
 All notable project changes are recorded here.
 
 ## 1.0.0-alpha.1 — 2026-07-22
