@@ -1,19 +1,45 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="system">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      (() => {
+        const primary = (navigator.languages?.[0] || navigator.language || 'en').toLowerCase().split(/[-_]/)[0];
+        const detectedLanguage = primary === 'uk' ? 'uk' : primary === 'de' ? 'de' : 'en';
+        try {
+          const savedLanguage = localStorage.getItem('openvox.language');
+          const savedTheme = localStorage.getItem('openvox.theme');
+          document.documentElement.lang = ['en', 'uk', 'de'].includes(savedLanguage) ? savedLanguage : detectedLanguage;
+          document.documentElement.dataset.theme = ['system', 'dark', 'light'].includes(savedTheme) ? savedTheme : 'system';
+          if (localStorage.getItem('openvox.analytics') === 'false') {
+            window['ga-disable-G-6LN7QL6SP2'] = true;
+          }
+        } catch {
+          document.documentElement.lang = detectedLanguage;
+          document.documentElement.dataset.theme = 'system';
+        }
+      })();
+    </script>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6LN7QL6SP2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-6LN7QL6SP2');
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#030712" />
     <meta name="color-scheme" content="dark light" />
     <meta name="author" content="AuthorChe (Vadym Yemelianov)" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <meta name="description" content="OpenVox Studio is a privacy-first browser studio for real-time pitch detection, vocal education, instrument tuning, audio rehearsal, music transcription, score editing and choir practice. Your voice stays on your device." />
+    <meta name="description" content="OpenVox Studio is a privacy-first browser studio for real-time pitch detection, vocal training, instrument tuning, audio analysis, music transcription, score editing and choir rehearsal. Your voice stays on your device." />
     <meta name="keywords" content="voice analyzer, pitch detector, vocal training, singing lessons, sight singing, ear training, breath training, instrument tuner, guitar tuner, chromatic tuner, audio studio, spectrum analyzer, music transcription, score editor, choir rehearsal, MusicXML, MIDI, Web Audio API, OpenVox Studio, AuthorChe" />
     <link rel="canonical" href="https://vadymyem.github.io/OpenVox/" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="OpenVox Studio" />
     <meta property="og:title" content="OpenVox Studio — Your voice. Understood." />
-    <meta property="og:description" content="OpenVox Studio is a privacy-first browser studio for real-time pitch detection, vocal education, instrument tuning, audio rehearsal, music transcription, score editing and choir practice. Your voice stays on your device." />
+    <meta property="og:description" content="Private, local-first vocal analysis, transcription, score editing and practice tools — directly in your browser." />
     <meta property="og:image" content="https://authorche.top/assets/img/authorche-social-card.png" />
     <meta property="og:url" content="https://vadymyem.github.io/OpenVox/" />
     <meta property="og:locale" content="en_US" />
@@ -21,12 +47,12 @@
     <meta property="og:locale:alternate" content="de_DE" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="OpenVox Studio — Your voice. Understood." />
-    <meta name="twitter:description" content="OpenVox Studio is a privacy-first browser studio for real-time pitch detection, vocal education, instrument tuning, audio rehearsal, music transcription, score editing and choir practice. Your voice stays on your device." />
+    <meta name="twitter:description" content="Privacy-first voice analysis and music transcription directly in your browser." />
     <meta name="twitter:image" content="https://authorche.top/assets/img/authorche-social-card.png" />
-    <link rel="icon" href="/OpenVox/openvox-icon.svg" type="image/svg+xml" />
-    <link rel="icon" href="/OpenVox/icons/openvox-192.png" type="image/png" sizes="192x192" />
-    <link rel="apple-touch-icon" href="/OpenVox/icons/openvox-180.png" sizes="180x180" />
-    <link rel="manifest" href="/OpenVox/manifest.webmanifest" />
+    <link rel="icon" href="%BASE_URL%openvox-icon.svg" type="image/svg+xml" />
+    <link rel="icon" href="%BASE_URL%icons/openvox-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="%BASE_URL%icons/openvox-180.png" sizes="180x180" />
+    <link rel="manifest" href="%BASE_URL%manifest.webmanifest" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -47,12 +73,9 @@
       }
     </script>
     <title>OpenVox Studio — Your voice. Understood.</title>
-    <script type="module" crossorigin src="/OpenVox/assets/index-7MqG8Wbr.js"></script>
-    <link rel="modulepreload" crossorigin href="/OpenVox/assets/framework-B4sbyuL8.js">
-    <link rel="modulepreload" crossorigin href="/OpenVox/assets/midi-engine-CUHAmaY6.js">
-    <link rel="stylesheet" crossorigin href="/OpenVox/assets/index-Bz0LwPMQ.css">
   </head>
   <body>
     <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
