@@ -1,1203 +1,206 @@
-<div align="center">
+# OpenVox Studio
 
-# OpenVox
+**A privacy-first, open-source browser studio for singers, vocal teachers, choirs and musicians.**
 
-### Privacy-first open-source vocal training, music practice, audio analysis, notation, and recording studio — directly in your browser.
+OpenVox Studio combines real-time pitch tracking, structured vocal education, instrument tuning, backing-track rehearsal, multitrack mixing, transcription, notation, choir-part practice and professional audio tools in one local-first web application.
 
-**Created by AuthorChe (Vadym Yemelianov)**
+Core microphone and project workflows run in the browser. No account or application server is required.
 
-[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](LICENSE)
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Ready-222222?logo=github)](https://vadymyem.github.io/OpenVox/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178C6?logo=typescript\&logoColor=white)](https://www.typescriptlang.org/)
-[![PWA](https://img.shields.io/badge/PWA-Offline%20Ready-5A0FC8)](#progressive-web-app)
-[![Privacy](https://img.shields.io/badge/Privacy-Local--First-c8a96e)](#privacy)
+## Live application
 
-[Live Demo](https://vadymyem.github.io/OpenVox/) · [Report Bug](https://github.com/vadymyem/OpenVox/issues) · [Request Feature](https://github.com/vadymyem/OpenVox/issues) · [Security](SECURITY.md)
+After the `main` branch is deployed with the included GitHub Pages workflow:
 
-</div>
+**https://vadymyem.github.io/OpenVox/**
 
----
+## What is included
 
-## What is OpenVox?
+| Area                   | Capabilities                                                                                                                                                                                      |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Live Voice Studio      | microphone selection, calibration, noise-floor estimation, pitch/note/frequency/cents/confidence, harmony lens, recording                                                                         |
+| Vocal Academy          | session planner, pitch matching, breath pacing, ear training, rhythm training, sight singing, 27-exercise library, 12-topic vocal guide                                                           |
+| Practice Studio        | scales, arpeggios, intervals, sustained notes, custom melodies, automatic transposition, microphone scoring, portable teacher exercises                                                           |
+| Vocal Analysis         | touched/stable/sustained range, pitch stability, average deviation, vibrato-rate and vibrato-width estimates                                                                                      |
+| Instrument Workshop    | chromatic tuner, 20+ string-instrument tuning presets, custom tunings, ±12-semitone transposition, reference tones, optional Web MIDI monitor                                                     |
+| Backing Track Lab      | local audio loading, waveform navigation, speed control, pitch preservation where supported, A–B loop, markers, live voice monitoring                                                             |
+| Multitrack Mixer       | multiple local tracks, microphone overdubs, synchronized playback, gain, pan, mute, solo, offsets, A–B looping, local WAV mixdown                                                                 |
+| Professional Audio Lab | microphone constraints, filters, custom gate, compressor, monitoring, metronome, tone/drone generators, keyboard, tuner, spectrum, oscilloscope, spectrogram, file analysis, presets, diagnostics |
+| Voice to Score         | live or imported-audio monophonic transcription, tempo estimation, quantization and transfer to the score editor                                                                                  |
+| Score Editor           | note timing/pitch/duration/velocity/lyrics/ties, split/merge/copy, MusicXML/MIDI import, MusicXML/MIDI/SVG/PNG/print export                                                                       |
+| Choir Studio           | MusicXML/MIDI ensemble import, part isolation, rehearsal mix, passage selection, 50–150% tempo, repetitions, live part scoring                                                                    |
+| Progress               | local training history, weekly goals, session statistics and category balance                                                                                                                     |
+| Local Projects         | IndexedDB projects, recordings, settings, training sessions, goals and portable `.openvox` archives                                                                                               |
+| Interface              | English, Ukrainian and German; dark, light and system themes; responsive desktop/tablet/mobile layouts; accessibility preferences                                                                 |
 
-**OpenVox** is a free and open-source browser-based studio for singers, vocal teachers, musicians, choirs, students, and anyone who wants to understand and train their voice or work with sound.
+See [docs/CAPABILITIES.md](docs/CAPABILITIES.md) for the detailed functional inventory.
 
-The project combines:
+## Local-first architecture
 
-* real-time pitch detection;
-* vocal training;
-* singing exercises;
-* sight-singing practice;
-* vocal range analysis;
-* intonation and stability measurement;
-* instrument tuning;
-* ear and rhythm training;
-* backing-track practice;
-* multitrack audio work;
-* score editing;
-* MusicXML and MIDI workflows;
-* choir rehearsal tools;
-* professional audio processing;
-* recording;
-* local project storage.
-
-The core philosophy is simple:
-
-> **Your voice should not need to leave your device to be analyzed.**
-
-Most OpenVox functionality runs locally inside the browser using modern Web APIs, WebAssembly, AudioWorklet, and local browser storage.
-
-No account is required for the core workflow.
-
----
-
-# Features
-
-## Live Voice Studio
-
-The main vocal monitoring environment provides real-time analysis of microphone input.
-
-OpenVox can display:
-
-* detected note;
-* frequency in hertz;
-* cents deviation;
-* pitch confidence;
-* input level;
-* pitch history;
-* live voice visualization;
-* note stability;
-* microphone state.
-
-The audio pipeline supports:
-
-* microphone selection;
-* sample-rate preferences;
-* mono and stereo input preferences;
-* latency preferences;
-* browser noise suppression;
-* browser echo cancellation;
-* automatic gain control;
-* high-pass filtering;
-* adaptive noise handling;
-* configurable pitch range;
-* configurable confidence threshold.
-
-The main processing pipeline is designed around:
+The normal signal path is:
 
 ```text
 Microphone
-    ↓
-Web Audio API
-    ↓
-AudioWorklet
-    ↓
-Signal processing
-    ↓
-WebAssembly pitch analysis
-    ↓
-Pitch validation
-    ↓
-Musical note detection
-    ↓
-Live visualization
+  -> MediaDevices constraints
+  -> AudioContext
+  -> AudioWorklet (primary) / ScriptProcessor fallback
+  -> DC removal + high-pass + adaptive gate
+  -> WebAssembly pitch detector (primary) / TypeScript YIN fallback
+  -> note, cents, confidence, range and training logic
+  -> React interface
 ```
 
-A compatibility fallback is available when AudioWorklet cannot be used.
+Local persistence uses IndexedDB. Audio-file decoding, WAV rendering, notation conversion and score export also run in the browser.
 
----
+Browser speech recognition and Google Analytics are explicitly separated from the core audio path. The standard web build loads the AuthorChe Google Analytics property for page-visit measurement and provides an analytics opt-out in Settings. See [PRIVACY.md](PRIVACY.md) and [docs/PRIVACY_MODEL.md](docs/PRIVACY_MODEL.md).
 
-# Vocal Academy
+## Technology
 
-OpenVox includes a dedicated learning environment for structured vocal development.
+- React + TypeScript
+- Vite
+- Web Audio API
+- AudioWorklet with compatibility fallback
+- WebAssembly DSP core written in C
+- IndexedDB
+- MediaRecorder
+- OfflineAudioContext
+- MusicXML and MIDI import/export
+- Progressive Web App support
+- GitHub Actions + GitHub Pages
 
-The Vocal Academy contains tools for:
-
-* warm-up planning;
-* pitch matching;
-* breathing practice;
-* sustained notes;
-* scales;
-* arpeggios;
-* agility;
-* resonance;
-* articulation;
-* dynamics;
-* ear training;
-* rhythm training;
-* sight singing;
-* cooldown exercises.
-
-The exercise library contains structured exercises across multiple categories and difficulty levels.
-
-Each exercise may include:
-
-* musical pattern;
-* tempo;
-* repetitions;
-* direction;
-* transposition behavior;
-* training instructions;
-* focus points;
-* estimated duration.
-
-The interface is available in:
-
-* English;
-* Ukrainian;
-* German.
-
----
-
-## Vocal Guide
-
-OpenVox also includes educational material covering important areas of vocal practice:
-
-* posture and body alignment;
-* breath management;
-* vocal onset;
-* resonance;
-* vocal registers;
-* register transitions;
-* vowels;
-* articulation;
-* intonation;
-* audiation;
-* rhythm;
-* dynamics;
-* vibrato observation;
-* healthy practice structure.
-
-OpenVox is an educational tool and does not replace medical diagnosis or treatment.
-
-Persistent pain, sudden voice loss, or recurring vocal problems should be evaluated by a qualified medical professional.
-
----
-
-# Sight Singing
-
-The sight-singing trainer creates a visual musical exercise and compares the singer's live pitch against the expected notes.
-
-It can evaluate:
-
-* correct pitch;
-* cents deviation;
-* timing;
-* note transitions;
-* overall pitch accuracy.
-
-Completed sessions can be saved to the local progress history.
-
----
-
-# Practice Studio
-
-Practice Studio provides configurable vocal exercises.
-
-Available exercise types include:
-
-* scales;
-* arpeggios;
-* intervals;
-* sustained notes;
-* custom melodies.
-
-Controls include:
-
-* tempo;
-* repetitions;
-* ascending direction;
-* descending direction;
-* automatic semitone transposition;
-* starting note;
-* ending range;
-* live microphone evaluation.
-
-OpenVox can compare the detected voice against the currently expected note and calculate an approximate training score.
-
----
-
-# Teacher Mode
-
-Teachers can prepare portable exercises without requiring student accounts or a dedicated backend.
-
-Exercise configurations can be exported and shared.
-
-This makes it possible to create workflows such as:
+## Repository layout
 
 ```text
-Teacher creates exercise
-        ↓
-Exercise is shared
-        ↓
-Student opens OpenVox
-        ↓
-Student practices locally
+.github/              GitHub Actions, issue templates and dependency automation
+packages/dsp/         auditable C source for the WebAssembly pitch core
+public/pro-lab/       advanced audio-lab runtime and lazy DSP tables
+public/wasm/          committed WebAssembly build artifact
+public/worklets/      real-time AudioWorklet processor
+scripts/              WASM build, reference tests, postbuild SEO and deploy verification
+src/app/              application state and routing
+src/components/       shared interface components
+src/core/audio/       microphone engine, pitch, harmony, file analysis and WAV rendering
+src/core/export/      score/project export utilities
+src/core/instruments/ instrument tuning definitions and frequency helpers
+src/core/music/       notation, score rendering, MusicXML/MIDI and playback
+src/core/storage/     IndexedDB persistence and portable project archives
+src/core/training/    vocal curriculum, exercises and training planning
+src/i18n/             complete EN/UK/DE interface and curriculum copy
+src/pages/            product modules
+src/styles/           responsive Material-inspired visual system
+tests/                application, storage, music, DSP-adjacent and accessibility tests
+docs/                 architecture, compatibility, validation and manual QA documentation
 ```
 
-The architecture is intentionally designed so that basic exercise sharing does not require centralized user storage.
+## Development
 
----
+Requirements:
 
-# Instrument Workshop
-
-OpenVox includes a dedicated environment for tuning musical instruments.
-
-Supported tuning presets include configurations for:
-
-### Guitar
-
-* Standard;
-* Half Step Down;
-* Drop D;
-* Drop C;
-* DADGAD;
-* Open D;
-* Open E;
-* Open G;
-* 7-string guitar.
-
-### Bass
-
-* 4-string standard;
-* 5-string standard;
-* 6-string standard;
-* Drop D.
-
-### Ukulele
-
-* High G;
-* Low G;
-* Baritone;
-* D tuning.
-
-### Strings
-
-* Violin;
-* Viola;
-* Cello;
-* Double Bass.
-
-### Other
-
-* Mandolin;
-* Banjo;
-* Tenor Banjo;
-* Chromatic tuning.
-
-Custom tunings can also be created.
-
-Additional controls include:
-
-* reference A4 frequency;
-* semitone transposition;
-* live target-note comparison;
-* cents deviation;
-* reference tone playback.
-
-Where supported by the browser, OpenVox can also inspect connected MIDI devices.
-
----
-
-# Backing Track Lab
-
-Backing Track Lab is designed for rehearsal with local audio files.
-
-Features include:
-
-* local audio loading;
-* waveform visualization;
-* playback position control;
-* playback speed control;
-* pitch-preserving playback where supported;
-* A–B loop;
-* rehearsal markers;
-* repeated difficult sections;
-* simultaneous live microphone monitoring;
-* rehearsal-session tracking.
-
-All imported audio remains local unless the user explicitly exports or shares it.
-
----
-
-# Multitrack Mixer
-
-OpenVox includes a local browser-based multitrack environment.
-
-Features include:
-
-* multiple audio tracks;
-* synchronized playback;
-* per-track gain;
-* stereo panning;
-* mute;
-* solo;
-* track position offsets;
-* shared timeline;
-* waveform lanes;
-* master gain;
-* A–B loop.
-
-## Overdub recording
-
-A microphone performance can be recorded while existing tracks are playing and then added as another synchronized track.
-
-## Offline mixdown
-
-Projects can be rendered locally using `OfflineAudioContext`.
-
-OpenVox can export a local PCM WAV mixdown without requiring server-side audio rendering.
-
----
-
-# Pro Audio Lab
-
-Pro Audio Lab provides more detailed control over the browser audio signal chain.
-
-The processing rack can include:
-
-```text
-Input
-  ↓
-Pre Gain
-  ↓
-High-pass Filter
-  ↓
-Low-pass Filter
-  ↓
-Notch Filter
-  ↓
-Low Shelf EQ
-  ↓
-Parametric Presence EQ
-  ↓
-High Shelf / Air EQ
-  ↓
-Noise Gate
-  ↓
-Compressor
-  ↓
-Post Gain
-  ↓
-Reverb / Delay
-  ↓
-Safety Limiter
-  ↓
-Analyzer
-  ↓
-Monitoring / Recording
-```
-
-Available controls include:
-
-### Filters
-
-* high-pass frequency;
-* low-pass frequency;
-* notch frequency;
-* filter Q.
-
-### Equalization
-
-* low shelf frequency and gain;
-* presence frequency;
-* presence Q;
-* presence gain;
-* air frequency;
-* air gain.
-
-### Noise Gate
-
-* threshold;
-* attack;
-* hold;
-* release;
-* closed level.
-
-### Compressor
-
-* threshold;
-* knee;
-* ratio;
-* attack;
-* release.
-
-### Reverb
-
-* wet level;
-* decay duration;
-* decay shape.
-
-The impulse response is generated locally.
-
-### Delay
-
-* delay time;
-* feedback;
-* wet level.
-
-### Limiter
-
-* output ceiling;
-* release behavior.
-
-Processed recording uses the configured processing chain.
-
----
-
-# Audio Tools
-
-OpenVox includes additional musical and audio utilities.
-
-## Metronome
-
-Configurable options include:
-
-* 20–300 BPM;
-* time-signature beat count;
-* subdivisions;
-* swing;
-* accented first beat.
-
-## Tone Generator
-
-Supported waveforms include:
-
-* sine;
-* triangle;
-* sawtooth;
-* square.
-
-Controls include:
-
-* frequency;
-* fine tuning;
-* level.
-
-## Drone and Chord Generator
-
-Users can create sustained reference sounds from configurable interval structures.
-
-Examples:
-
-```text
-0, 7, 12
-0, 4, 7
-0, 3, 7
-0, 4, 7, 11
-```
-
-## Reference Keyboard
-
-A browser-based musical keyboard provides locally generated reference notes.
-
----
-
-# Precision Tuner
-
-The precision tuner displays:
-
-* detected note;
-* exact frequency;
-* cents deviation;
-* confidence;
-* tuning direction.
-
-The reference frequency for A4 can be adjusted.
-
----
-
-# Spectrum Analysis
-
-OpenVox includes visualization tools for inspecting audio signals.
-
-Available views include:
-
-* frequency spectrum;
-* oscilloscope;
-* spectrogram.
-
-Supported FFT sizes include:
-
-* 1024;
-* 2048;
-* 4096;
-* 8192;
-* 16384;
-* 32768.
-
-Window functions include:
-
-* Hann;
-* Hamming;
-* Blackman;
-* Blackman-Harris;
-* Flat-top.
-
-Window tables and FFT helper data are generated and cached only when required.
-
----
-
-# Offline Audio Analyzer
-
-Local audio files can be analyzed directly in the browser.
-
-Available measurements include:
-
-* duration;
-* sample rate;
-* number of channels;
-* RMS level;
-* peak level;
-* crest factor;
-* zero-crossing rate;
-* spectral centroid;
-* spectral rolloff;
-* spectral flatness;
-* dominant frequencies.
-
-Supported audio formats depend on browser decoding capabilities.
-
----
-
-# Vocal Analysis
-
-OpenVox can analyze recorded or live singing sessions.
-
-Metrics may include:
-
-* lowest detected note;
-* highest detected note;
-* touched vocal range;
-* stable vocal range;
-* sustained vocal range;
-* average pitch deviation;
-* pitch stability;
-* vibrato rate;
-* vibrato width.
-
-These measurements are intended for practice and educational feedback.
-
-They should not be interpreted as medical measurements.
-
----
-
-# Voice-to-Score Transcription
-
-OpenVox can convert monophonic pitch information into editable musical notes.
-
-Input sources include:
-
-* live microphone;
-* local audio files.
-
-Quantization options include:
-
-* free timing;
-* quarter notes;
-* eighth notes;
-* eighth-note triplets;
-* sixteenth notes.
-
-Detected material can be transferred to the integrated Score Editor.
-
----
-
-# Score Editor
-
-OpenVox includes an integrated notation editor.
-
-Users can edit:
-
-* pitch;
-* octave;
-* MIDI note;
-* note position;
-* duration;
-* velocity;
-* lyrics;
-* ties;
-* tempo;
-* time signature;
-* key signature;
-* title;
-* composer.
-
-Editing operations include:
-
-* add;
-* copy;
-* delete;
-* split;
-* merge;
-* undo;
-* redo;
-* global transposition;
-* global quantization.
-
-Supported imports include:
-
-* MusicXML;
-* MIDI.
-
-Supported exports include:
-
-* MusicXML;
-* MIDI;
-* SVG;
-* PNG;
-* print / PDF workflow;
-* OpenVox project data.
-
-The browser score renderer is designed for interactive editing and rehearsal workflows.
-
-It is not intended to replace dedicated professional engraving applications in every advanced notation scenario.
-
----
-
-# Choir Studio
-
-Choir Studio is designed for sectional and individual rehearsal.
-
-Supported workflows include:
-
-* MusicXML part import;
-* MIDI track import;
-* voice-part selection;
-* individual part playback;
-* reduced-volume supporting parts;
-* piano reference;
-* metronome;
-* score preview;
-* live pitch evaluation.
-
-## Passage Rehearsal
-
-A selected section can be practiced independently.
-
-Controls include:
-
-* start position;
-* end position;
-* tempo from 50% to 150%;
-* repeated playback;
-* live pitch scoring.
-
-This is useful for rehearsing difficult measures without repeatedly playing the entire score.
-
----
-
-# Progress Tracking
-
-OpenVox stores training history locally.
-
-Progress tracking can include:
-
-* completed sessions;
-* session type;
-* training duration;
-* scores;
-* weekly goals;
-* category balance;
-* recent activity.
-
-The data is stored locally in the browser using IndexedDB.
-
-No OpenVox account is required.
-
----
-
-# Projects and Local Storage
-
-OpenVox uses local browser storage for project data.
-
-Projects can contain:
-
-* notation;
-* settings;
-* session data;
-* locally saved recordings;
-* project metadata.
-
-Portable OpenVox project files can be exported and imported.
-
-Users remain responsible for creating external backups of important local projects.
-
-Browser storage can be removed by the browser, operating system, privacy settings, or manual user action.
-
----
-
-# Privacy
-
-OpenVox is designed as a local-first application.
-
-Core audio analysis is performed locally whenever the browser APIs required by the feature are available.
-
-OpenVox does not require a dedicated server-side processing backend for its primary functionality.
-
-## Analytics
-
-Analytics are:
-
-> **Disabled by default.**
-
-The analytics provider is not loaded until the user explicitly enables analytics in Settings.
-
-OpenVox does not intentionally send:
-
-* microphone audio;
-* recordings;
-* imported songs;
-* musical projects;
-* pitch measurements;
-* notation data;
-
-as analytics information.
-
-Read the complete privacy policy:
-
-[PRIVACY.md](PRIVACY.md)
-
----
-
-# Progressive Web App
-
-OpenVox can be installed as a Progressive Web App on compatible browsers.
-
-The production build includes:
-
-* web app manifest;
-* service worker;
-* local application-shell caching;
-* offline support for previously cached application resources.
-
-The service worker is generated by the OpenVox build process without requiring Workbox.
-
-Security-sensitive stable assets such as WebAssembly and AudioWorklet resources use update-aware cache behavior to reduce the risk of mixing incompatible application versions.
-
----
-
-# Themes
-
-OpenVox supports:
-
-* System theme;
-* Dark theme;
-* Light theme.
-
-Accessibility preferences include:
-
-* high contrast;
-* reduced motion;
-* larger controls.
-
-The main visual language combines Material Design 3 concepts with the OpenVox dark-cosmic and warm-gold identity.
-
----
-
-# Responsive Design
-
-OpenVox is designed for:
-
-* desktop computers;
-* laptops;
-* tablets;
-* smartphones.
-
-Some complex audio and notation workflows provide the best experience on larger displays, but core functionality remains accessible on mobile layouts.
-
----
-
-# Accessibility
-
-Accessibility is treated as part of the product architecture.
-
-OpenVox includes:
-
-* keyboard-accessible controls;
-* visible focus states;
-* semantic controls;
-* accessible names;
-* skip-to-content navigation;
-* focus management after client-side navigation;
-* reduced-motion support;
-* high-contrast mode;
-* large-control mode.
-
-Automated accessibility tests are executed across the main application routes.
-
-Accessibility reports are welcome through GitHub Issues.
-
----
-
-# Languages
-
-The application interface supports:
-
-* English;
-* Ukrainian;
-* German.
-
-English is the primary project and documentation language.
-
----
-
-# Technology
-
-OpenVox is built with:
-
-* React;
-* TypeScript;
-* Vite;
-* Web Audio API;
-* AudioWorklet;
-* WebAssembly;
-* IndexedDB;
-* MediaRecorder;
-* OfflineAudioContext;
-* Web MIDI where supported;
-* SVG;
-* modern browser File APIs.
-
-The primary DSP architecture intentionally remains separate from the React presentation layer where practical.
-
----
-
-# Project Structure
-
-```text
-OpenVox/
-├── .github/
-│   ├── workflows/
-│   ├── ISSUE_TEMPLATE/
-│   ├── CODEOWNERS
-│   └── FUNDING.yml
-│
-├── docs/
-│
-├── packages/
-│   └── dsp/
-│
-├── public/
-│   ├── icons/
-│   ├── pro-lab/
-│   ├── wasm/
-│   └── worklets/
-│
-├── scripts/
-│
-├── src/
-│   ├── app/
-│   ├── components/
-│   ├── core/
-│   ├── hooks/
-│   ├── i18n/
-│   ├── pages/
-│   ├── styles/
-│   └── types/
-│
-├── tests/
-│
-├── LICENSE
-├── README.md
-├── SECURITY.md
-├── PRIVACY.md
-├── CONTRIBUTING.md
-├── CODE_OF_CONDUCT.md
-├── SUPPORT.md
-├── ROADMAP.md
-├── CHANGELOG.md
-├── TRADEMARKS.md
-├── THIRD_PARTY_NOTICES.md
-├── sbom.cdx.json
-├── package.json
-└── vite.config.ts
-```
-
----
-
-# Local Development
-
-## Requirements
-
-Use a current Node.js LTS release.
-
-Clone the repository:
-
-```bash
-git clone https://github.com/vadymyem/OpenVox.git
-cd OpenVox
-```
-
-Install the exact dependency versions:
+- Node.js 22 or newer
+- npm
+- Optional: Clang with `wasm32` support to rebuild the DSP module. A validated compiled WASM file is committed, so development remains possible when Clang is unavailable.
 
 ```bash
 npm ci
-```
-
-Start the development server:
-
-```bash
 npm run dev
 ```
 
-Create a production build:
+Production-quality local checks:
 
 ```bash
-npm run build
+npm run lint
+npm run format:check
+npm run typecheck
+npm test
+OPENVOX_BASE=/OpenVox/ OPENVOX_PUBLIC_URL=https://vadymyem.github.io/OpenVox npm run build
+OPENVOX_BASE=/OpenVox/ OPENVOX_PUBLIC_URL=https://vadymyem.github.io/OpenVox npm run verify
 ```
 
-Preview the production build:
+`npm test` includes WebAssembly reference-frequency tests, core music tests, application route tests, IndexedDB tests, MusicXML tests, localization integrity, instrument tuning tests, WAV export tests, privacy defaults, theme contrast and automated accessibility checks across every public route.
 
-```bash
-npm run preview
-```
+## Publish on GitHub Pages
 
----
+The repository is designed for the GitHub repository name **`OpenVox`**.
 
-# Quality Checks
+1. Create `vadymyem/OpenVox`.
+2. Upload or push the repository contents so `package.json` is at the repository root.
+3. Push to `main`.
+4. In **Settings -> Pages**, select **GitHub Actions** as the source if GitHub has not already enabled it.
+5. The included workflow calculates the Pages base path from the actual repository name, builds the app, verifies the output and deploys the `dist` artifact.
 
-The repository includes automated checks for:
+No manual edit of Vite's `base` is required.
 
-* formatting;
-* ESLint;
-* strict TypeScript;
-* unused symbols;
-* direct dependency declarations;
-* JavaScript runtime syntax;
-* DSP reference signals;
-* music utilities;
-* storage;
-* MusicXML;
-* localization;
-* accessibility;
-* theme contrast;
-* privacy defaults;
-* production build integrity;
-* GitHub Pages paths;
-* PWA resources;
-* WebAssembly resources;
-* AudioWorklet resources.
+Detailed instructions: [GITHUB_SETUP.md](GITHUB_SETUP.md) and [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
 
-The project also includes automated repository security workflows where supported by GitHub.
-
----
-
-# GitHub Pages Deployment
-
-The repository includes a GitHub Actions workflow for deployment.
-
-Create a repository named:
-
-```text
-OpenVox
-```
-
-Push the project to:
-
-```text
-https://github.com/vadymyem/OpenVox
-```
-
-Then open:
-
-```text
-Settings
-→ Pages
-→ Build and deployment
-→ Source
-→ GitHub Actions
-```
-
-The workflow automatically calculates the correct Vite base path from the repository name.
-
-For the repository:
-
-```text
-vadymyem/OpenVox
-```
-
-the expected public URL is:
-
-```text
-https://vadymyem.github.io/OpenVox/
-```
-
-Do not manually commit the local `dist/` directory when using the included GitHub Actions deployment workflow.
-
----
-
-# Browser Support
-
-OpenVox targets current versions of modern browsers.
-
-Recommended:
-
-* Chromium-based browsers;
-* Firefox;
-* Safari.
-
-Some capabilities differ by browser and operating system.
-
-Examples include:
-
-* AudioWorklet behavior;
-* MediaRecorder formats;
-* microphone constraints;
-* Web MIDI;
-* pitch-preserving playback;
-* audio latency.
-
-Compatibility fallbacks are used where practical.
-
-For production microphone access, serve OpenVox through HTTPS or another browser-recognized secure context.
-
----
-
-# Security
-
-Please do not report security vulnerabilities through public GitHub Issues.
-
-Read:
-
-[SECURITY.md](SECURITY.md)
+## Quality and security gates
 
 The repository includes:
 
-* CodeQL;
-* Dependabot;
-* dependency review;
-* continuous integration;
-* dependency declaration validation;
-* software bill of materials.
+- deterministic `npm ci` installs through `package-lock.json`;
+- ESLint and TypeScript checks;
+- Prettier format verification;
+- unit/component/integration tests;
+- route-wide accessibility and contrast checks;
+- public runtime JavaScript syntax checks;
+- reproducible CycloneDX SBOM generation;
+- automated serious/critical accessibility checks across all public routes;
+- WebAssembly pitch reference tests from 110 Hz to 880 Hz;
+- production-build integrity verification;
+- source-map exclusion from production;
+- dependency audit in CI;
+- Dependabot;
+- CodeQL analysis;
+- dependency-review workflow for pull requests;
+- no server-side secret requirement;
+- no source maps in the deployed build.
 
----
+See [docs/VALIDATION.md](docs/VALIDATION.md) and [SECURITY.md](SECURITY.md).
 
-# Software Bill of Materials
+## Browser and mobile support
 
-A CycloneDX software bill of materials is available at:
+OpenVox is responsive across desktop, tablet and mobile layouts. Core vocal training, tuning and analysis workflows are designed to remain useful on smartphones, while advanced notation, multitrack audio, large analyzer settings, Web MIDI and complex Pro Audio Lab sessions are best experienced on a desktop or laptop with wired headphones.
 
-```text
-sbom.cdx.json
-```
+The application includes a dismissible mobile notice, touch-oriented score editing, mobile Edit / Score workspace switching and reusable zoomable notation viewports for Score, Choir and Sight Singing.
 
-The SBOM documents the dependency graph represented by the locked project dependencies.
+Microphone features require a secure context in normal browser deployments. GitHub Pages provides HTTPS. Optional capabilities such as Web MIDI and recording formats remain browser-dependent.
 
----
+See [docs/COMPATIBILITY.md](docs/COMPATIBILITY.md) and [docs/MOBILE_EXPERIENCE.md](docs/MOBILE_EXPERIENCE.md).
 
-# Contributing
+## Support the project
 
-Contributions are welcome.
+OpenVox is free and open source. A floating Support button links to `https://authorche.top/donate`. The application can also show a non-blocking support prompt after the first and every fourth meaningful file export, following the same voluntary-support pattern used by AuthorChe's Resume Builder.
 
-Before contributing, please read:
+Donations are optional and do not unlock features.
 
-* [CONTRIBUTING.md](CONTRIBUTING.md)
-* [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
-* [SECURITY.md](SECURITY.md)
+## About the creator
 
-Useful contribution areas include:
+OpenVox is created by **AuthorChe (Vadym Yemelianov)** — a Ukrainian musician, vocalist, vocal teacher, web developer and open-source creator. The landing page and About page include a public author card with a link to the creator's résumé at `https://authorche.top/resume`.
 
-* audio DSP;
-* pitch detection;
-* MusicXML;
-* MIDI;
-* accessibility;
-* mobile UX;
-* localization;
-* music education;
-* vocal pedagogy;
-* testing;
-* browser compatibility;
-* performance optimization.
+## Important technical limits
 
----
+OpenVox Studio is ambitious, but it does not claim impossible browser-side behavior:
 
-# Support
+- live microphone transcription is optimized for a dominant monophonic vocal line;
+- simultaneous blind separation of several live singers from one microphone is not presented as production-grade source separation;
+- browser audio decoding and recording formats differ by browser;
+- automated pitch metrics are training aids, not medical diagnostics;
+- browser speech-recognition implementations may use a browser-vendor service when explicitly enabled;
+- high-latency or low-power devices may require smaller FFT settings in Professional Audio Lab.
 
-For usage questions and general support, see:
+These boundaries are documented rather than hidden.
 
-[SUPPORT.md](SUPPORT.md)
+## Privacy
 
-For bugs and feature requests, use GitHub Issues.
+The core application does not require an account, database server or audio-upload endpoint. Projects and recordings remain in the browser until the user explicitly exports a file.
 
----
+The standard web build loads Google Analytics page-visit measurement by default and provides an opt-out in application settings. Analytics remains separate from every audio-processing path; audio frames, recordings and score content are not intentionally attached to analytics events.
 
-# Roadmap
+## Contributing
 
-The development roadmap is available in:
+Read [CONTRIBUTING.md](CONTRIBUTING.md). Bug reports should include browser version, operating system, device class, reproduction steps and console output when relevant.
 
-[ROADMAP.md](ROADMAP.md)
+## License
 
-The current release line remains pre-1.0 while real-device audio behavior continues to be validated across different microphones, browsers, and operating systems.
+Copyright © AuthorChe (Vadym Yemelianov).
 
----
+Source code is licensed under **GNU AGPL-3.0-only**. See [LICENSE](LICENSE), [NOTICE](NOTICE) and [TRADEMARKS.md](TRADEMARKS.md).
 
-# License
-
-OpenVox is licensed under:
-
-**GNU Affero General Public License v3.0 only — AGPL-3.0-only**
-
-See:
-
-[LICENSE](LICENSE)
-
-If you modify OpenVox and provide the modified program for users to interact with over a network, the AGPL includes source-code availability requirements.
-
-Please read the complete license text before redistributing or operating modified versions.
-
----
-
-# Trademark
-
-The source code license does not automatically grant permission to represent modified versions as an official OpenVox or AuthorChe release.
-
-See:
-
-[TRADEMARKS.md](TRADEMARKS.md)
-
----
-
-# Disclaimer
-
-OpenVox is provided without warranty under the terms of its license.
-
-Audio analysis results are estimates derived from digital signal processing and browser capabilities.
-
-Results can vary depending on:
-
-* microphone quality;
-* room acoustics;
-* background noise;
-* browser;
-* operating system;
-* audio hardware;
-* vocal technique.
-
-OpenVox is an educational and creative tool and is not a medical diagnostic application.
-
----
-
-# Author
-
-**AuthorChe — Vadym Yemelianov**
-
-Website:
-
-`https://authorche.top`
-
-GitHub:
-
-`https://github.com/vadymyem`
-
----
-
-<div align="center">
-
-### OpenVox
-
-**Your voice. Understood.**
-
-Free. Open source. Local-first.
-
-</div>
+The license covers source-code rights. Project names, logos and branding are addressed separately by the trademark policy.
