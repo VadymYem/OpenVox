@@ -5,9 +5,9 @@
   "metadata": {
     "component": {
       "type": "application",
-      "bom-ref": "pkg:npm/openvox@1.0.0-alpha.1",
+      "bom-ref": "pkg:npm/openvox@1.0.0-alpha.2",
       "name": "openvox",
-      "version": "1.0.0-alpha.1",
+      "version": "1.0.0-alpha.2",
       "licenses": [
         {
           "license": {
@@ -15,12 +15,12 @@
           }
         }
       ],
-      "purl": "pkg:npm/openvox@1.0.0-alpha.1"
+      "purl": "pkg:npm/openvox@1.0.0-alpha.2"
     },
     "properties": [
       {
         "name": "openvox:package-lock-sha256",
-        "value": "2ae4ebd97e4d98460e3944cd7fe103cc92291ff323c061aee66effadd1ca94f4"
+        "value": "7fdc0da18fd51fc92e2527187bc08eb605a46f4855d0a71d0a4b7d3838133792"
       },
       {
         "name": "openvox:component-count",

@@ -49,10 +49,10 @@
     <meta name="twitter:title" content="OpenVox Studio — Your voice. Understood." />
     <meta name="twitter:description" content="Privacy-first voice analysis and music transcription directly in your browser." />
     <meta name="twitter:image" content="https://authorche.top/assets/img/authorche-social-card.png" />
-    <link rel="icon" href="%BASE_URL%openvox-icon.svg" type="image/svg+xml" />
-    <link rel="icon" href="%BASE_URL%icons/openvox-192.png" type="image/png" sizes="192x192" />
-    <link rel="apple-touch-icon" href="%BASE_URL%icons/openvox-180.png" sizes="180x180" />
-    <link rel="manifest" href="%BASE_URL%manifest.webmanifest" />
+    <link rel="icon" href="/openvox-icon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/icons/openvox-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/icons/openvox-180.png" sizes="180x180" />
+    <link rel="manifest" href="/manifest.webmanifest" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -77,5 +77,24 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      (() => {
+        if (!location.hostname.endsWith('.github.io')) return;
+        const rawEntry = '/src/' + 'main.tsx';
+        const sourceEntry = document.querySelector(`script[type="module"][src="${rawEntry}"]`);
+        if (!sourceEntry) return;
+        sourceEntry.remove();
+        const root = document.getElementById('root');
+        if (!root) return;
+        root.innerHTML = `
+          <main style="min-height:100vh;display:grid;place-items:center;padding:24px;background:#030712;color:#dde8ff;font:16px/1.6 system-ui,sans-serif">
+            <section style="max-width:720px;border:1px solid rgba(200,169,110,.28);border-radius:20px;padding:28px;background:rgba(8,14,28,.92)">
+              <h1 style="margin:0 0 12px;color:#e8d0a0;font-size:1.6rem">OpenVox deployment is not built yet</h1>
+              <p style="margin:0 0 12px">GitHub Pages is serving the Vite source repository directly instead of the production <code>dist</code> artifact.</p>
+              <p style="margin:0">Open the repository settings and select <strong>Settings → Pages → Source → GitHub Actions</strong>, then run the Pages deployment workflow.</p>
+            </section>
+          </main>`;
+      })();
+    </script>
   </body>
 </html>

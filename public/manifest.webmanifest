@@ -1,0 +1,33 @@
+{
+  "name": "OpenVox Studio",
+  "short_name": "OpenVox",
+  "description": "Private, local-first voice training, audio analysis, instrument tuning, transcription and rehearsal studio.",
+  "id": "/OpenVox/",
+  "start_url": "/OpenVox/",
+  "scope": "/OpenVox/",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#030712",
+  "background_color": "#030712",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/OpenVox/icons/openvox-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/OpenVox/icons/openvox-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/OpenVox/openvox-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

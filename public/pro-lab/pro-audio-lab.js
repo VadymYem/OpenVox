@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  const OVXPRO_VERSION = '1.0.0-alpha.1';
+  const OVXPRO_VERSION = '1.0.0-alpha.2';
   const OVXPRO_STORE = 'openvox.prolab.settings.v1';
   const OVXPRO_PRESETS = 'openvox.prolab.presets.v1';
   const NAMES = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
