@@ -120,7 +120,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     const media = window.matchMedia('(prefers-color-scheme: light)');
     const syncThemeColor = () => {
       const light = settings.theme === 'light' || (settings.theme === 'system' && media.matches);
-      document.querySelector<HTMLMetaElement>('meta[name=\"theme-color\"]')?.setAttribute('content', light ? '#f8f5ef' : '#030712');
+      document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')?.setAttribute('content', light ? '#f8f5ef' : '#030712');
     };
     syncThemeColor();
     if (settings.theme === 'system') media.addEventListener?.('change', syncThemeColor);
