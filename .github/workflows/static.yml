@@ -17,6 +17,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
@@ -35,6 +36,7 @@ jobs:
         run: |
           REPO_NAME="${GITHUB_REPOSITORY#*/}"
           OWNER="${GITHUB_REPOSITORY_OWNER}"
+
           if [[ "$REPO_NAME" == "$OWNER.github.io" ]]; then
             BASE_PATH="/"
             PUBLIC_URL="https://${OWNER}.github.io"
@@ -42,14 +44,24 @@ jobs:
             BASE_PATH="/${REPO_NAME}/"
             PUBLIC_URL="https://${OWNER}.github.io/${REPO_NAME}"
           fi
+
           echo "OPENVOX_BASE=$BASE_PATH" >> "$GITHUB_ENV"
           echo "OPENVOX_PUBLIC_URL=$PUBLIC_URL" >> "$GITHUB_ENV"
+
+      # The uploaded source may have formatting drift.
+      # Normalize it inside the build workspace, then enforce the same check.
+      - name: Normalize source formatting
+        run: |
+          npm exec prettier -- --write             "src/**/*.{ts,tsx,css}"             "tests/**/*.{ts,tsx}"             "*.{ts,js,json,md}"             "docs/**/*.md"             ".github/**/*.{yml,yaml,md}"
 
       - name: Check formatting
         run: npm run format:check
 
       - name: Lint source
         run: npm run lint
+
+      - name: Type check
+        run: npm run typecheck
 
       - name: Verify direct dependency declarations
         run: npm run check:deps
@@ -73,6 +85,7 @@ jobs:
             echo 'Unresolved Vite BASE_URL token found in dist.' >&2
             exit 1
           fi
+
           if grep -R --line-number --fixed-strings '/src/main.tsx' dist; then
             echo 'Raw Vite source entry found in dist.' >&2
             exit 1
@@ -90,8 +103,10 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
     runs-on: ubuntu-latest
     needs: build
+
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
