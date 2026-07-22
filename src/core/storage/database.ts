@@ -1,4 +1,5 @@
 import type { AppSettings, OpenVoxProject, PracticeGoal, RecordingEntry, TrainingSessionEntry } from '../../types';
+import { synchronizeNotePitch } from '../music/notes';
 
 const DB_NAME = 'openvox-studio';
 const DB_VERSION = 2;
@@ -7,6 +8,16 @@ const RECORDINGS = 'recordings';
 const SETTINGS = 'settings';
 const SESSIONS = 'trainingSessions';
 const GOALS = 'practiceGoals';
+
+function normalizeProjectPitchData(project: OpenVoxProject): OpenVoxProject {
+  return {
+    ...project,
+    score: {
+      ...project.score,
+      notes: project.score.notes.map(synchronizeNotePitch)
+    }
+  };
+}
 
 function openDatabase(): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
@@ -50,7 +61,7 @@ function transactionDone(tx: IDBTransaction): Promise<void> {
 export async function saveProject(project: OpenVoxProject): Promise<void> {
   const db = await openDatabase();
   const tx = db.transaction(PROJECTS, 'readwrite');
-  tx.objectStore(PROJECTS).put(project);
+  tx.objectStore(PROJECTS).put(normalizeProjectPitchData(project));
   await transactionDone(tx);
   db.close();
 }
@@ -60,7 +71,7 @@ export async function getProject(id: string): Promise<OpenVoxProject | undefined
   const tx = db.transaction(PROJECTS, 'readonly');
   const result = await requestToPromise<OpenVoxProject | undefined>(tx.objectStore(PROJECTS).get(id));
   db.close();
-  return result;
+  return result ? normalizeProjectPitchData(result) : undefined;
 }
 
 export async function listProjects(): Promise<OpenVoxProject[]> {
@@ -68,7 +79,7 @@ export async function listProjects(): Promise<OpenVoxProject[]> {
   const tx = db.transaction(PROJECTS, 'readonly');
   const result = await requestToPromise<OpenVoxProject[]>(tx.objectStore(PROJECTS).getAll());
   db.close();
-  return result.sort((a, b) => b.updatedAt - a.updatedAt);
+  return result.map(normalizeProjectPitchData).sort((a, b) => b.updatedAt - a.updatedAt);
 }
 
 export async function deleteProject(id: string): Promise<void> {

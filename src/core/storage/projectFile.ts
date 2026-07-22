@@ -1,6 +1,7 @@
 import type { OpenVoxProject, RecordingEntry } from '../../types';
 import { downloadBlob } from '../export/scoreExport';
 import { notifySupportOpportunity } from '../support';
+import { synchronizeNotePitch } from '../music/notes';
 
 interface OpenVoxArchive {
   format: 'OpenVoxProject';
@@ -61,7 +62,14 @@ export async function importOpenVoxProject(
       blob: await (await fetch(recording.dataUrl)).blob()
     }))
   );
-  return { project: archive.project, recordings };
+  const project = {
+    ...archive.project,
+    score: {
+      ...archive.project.score,
+      notes: archive.project.score.notes.map(synchronizeNotePitch)
+    }
+  };
+  return { project, recordings };
 }
 
 export async function saveBlobToDevice(blob: Blob, suggestedName: string, mimeType: string): Promise<void> {

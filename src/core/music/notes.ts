@@ -1,3 +1,5 @@
+import type { MusicalNoteEvent } from '../../types';
+
 const NOTE_NAMES = ['C', 'C♯', 'D', 'D♯', 'E', 'F', 'F♯', 'G', 'G♯', 'A', 'A♯', 'B'];
 const FLAT_NOTE_NAMES = ['C', 'D♭', 'D', 'E♭', 'E', 'F', 'G♭', 'G', 'A♭', 'A', 'B♭', 'B'];
 
@@ -62,6 +64,27 @@ export function parseNoteLabel(label: string): number | null {
 
 export function resolveNoteSpelling(note: { midi: number; note: string; octave: number }): { note: string; octave: number } {
   const stored = parseNoteSpelling(`${note.note}${note.octave}`);
-  if (stored && stored.midi === Math.round(note.midi)) return { note: stored.note, octave: stored.octave };
+  if (stored) return { note: stored.note, octave: stored.octave };
   return midiToNote(note.midi);
+}
+
+export function synchronizeNotePitch<T extends MusicalNoteEvent>(note: T): T {
+  const stored = parseNoteSpelling(`${note.note}${note.octave}`);
+  if (stored) {
+    return {
+      ...note,
+      midi: stored.midi,
+      note: stored.note,
+      octave: stored.octave
+    };
+  }
+
+  const midi = clampMidi(note.midi);
+  const fallback = midiToNote(midi);
+  return {
+    ...note,
+    midi,
+    note: fallback.note,
+    octave: fallback.octave
+  };
 }
