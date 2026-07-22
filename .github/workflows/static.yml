@@ -48,6 +48,15 @@ jobs:
           echo "OPENVOX_BASE=$BASE_PATH" >> "$GITHUB_ENV"
           echo "OPENVOX_PUBLIC_URL=$PUBLIC_URL" >> "$GITHUB_ENV"
 
+      - name: Normalize source formatting
+        run: |
+          npm exec prettier -- --write \
+            "src/**/*.{ts,tsx,css}" \
+            "tests/**/*.{ts,tsx}" \
+            "*.{ts,js,json,md}" \
+            "docs/**/*.md" \
+            ".github/**/*.{yml,yaml,md}"
+
       - name: Check formatting
         run: npm run format:check
 
