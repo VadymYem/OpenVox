@@ -1,6 +1,6 @@
 # Roadmap
 
-OpenVox Studio `1.0.0-alpha.2` is feature-rich enough for broad public testing. The remaining roadmap prioritizes measured reliability rather than adding arbitrary interface surface.
+OpenVox Studio `1.0.0-alpha.5` is feature-rich enough for broad public testing. The remaining roadmap prioritizes measured reliability rather than adding arbitrary interface surface.
 
 ## Before 1.0
 
