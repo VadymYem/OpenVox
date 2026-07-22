@@ -117,14 +117,14 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     root.lang = settings.language;
     mirrorInterfacePreferences(settings.language, settings.theme);
 
-    const media = window.matchMedia('(prefers-color-scheme: light)');
+    const media = typeof window.matchMedia === 'function' ? window.matchMedia('(prefers-color-scheme: light)') : undefined;
     const syncThemeColor = () => {
-      const light = settings.theme === 'light' || (settings.theme === 'system' && media.matches);
+      const light = settings.theme === 'light' || (settings.theme === 'system' && (media?.matches ?? false));
       document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')?.setAttribute('content', light ? '#f8f5ef' : '#030712');
     };
     syncThemeColor();
-    if (settings.theme === 'system') media.addEventListener?.('change', syncThemeColor);
-    return () => media.removeEventListener?.('change', syncThemeColor);
+    if (settings.theme === 'system') media?.addEventListener?.('change', syncThemeColor);
+    return () => media?.removeEventListener?.('change', syncThemeColor);
   }, [settings.theme, settings.language, settings.accessibility]);
 
   const value = useMemo<AppContextValue>(
