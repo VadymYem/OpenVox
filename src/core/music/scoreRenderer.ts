@@ -1,5 +1,7 @@
 import type { MusicalNoteEvent, ScoreDocument } from '../../types';
-import { resolveNoteSpelling } from './notes';
+import { resolveNoteSpelling, synchronizeNotePitch } from './notes';
+
+type StaffClef = 'treble' | 'bass';
 
 const escapeXml = (value: string) =>
   value.replace(
@@ -8,19 +10,30 @@ const escapeXml = (value: string) =>
   );
 
 function staffStep(note: MusicalNoteEvent): number {
-  const pitch = resolveNoteSpelling(note);
+  const pitch = resolveNoteSpelling(synchronizeNotePitch(note));
   const letterMap: Record<string, number> = { C: 0, D: 1, E: 2, F: 3, G: 4, A: 5, B: 6 };
   return pitch.octave * 7 + (letterMap[pitch.note.charAt(0).toUpperCase()] ?? 0);
 }
 
-function noteY(note: MusicalNoteEvent, centerY: number): number {
-  // The middle line of a treble staff is B4. Each diatonic staff step is 5 px.
-  const b4Step = 4 * 7 + 6;
-  return centerY - (staffStep(note) - b4Step) * 5;
+function resolveClef(score: ScoreDocument): StaffClef {
+  const pitched = score.notes.filter((note) => !note.isRest).map((note) => synchronizeNotePitch(note).midi).sort((a, b) => a - b);
+  if (!pitched.length) return 'treble';
+  const median = pitched[Math.floor(pitched.length / 2)];
+  return median < 60 ? 'bass' : 'treble';
+}
+
+function clefReferenceStep(clef: StaffClef): number {
+  // Middle line references: treble = B4, bass = D3.
+  return clef === 'treble' ? 4 * 7 + 6 : 3 * 7 + 1;
+}
+
+function noteY(note: MusicalNoteEvent, centerY: number, clef: StaffClef): number {
+  return centerY - (staffStep(note) - clefReferenceStep(clef)) * 5;
 }
 
 function accidentalFor(note: MusicalNoteEvent): string {
-  const pitch = resolveNoteSpelling(note);
+  if (note.isRest) return '';
+  const pitch = resolveNoteSpelling(synchronizeNotePitch(note));
   return pitch.note.includes('♯') ? '♯' : pitch.note.includes('♭') ? '♭' : '';
 }
 
@@ -48,12 +61,36 @@ function drawLedgerLines(fragments: string[], x: number, y: number, staffTop: nu
   }
 }
 
+function restGlyph(durationBeats: number): string {
+  if (durationBeats >= 3.5) return '𝄻';
+  if (durationBeats >= 1.5) return '𝄼';
+  if (durationBeats >= 0.75) return '𝄽';
+  if (durationBeats >= 0.375) return '𝄾';
+  return '𝄿';
+}
+
+function restY(staffTop: number, durationBeats: number, clef: StaffClef): number {
+  if (durationBeats >= 3.5) return staffTop + 19;
+  if (durationBeats >= 1.5) return staffTop + 18;
+  return clef === 'treble' ? staffTop + 28 : staffTop + 26;
+}
+
+function drawRest(fragments: string[], x: number, staffTop: number, durationBeats: number, clef: StaffClef): void {
+  const glyph = restGlyph(durationBeats);
+  const y = restY(staffTop, durationBeats, clef);
+  const size = durationBeats >= 0.75 ? 30 : 28;
+  fragments.push(
+    `<text x="${x}" y="${y}" text-anchor="middle" font-family="'Bravura Text','Noto Music','Segoe UI Symbol',serif" font-size="${size}" fill="#19161d">${glyph}</text>`
+  );
+}
+
 export function renderScoreSvg(score: ScoreDocument, width = 1200): string {
   const tempo = Math.max(20, score.tempo || 90);
   const beatSeconds = 60 / tempo;
   const quarterBeatsPerMeasure = score.timeSignature[0] * (4 / score.timeSignature[1]);
   const measureSeconds = quarterBeatsPerMeasure * beatSeconds;
-  const sortedNotes = [...score.notes].sort((a, b) => a.start - b.start || a.midi - b.midi);
+  const normalizedNotes = score.notes.map((note) => synchronizeNotePitch(note));
+  const sortedNotes = [...normalizedNotes].sort((a, b) => a.start - b.start || a.midi - b.midi);
   const endTime = sortedNotes.reduce((max, note) => Math.max(max, note.start + note.duration), 0);
   const measureCount = Math.max(1, Math.ceil((endTime + 0.0001) / measureSeconds));
   const measuresPerSystem = width < 900 ? 3 : 4;
@@ -65,6 +102,8 @@ export function renderScoreSvg(score: ScoreDocument, width = 1200): string {
   const staffWidth = right - left;
   const lineGap = 10;
   const fragments: string[] = [];
+  const clef = resolveClef({ ...score, notes: normalizedNotes });
+  const clefGlyph = clef === 'treble' ? '𝄞' : '𝄢';
 
   fragments.push(
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" role="img" aria-label="${escapeXml(score.title)}">`
@@ -77,7 +116,7 @@ export function renderScoreSvg(score: ScoreDocument, width = 1200): string {
     `<text x="${width - 50}" y="68" text-anchor="end" font-family="system-ui,sans-serif" font-size="13" fill="#615b6a">${escapeXml(score.composer)}</text>`
   );
   fragments.push(
-    `<text x="50" y="68" font-family="system-ui,sans-serif" font-size="13" fill="#615b6a">♩ = ${tempo} · ${score.timeSignature[0]}/${score.timeSignature[1]} · key ${score.keyFifths >= 0 ? '+' : ''}${score.keyFifths}</text>`
+    `<text x="50" y="68" font-family="system-ui,sans-serif" font-size="13" fill="#615b6a">♩ = ${tempo} · ${score.timeSignature[0]}/${score.timeSignature[1]} · key ${score.keyFifths >= 0 ? '+' : ''}${score.keyFifths} · clef ${clef}</text>`
   );
 
   const notePositions = new Map<string, { x: number; y: number; system: number }>();
@@ -89,7 +128,7 @@ export function renderScoreSvg(score: ScoreDocument, width = 1200): string {
       fragments.push(`<line x1="${left}" y1="${y}" x2="${right}" y2="${y}" stroke="#332f38" stroke-width="1"/>`);
     }
     fragments.push(
-      `<text x="${left - 62}" y="${staffTop + 39}" font-family="serif" font-size="58" fill="#2f2a34">𝄞</text>`
+      `<text x="${left - 62}" y="${staffTop + 39}" font-family="'Bravura Text','Noto Music','Segoe UI Symbol',serif" font-size="58" fill="#2f2a34">${clefGlyph}</text>`
     );
     if (system === 0) {
       fragments.push(
@@ -129,7 +168,17 @@ export function renderScoreSvg(score: ScoreDocument, width = 1200): string {
         localMeasure * measureWidth +
         18 +
         (beatPosition / quarterBeatsPerMeasure) * Math.max(20, measureWidth - 36);
-      const y = noteY(note, staffTop + 20);
+
+      const durationBeats = note.duration / beatSeconds;
+      if (note.isRest) {
+        drawRest(fragments, x, staffTop, durationBeats, clef);
+        fragments.push(
+          `<text x="${x}" y="${staffTop + 105}" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9" fill="#827a87">Rest</text>`
+        );
+        continue;
+      }
+
+      const y = noteY(note, staffTop + 20, clef);
       notePositions.set(note.id, { x, y, system });
       drawLedgerLines(fragments, x, y, staffTop);
       const accidental = accidentalFor(note);
@@ -138,7 +187,6 @@ export function renderScoreSvg(score: ScoreDocument, width = 1200): string {
           `<text x="${x - 19}" y="${y + 6}" font-family="serif" font-size="21" fill="#2f2a34">${accidental}</text>`
         );
 
-      const durationBeats = note.duration / beatSeconds;
       const shape = durationShape(durationBeats);
       fragments.push(
         `<ellipse cx="${x}" cy="${y}" rx="7.5" ry="5.3" transform="rotate(-18 ${x} ${y})" fill="${shape.open ? '#fffdf8' : '#19161d'}" stroke="#19161d" stroke-width="1.8"/>`
@@ -162,16 +210,17 @@ export function renderScoreSvg(score: ScoreDocument, width = 1200): string {
         fragments.push(
           `<text x="${x}" y="${staffTop + 83}" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" fill="#4d4753">${escapeXml(note.lyric)}</text>`
         );
+      const pitch = resolveNoteSpelling(note);
       fragments.push(
-        `<text x="${x}" y="${staffTop + 105}" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9" fill="#827a87">${escapeXml(resolveNoteSpelling(note).note)}${resolveNoteSpelling(note).octave}</text>`
+        `<text x="${x}" y="${staffTop + 105}" text-anchor="middle" font-family="ui-monospace,monospace" font-size="9" fill="#827a87">${escapeXml(pitch.note)}${pitch.octave}</text>`
       );
     }
   }
 
   for (let i = 0; i < sortedNotes.length - 1; i++) {
     const note = sortedNotes[i];
-    if (!note.tieStart) continue;
-    const next = sortedNotes.slice(i + 1).find((candidate) => candidate.midi === note.midi);
+    if (note.isRest || !note.tieStart) continue;
+    const next = sortedNotes.slice(i + 1).find((candidate) => !candidate.isRest && candidate.midi === note.midi);
     if (!next) continue;
     const a = notePositions.get(note.id);
     const b = notePositions.get(next.id);

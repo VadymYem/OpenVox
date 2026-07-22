@@ -37,6 +37,7 @@ export interface MusicalNoteEvent {
   lyric?: string;
   tieStart?: boolean;
   tieStop?: boolean;
+  isRest?: boolean;
 }
 
 export interface ScoreDocument {

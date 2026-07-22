@@ -83,3 +83,22 @@ describe('MusicXML enharmonic spelling', () => {
     expect(score.notes[1]).toMatchObject({ midi: 60, note: 'B♯', octave: 3 });
   });
 });
+
+
+const REST_XML = `<?xml version="1.0" encoding="UTF-8"?>
+<score-partwise version="4.0">
+  <part-list><score-part id="P1"><part-name>Rests</part-name></score-part></part-list>
+  <part id="P1"><measure number="1"><attributes><divisions>1</divisions></attributes>
+    <note><rest/><duration>1</duration></note>
+    <note><pitch><step>C</step><octave>4</octave></pitch><duration>1</duration></note>
+  </measure></part>
+</score-partwise>`;
+
+describe('MusicXML rests', () => {
+  it('imports explicit rest events so the score remains complete', () => {
+    const score = importMusicXml(REST_XML);
+    expect(score.notes).toHaveLength(2);
+    expect(score.notes[0].isRest).toBe(true);
+    expect(score.notes[1]).toMatchObject({ midi: 60, note: 'C', octave: 4 });
+  });
+});

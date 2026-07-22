@@ -95,7 +95,7 @@ export function ScorePage() {
   };
   const addNote = () => {
     const previous = score.notes[score.notes.length - 1];
-    const midi = previous?.midi ?? 60;
+    const midi = previous && !previous.isRest ? previous.midi : 60;
     const info = midiToNote(midi);
     const start = previous ? previous.start + previous.duration : 0;
     updateScore({
@@ -109,7 +109,28 @@ export function ScorePage() {
           start,
           duration: 0.5,
           velocity: 96,
-          confidence: 1
+          confidence: 1,
+          isRest: false
+        }
+      ]
+    });
+  };
+  const addRest = () => {
+    const previous = score.notes[score.notes.length - 1];
+    const start = previous ? previous.start + previous.duration : 0;
+    updateScore({
+      notes: [
+        ...score.notes,
+        {
+          id: crypto.randomUUID(),
+          midi: 60,
+          note: 'C',
+          octave: 4,
+          start,
+          duration: 0.5,
+          velocity: 1,
+          confidence: 1,
+          isRest: true
         }
       ]
     });
@@ -365,20 +386,46 @@ export function ScorePage() {
           </div>
           <div className="card-title">
             <h2>{t('score.note')}</h2>
-            <button className="button" onClick={addNote}>
-              <Icon name="plus" />
-              {t('score.add')}
-            </button>
+            <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
+              <button className="button" onClick={addNote}>
+                <Icon name="plus" />
+                {t('score.add')}
+              </button>
+              <button className="button" onClick={addRest}>
+                <Icon name="plus" />
+                {t('score.addRest')}
+              </button>
+            </div>
           </div>
           {score.notes.length ? (
             score.notes.map((note) => (
               <div className="note-row note-row-advanced" key={note.id}>
                 <div className="field">
+                  <label>{t('score.type')}</label>
+                  <select
+                    aria-label={t('score.type')}
+                    value={note.isRest ? 'rest' : 'note'}
+                    onChange={(e) =>
+                      updateNote(note.id, {
+                        isRest: e.target.value === 'rest',
+                        velocity: e.target.value === 'rest' ? 1 : 96,
+                        tieStart: e.target.value === 'rest' ? false : note.tieStart,
+                        tieStop: e.target.value === 'rest' ? false : note.tieStop,
+                        lyric: e.target.value === 'rest' ? '' : note.lyric
+                      })
+                    }
+                  >
+                    <option value="note">{t('score.note')}</option>
+                    <option value="rest">{t('score.rest')}</option>
+                  </select>
+                </div>
+                <div className="field">
                   <label>{t('score.note')}</label>
                   <input
                     aria-label={t('score.note')}
-                    key={`${note.id}-${note.midi}-${note.note}-${note.octave}`}
-                    defaultValue={`${note.note}${note.octave}`}
+                    key={`${note.id}-${note.midi}-${note.note}-${note.octave}-${note.isRest ? 'rest' : 'note'}`}
+                    defaultValue={note.isRest ? t('score.rest') : `${note.note}${note.octave}`}
+                    disabled={Boolean(note.isRest)}
                     onBlur={(e) => changeNoteLabel(note.id, e.target.value)}
                   />
                 </div>
@@ -412,6 +459,7 @@ export function ScorePage() {
                     min="1"
                     max="127"
                     value={note.velocity}
+                    disabled={Boolean(note.isRest)}
                     onChange={(e) =>
                       updateNote(note.id, { velocity: Math.max(1, Math.min(127, Number(e.target.value))) })
                     }
@@ -421,6 +469,7 @@ export function ScorePage() {
                   <label>{t('score.tie')}</label>
                   <select
                     aria-label={t('score.tie')}
+                    disabled={Boolean(note.isRest)}
                     value={`${note.tieStop ? 'stop' : ''}${note.tieStart ? 'start' : ''}`}
                     onChange={(e) =>
                       updateNote(note.id, {
@@ -440,6 +489,7 @@ export function ScorePage() {
                   <input
                     aria-label={t('score.lyric')}
                     value={note.lyric || ''}
+                    disabled={Boolean(note.isRest)}
                     onChange={(e) => updateNote(note.id, { lyric: e.target.value })}
                   />
                 </div>
@@ -466,7 +516,7 @@ export function ScorePage() {
         <section className="card score-preview-card score-preview-pane">
           <div className="card-title">
             <h2>{t('score.preview')}</h2>
-            <span className="badge">{score.notes.length} notes</span>
+            <span className="badge">{score.notes.length} events</span>
           </div>
           <ScoreViewport svg={svg} label={t('score.preview')} />
         </section>

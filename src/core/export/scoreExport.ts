@@ -40,16 +40,21 @@ function noteXml(
   tieStart: boolean,
   tieStop: boolean
 ): string {
-  const pitch = resolveNoteSpelling(note);
-  const step = pitch.note.charAt(0);
-  const alter = pitch.note.includes('♯') ? 1 : pitch.note.includes('♭') ? -1 : 0;
-  const ties = `${tieStop ? '<tie type="stop"/>' : ''}${tieStart ? '<tie type="start"/>' : ''}`;
+  const ties = note.isRest ? '' : `${tieStop ? '<tie type="stop"/>' : ''}${tieStart ? '<tie type="start"/>' : ''}`;
   const notations =
-    tieStart || tieStop
+    !note.isRest && (tieStart || tieStop)
       ? `<notations>${tieStop ? '<tied type="stop"/>' : ''}${tieStart ? '<tied type="start"/>' : ''}</notations>`
       : '';
   const lyric = note.lyric ? `<lyric><text>${escapeXml(note.lyric)}</text></lyric>` : '';
-  return `<note>${chord ? '<chord/>' : ''}<pitch><step>${step}</step>${alter ? `<alter>${alter}</alter>` : ''}<octave>${pitch.octave}</octave></pitch><duration>${durationTicks}</duration>${ties}<voice>1</voice><type>${noteTypeFromQuarterLength(durationQuarters)}</type>${notations}${lyric}</note>`;
+  const pitchBlock = note.isRest
+    ? '<rest/>'
+    : (() => {
+        const pitch = resolveNoteSpelling(note);
+        const step = pitch.note.charAt(0);
+        const alter = pitch.note.includes('♯') ? 1 : pitch.note.includes('♭') ? -1 : 0;
+        return `<pitch><step>${step}</step>${alter ? `<alter>${alter}</alter>` : ''}<octave>${pitch.octave}</octave></pitch>`;
+      })();
+  return `<note>${chord && !note.isRest ? '<chord/>' : ''}${pitchBlock}<duration>${durationTicks}</duration>${ties}<voice>1</voice><type>${noteTypeFromQuarterLength(durationQuarters)}</type>${notations}${lyric}</note>`;
 }
 
 export function scoreToMusicXml(score: ScoreDocument): string {
@@ -66,6 +71,10 @@ export function scoreToMusicXml(score: ScoreDocument): string {
   const measureEvents: Array<
     Array<{ note: MusicalNoteEvent; start: number; duration: number; tieStart: boolean; tieStop: boolean }>
   > = Array.from({ length: measureCount }, () => []);
+  const pitched = score.notes.filter((note) => !note.isRest);
+  const averageMidi = pitched.length ? pitched.reduce((sum, note) => sum + note.midi, 0) / pitched.length : 64;
+  const clefSign = averageMidi < 60 ? 'F' : 'G';
+  const clefLine = averageMidi < 60 ? 4 : 2;
 
   for (const note of sorted) {
     let remaining = Math.max(1, toTicks(note.duration));
@@ -95,11 +104,11 @@ export function scoreToMusicXml(score: ScoreDocument): string {
     .map((events, measureIndex) => {
       const attributes =
         measureIndex === 0
-          ? `<attributes><divisions>${divisions}</divisions><key><fifths>${score.keyFifths}</fifths></key><time><beats>${beats}</beats><beat-type>${beatType}</beat-type></time><clef><sign>G</sign><line>2</line></clef></attributes><direction placement="above"><direction-type><metronome><beat-unit>quarter</beat-unit><per-minute>${tempo}</per-minute></metronome></direction-type><sound tempo="${tempo}"/></direction>`
+          ? `<attributes><divisions>${divisions}</divisions><key><fifths>${score.keyFifths}</fifths></key><time><beats>${beats}</beats><beat-type>${beatType}</beat-type></time><clef><sign>${clefSign}</sign><line>${clefLine}</line></clef></attributes><direction placement="above"><direction-type><metronome><beat-unit>quarter</beat-unit><per-minute>${tempo}</per-minute></metronome></direction-type><sound tempo="${tempo}"/></direction>`
           : '';
       const groups = new Map<number, typeof events>();
       events
-        .sort((a, b) => a.start - b.start || a.note.midi - b.note.midi)
+        .sort((a, b) => a.start - b.start || (a.note.isRest ? 1 : 0) - (b.note.isRest ? 1 : 0) || a.note.midi - b.note.midi)
         .forEach((event) => {
           const group = groups.get(event.start) || [];
           group.push(event);
@@ -142,6 +151,7 @@ export function exportMidi(score: ScoreDocument): void {
   const track = midi.addTrack();
   track.name = score.title;
   [...score.notes]
+    .filter((note) => !note.isRest)
     .sort((a, b) => a.start - b.start)
     .forEach((note) =>
       track.addNote({

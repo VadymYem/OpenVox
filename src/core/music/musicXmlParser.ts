@@ -64,7 +64,20 @@ function parsePart(partNode: Element, name: string, tempo: number): ParsedMusicX
       const startUnits = chord ? lastNoteStartUnits : cursorUnits;
       if (!chord) lastNoteStartUnits = startUnits;
 
-      if (!child.querySelector(':scope > rest')) {
+      const isRest = Boolean(child.querySelector(':scope > rest'));
+      if (isRest) {
+        notes.push({
+          id: crypto.randomUUID(),
+          midi: 60,
+          note: 'C',
+          octave: 4,
+          start: absoluteSeconds + (startUnits / divisions) * quarterSeconds,
+          duration,
+          velocity: 1,
+          confidence: 1,
+          isRest: true
+        });
+      } else {
         const step = child.querySelector('pitch > step')?.textContent?.trim().toUpperCase() || 'C';
         const alter = numberText(child.querySelector('pitch > alter'), 0);
         const octave = numberText(child.querySelector('pitch > octave'), 4);

@@ -73,4 +73,18 @@ describe('score renderer pitch placement', () => {
     expect(cyFor(svg, 'C5')).toBe(120);
     expect(cyFor(svg, 'C2')).toBe(225);
   });
+
+  it('switches to bass clef for low-pitched material and renders rests', () => {
+    const svg = renderScoreSvg(
+      scoreWith([
+        note('c3', 48, 'C', 3),
+        { ...note('rest-1', 60, 'C', 4), start: 1, isRest: true },
+        { ...note('g2', 43, 'G', 2), start: 2 }
+      ])
+    );
+    expect(svg).toContain('clef bass');
+    expect(svg).toContain('>Rest</text>');
+    expect(cyFor(svg, 'C3')).toBeLessThan(cyFor(svg, 'G2'));
+  });
+
 });

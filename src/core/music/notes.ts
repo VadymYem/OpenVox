@@ -69,6 +69,18 @@ export function resolveNoteSpelling(note: { midi: number; note: string; octave: 
 }
 
 export function synchronizeNotePitch<T extends MusicalNoteEvent>(note: T): T {
+  if (note.isRest) {
+    const storedRestPitch = parseNoteSpelling(`${note.note}${note.octave}`);
+    const fallbackRest = storedRestPitch || { midi: 60, note: 'C', octave: 4 };
+    return {
+      ...note,
+      midi: fallbackRest.midi,
+      note: fallbackRest.note,
+      octave: fallbackRest.octave,
+      isRest: true
+    };
+  }
+
   const stored = parseNoteSpelling(`${note.note}${note.octave}`);
   if (stored) {
     return {

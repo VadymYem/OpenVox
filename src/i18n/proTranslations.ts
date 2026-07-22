@@ -1015,7 +1015,8 @@ const scoreWorkflowTranslations: Record<Language, Copy> = {
     'score.transposeDown': 'Transpose -1',
     'score.transposeUp': 'Transpose +1',
     'score.quantize': 'Quantize grid',
-    'score.applyQuantize': 'Quantize all'
+    'score.applyQuantize': 'Quantize all',
+    'score.scoreAuditHint': 'Pitch labels, rests and clef placement are now synchronized.'
   },
   uk: {
     'score.undo': 'Скасувати',
@@ -1023,7 +1024,8 @@ const scoreWorkflowTranslations: Record<Language, Copy> = {
     'score.transposeDown': 'Транспонувати -1',
     'score.transposeUp': 'Транспонувати +1',
     'score.quantize': 'Сітка квантизації',
-    'score.applyQuantize': 'Квантизувати все'
+    'score.applyQuantize': 'Квантизувати все',
+    'score.scoreAuditHint': 'Підписи висоти, паузи та розміщення ключа тепер синхронізовані.'
   },
   de: {
     'score.undo': 'Rückgängig',
@@ -1031,7 +1033,8 @@ const scoreWorkflowTranslations: Record<Language, Copy> = {
     'score.transposeDown': 'Transponieren -1',
     'score.transposeUp': 'Transponieren +1',
     'score.quantize': 'Quantisierungsraster',
-    'score.applyQuantize': 'Alles quantisieren'
+    'score.applyQuantize': 'Alles quantisieren',
+    'score.scoreAuditHint': 'Tonbezeichnungen, Pausen und Schlüsselplatzierung sind jetzt synchronisiert.'
   }
 };
 Object.assign(en, scoreWorkflowTranslations.en);

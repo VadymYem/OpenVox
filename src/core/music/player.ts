@@ -118,7 +118,10 @@ export class TonePlayer {
     }
 
     const now = this.context.currentTime + 0.055;
-    for (const note of notes) this.scheduleVoice(note, now, volume, profile, dry);
+    for (const note of notes) {
+      if (note.isRest) continue;
+      this.scheduleVoice(note, now, volume, profile, dry);
+    }
   }
 
   stop(): void {
