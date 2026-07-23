@@ -1,8 +1,9 @@
-import { notifySupportOpportunity } from '../support';
 import { Midi } from '@tonejs/midi';
 import type { MusicalNoteEvent, ScoreDocument } from '../../types';
+import { resolveNoteSpelling, synchronizeNotePitch } from '../music/notes';
+import { buildNotationTimeline, resolveScoreClef, scoreMeasureCount, scoreTiming } from '../music/scoreModel';
 import { renderScoreSvg } from '../music/scoreRenderer';
-import { resolveNoteSpelling } from '../music/notes';
+import { notifySupportOpportunity } from '../support';
 
 export function downloadBlob(blob: Blob, fileName: string): void {
   const url = URL.createObjectURL(blob);
@@ -23,13 +24,26 @@ function escapeXml(value: string): string {
   );
 }
 
-function noteTypeFromQuarterLength(value: number): string {
-  if (value >= 3.5) return 'whole';
-  if (value >= 1.5) return 'half';
-  if (value >= 0.75) return 'quarter';
-  if (value >= 0.375) return 'eighth';
-  if (value >= 0.1875) return '16th';
-  return '32nd';
+function durationNotation(value: number): { type: string; dots: number } {
+  const options = [
+    { value: 6, type: 'whole', dots: 1 },
+    { value: 4, type: 'whole', dots: 0 },
+    { value: 3, type: 'half', dots: 1 },
+    { value: 2, type: 'half', dots: 0 },
+    { value: 1.5, type: 'quarter', dots: 1 },
+    { value: 1, type: 'quarter', dots: 0 },
+    { value: 0.75, type: 'eighth', dots: 1 },
+    { value: 0.5, type: 'eighth', dots: 0 },
+    { value: 0.375, type: '16th', dots: 1 },
+    { value: 0.25, type: '16th', dots: 0 },
+    { value: 0.1875, type: '32nd', dots: 1 },
+    { value: 0.125, type: '32nd', dots: 0 },
+    { value: 0.09375, type: '64th', dots: 1 },
+    { value: 0.0625, type: '64th', dots: 0 }
+  ];
+  return options.reduce((best, candidate) =>
+    Math.abs(candidate.value - value) < Math.abs(best.value - value) ? candidate : best
+  );
 }
 
 function noteXml(
@@ -38,98 +52,139 @@ function noteXml(
   durationQuarters: number,
   chord: boolean,
   tieStart: boolean,
-  tieStop: boolean
+  tieStop: boolean,
+  measureRest = false,
+  tupletStart = false,
+  tupletStop = false
 ): string {
+  const notation = measureRest ? { type: 'whole', dots: 0 } : durationNotation(durationQuarters);
+  const dots = '<dot/>'.repeat(notation.dots);
   const ties = note.isRest ? '' : `${tieStop ? '<tie type="stop"/>' : ''}${tieStart ? '<tie type="start"/>' : ''}`;
-  const notations =
-    !note.isRest && (tieStart || tieStop)
-      ? `<notations>${tieStop ? '<tied type="stop"/>' : ''}${tieStart ? '<tied type="start"/>' : ''}</notations>`
-      : '';
-  const lyric = note.lyric ? `<lyric><text>${escapeXml(note.lyric)}</text></lyric>` : '';
+  const notationItems: string[] = [];
+  if (!note.isRest) {
+    if (tieStop) notationItems.push('<tied type="stop"/>');
+    if (tieStart) notationItems.push('<tied type="start"/>');
+    if (note.slurStop) notationItems.push('<slur type="stop" number="1"/>');
+    if (note.slurStart) notationItems.push('<slur type="start" number="1"/>');
+    if (tupletStart) notationItems.push('<tuplet type="start" number="1"/>');
+    if (tupletStop) notationItems.push('<tuplet type="stop" number="1"/>');
+    if (note.articulation) {
+      const articulationXml =
+        note.articulation === 'staccato'
+          ? '<staccato/>'
+          : note.articulation === 'tenuto'
+            ? '<tenuto/>'
+            : note.articulation === 'accent'
+              ? '<accent/>'
+              : '<strong-accent type="up"/>';
+      notationItems.push(`<articulations>${articulationXml}</articulations>`);
+    }
+  }
+  const notations = notationItems.length ? `<notations>${notationItems.join('')}</notations>` : '';
+  const lyric = !note.isRest && note.lyric ? `<lyric><text>${escapeXml(note.lyric)}</text></lyric>` : '';
   const pitchBlock = note.isRest
-    ? '<rest/>'
+    ? measureRest
+      ? '<rest measure="yes"/>'
+      : '<rest/>'
     : (() => {
-        const pitch = resolveNoteSpelling(note);
+        const pitch = resolveNoteSpelling(synchronizeNotePitch(note));
         const step = pitch.note.charAt(0);
         const alter = pitch.note.includes('♯') ? 1 : pitch.note.includes('♭') ? -1 : 0;
         return `<pitch><step>${step}</step>${alter ? `<alter>${alter}</alter>` : ''}<octave>${pitch.octave}</octave></pitch>`;
       })();
-  return `<note>${chord && !note.isRest ? '<chord/>' : ''}${pitchBlock}<duration>${durationTicks}</duration>${ties}<voice>1</voice><type>${noteTypeFromQuarterLength(durationQuarters)}</type>${notations}${lyric}</note>`;
+  const timeModification =
+    note.tupletActual && note.tupletNormal
+      ? `<time-modification><actual-notes>${note.tupletActual}</actual-notes><normal-notes>${note.tupletNormal}</normal-notes></time-modification>`
+      : '';
+  return `<note>${chord && !note.isRest ? '<chord/>' : ''}${pitchBlock}<duration>${durationTicks}</duration>${ties}<voice>${note.voice || 1}</voice><type>${notation.type}</type>${dots}${timeModification}${notations}${lyric}</note>`;
 }
 
 export function scoreToMusicXml(score: ScoreDocument): string {
   const divisions = 480;
-  const tempo = Math.max(20, score.tempo || 90);
+  const timing = scoreTiming(score);
   const beats = Math.max(1, score.timeSignature[0]);
   const beatType = Math.max(1, score.timeSignature[1]);
-  const measureQuarters = beats * (4 / beatType);
-  const measureTicks = Math.max(1, Math.round(measureQuarters * divisions));
-  const toTicks = (seconds: number) => Math.max(0, Math.round(((seconds * tempo) / 60) * divisions));
-  const sorted = [...score.notes].sort((a, b) => a.start - b.start || a.midi - b.midi);
-  const endTick = sorted.reduce((max, note) => Math.max(max, toTicks(note.start + note.duration)), 0);
-  const measureCount = Math.max(1, Math.ceil((endTick + 1) / measureTicks));
-  const measureEvents: Array<
-    Array<{ note: MusicalNoteEvent; start: number; duration: number; tieStart: boolean; tieStop: boolean }>
-  > = Array.from({ length: measureCount }, () => []);
-  const pitched = score.notes.filter((note) => !note.isRest);
-  const averageMidi = pitched.length ? pitched.reduce((sum, note) => sum + note.midi, 0) / pitched.length : 64;
-  const clefSign = averageMidi < 60 ? 'F' : 'G';
-  const clefLine = averageMidi < 60 ? 4 : 2;
+  const measureTicks = Math.max(1, Math.round(timing.measureBeats * divisions));
+  const measureCount = scoreMeasureCount(score);
+  const timeline = buildNotationTimeline(score);
+  const clef = resolveScoreClef(score);
+  const clefSign = clef === 'bass' ? 'F' : 'G';
+  const clefLine = clef === 'bass' ? 4 : 2;
+  const lastDynamicByVoice = new Map<number, MusicalNoteEvent['dynamic']>();
+  const tupletBounds = new Map<string, { first: string; last: string }>();
+  const tupletGroups = new Map<string, typeof timeline>();
+  timeline.forEach((event) => {
+    if (!event.tupletGroupId || event.generated) return;
+    const group = tupletGroups.get(event.tupletGroupId) || [];
+    group.push(event);
+    tupletGroups.set(event.tupletGroupId, group);
+  });
+  tupletGroups.forEach((group, id) => {
+    const ordered = [...group].sort((a, b) => a.start - b.start || a.midi - b.midi);
+    if (ordered.length) tupletBounds.set(id, { first: ordered[0].id, last: ordered[ordered.length - 1].id });
+  });
 
-  for (const note of sorted) {
-    let remaining = Math.max(1, toTicks(note.duration));
-    let cursor = toTicks(note.start);
-    let segmentIndex = 0;
-    while (remaining > 0) {
-      const measureIndex = Math.floor(cursor / measureTicks);
-      while (measureEvents.length <= measureIndex) measureEvents.push([]);
-      const localStart = cursor - measureIndex * measureTicks;
-      const available = measureTicks - localStart;
-      const duration = Math.min(remaining, available);
-      const continues = remaining > duration;
-      measureEvents[measureIndex].push({
-        note,
-        start: localStart,
-        duration,
-        tieStop: Boolean(note.tieStop) || segmentIndex > 0,
-        tieStart: Boolean(note.tieStart) || continues
+  const measures = Array.from({ length: measureCount }, (_, measureIndex) => {
+    const attributes =
+      measureIndex === 0
+        ? `<attributes><divisions>${divisions}</divisions><key><fifths>${score.keyFifths}</fifths></key><time><beats>${beats}</beats><beat-type>${beatType}</beat-type></time><clef><sign>${clefSign}</sign><line>${clefLine}</line></clef></attributes><direction placement="above"><direction-type><metronome><beat-unit>quarter</beat-unit><per-minute>${timing.tempo}</per-minute></metronome></direction-type><sound tempo="${timing.tempo}"/></direction>`
+        : '';
+    const events = timeline.filter((event) => event.measureIndex === measureIndex);
+    const voices = [...new Set(events.map((event) => event.voice || 1))].sort((a, b) => a - b);
+    const content: string[] = [];
+
+    voices.forEach((voice, voiceIndex) => {
+      if (voiceIndex > 0) content.push(`<backup><duration>${measureTicks}</duration></backup>`);
+      const voiceEvents = events.filter((event) => (event.voice || 1) === voice);
+      const groups = new Map<number, typeof voiceEvents>();
+      voiceEvents.forEach((event) => {
+        const startTick = Math.max(0, Math.round(event.startBeatInMeasure * divisions));
+        const group = groups.get(startTick) || [];
+        group.push(event);
+        groups.set(startTick, group);
       });
-      remaining -= duration;
-      cursor += duration;
-      segmentIndex += 1;
-    }
-  }
 
-  const measures = measureEvents
-    .map((events, measureIndex) => {
-      const attributes =
-        measureIndex === 0
-          ? `<attributes><divisions>${divisions}</divisions><key><fifths>${score.keyFifths}</fifths></key><time><beats>${beats}</beats><beat-type>${beatType}</beat-type></time><clef><sign>${clefSign}</sign><line>${clefLine}</line></clef></attributes><direction placement="above"><direction-type><metronome><beat-unit>quarter</beat-unit><per-minute>${tempo}</per-minute></metronome></direction-type><sound tempo="${tempo}"/></direction>`
-          : '';
-      const groups = new Map<number, typeof events>();
-      events
-        .sort((a, b) => a.start - b.start || (a.note.isRest ? 1 : 0) - (b.note.isRest ? 1 : 0) || a.note.midi - b.note.midi)
-        .forEach((event) => {
-          const group = groups.get(event.start) || [];
-          group.push(event);
-          groups.set(event.start, group);
-        });
       let cursor = 0;
-      const content: string[] = [];
-      for (const [start, group] of [...groups.entries()].sort((a, b) => a[0] - b[0])) {
-        if (start > cursor) content.push(`<forward><duration>${start - cursor}</duration></forward>`);
+      for (const [startTick, group] of [...groups.entries()].sort((a, b) => a[0] - b[0])) {
+        if (startTick > cursor) content.push(`<forward><duration>${startTick - cursor}</duration></forward>`);
+        const ordered = [...group].sort(
+          (a, b) => Number(Boolean(a.isRest)) - Number(Boolean(b.isRest)) || a.midi - b.midi
+        );
+        const groupDynamic = ordered.find((event) => !event.isRest && event.dynamic)?.dynamic;
+        const lastDynamic = lastDynamicByVoice.get(voice);
+        if (groupDynamic && groupDynamic !== lastDynamic) {
+          content.push(
+            `<direction placement="below"><direction-type><dynamics><${groupDynamic}/></dynamics></direction-type><voice>${voice}</voice></direction>`
+          );
+          lastDynamicByVoice.set(voice, groupDynamic);
+        }
         let groupDuration = 0;
-        group.forEach((event, index) => {
-          const quarters = event.duration / divisions;
-          content.push(noteXml(event.note, event.duration, quarters, index > 0, event.tieStart, event.tieStop));
-          groupDuration = Math.max(groupDuration, event.duration);
+        ordered.forEach((event, index) => {
+          const durationTicks = Math.max(1, Math.round(event.durationBeats * divisions));
+          content.push(
+            noteXml(
+              event,
+              durationTicks,
+              event.tupletActual && event.tupletNormal
+                ? event.durationBeats * (event.tupletActual / event.tupletNormal)
+                : event.durationBeats,
+              index > 0 && !event.isRest && !ordered[0].isRest,
+              Boolean(event.tieStart),
+              Boolean(event.tieStop),
+              Boolean(event.measureRest),
+              Boolean(event.tupletGroupId && tupletBounds.get(event.tupletGroupId)?.first === event.id),
+              Boolean(event.tupletGroupId && tupletBounds.get(event.tupletGroupId)?.last === event.id)
+            )
+          );
+          groupDuration = Math.max(groupDuration, durationTicks);
         });
-        cursor = Math.max(cursor, start + groupDuration);
+        cursor = Math.max(cursor, startTick + groupDuration);
       }
       if (cursor < measureTicks) content.push(`<forward><duration>${measureTicks - cursor}</duration></forward>`);
-      return `<measure number="${measureIndex + 1}">${attributes}${content.join('')}</measure>`;
-    })
-    .join('');
+    });
+
+    return `<measure number="${measureIndex + 1}">${attributes}${content.join('')}</measure>`;
+  }).join('');
 
   return `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
@@ -152,15 +207,27 @@ export function exportMidi(score: ScoreDocument): void {
   track.name = score.title;
   [...score.notes]
     .filter((note) => !note.isRest)
+    .map(synchronizeNotePitch)
     .sort((a, b) => a.start - b.start)
-    .forEach((note) =>
+    .forEach((note) => {
+      const dynamicScale: Record<NonNullable<MusicalNoteEvent['dynamic']>, number> = {
+        pp: 0.38,
+        p: 0.52,
+        mp: 0.68,
+        mf: 0.82,
+        f: 1,
+        ff: 1.16
+      };
+      const articulationScale = note.articulation === 'marcato' ? 1.24 : note.articulation === 'accent' ? 1.14 : 1;
+      const durationScale = note.articulation === 'staccato' ? 0.52 : note.articulation === 'tenuto' ? 0.98 : 1;
+      const dynamic = note.dynamic ? dynamicScale[note.dynamic] : 1;
       track.addNote({
         midi: note.midi,
         time: note.start,
-        duration: note.duration,
-        velocity: Math.max(0.05, Math.min(1, note.velocity / 127))
-      })
-    );
+        duration: Math.max(0.01, note.duration * durationScale),
+        velocity: Math.max(0.05, Math.min(1, (note.velocity / 127) * dynamic * articulationScale))
+      });
+    });
   const bytes = midi.toArray();
   const buffer = bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength) as ArrayBuffer;
   downloadBlob(new Blob([buffer], { type: 'audio/midi' }), `${safeName(score.title)}.mid`);

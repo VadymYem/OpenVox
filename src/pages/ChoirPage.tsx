@@ -52,7 +52,7 @@ export function transformRehearsalNotes(
   const repeatCount = Math.max(1, Math.min(8, Math.round(repetitions)));
   const passageDuration = Math.max(0.05, (end - start) / rate);
   const base = notes
-    .filter((note) => note.start + note.duration >= start && note.start <= end)
+    .filter((note) => !note.isRest && note.start + note.duration >= start && note.start <= end)
     .map((note) => {
       const clippedStart = Math.max(start, note.start);
       const clippedEnd = Math.min(end, note.start + note.duration);

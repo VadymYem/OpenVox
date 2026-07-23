@@ -117,10 +117,31 @@ export class TonePlayer {
       (dry as GainNode & { __reverbInput?: ConvolverNode }).__reverbInput = convolver;
     }
 
+    const dynamicScale: Record<NonNullable<MusicalNoteEvent['dynamic']>, number> = {
+      pp: 0.38,
+      p: 0.52,
+      mp: 0.68,
+      mf: 0.82,
+      f: 1,
+      ff: 1.16
+    };
     const now = this.context.currentTime + 0.055;
     for (const note of notes) {
       if (note.isRest) continue;
-      this.scheduleVoice(note, now, volume, profile, dry);
+      const dynamic = note.dynamic ? dynamicScale[note.dynamic] : 1;
+      const articulationGain = note.articulation === 'marcato' ? 1.24 : note.articulation === 'accent' ? 1.14 : 1;
+      const articulationDuration = note.articulation === 'staccato' ? 0.52 : note.articulation === 'tenuto' ? 0.98 : 1;
+      this.scheduleVoice(
+        {
+          ...note,
+          duration: Math.max(0.04, note.duration * articulationDuration),
+          velocity: Math.max(1, Math.min(127, Math.round(note.velocity * dynamic * articulationGain)))
+        },
+        now,
+        volume,
+        profile,
+        dry
+      );
     }
   }
 

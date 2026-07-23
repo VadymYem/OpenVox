@@ -1,5 +1,9 @@
 export type Language = 'en' | 'uk' | 'de';
 export type ThemeMode = 'system' | 'dark' | 'light';
+export type ScoreClef = 'auto' | 'treble' | 'bass';
+export type ScoreArticulation = 'staccato' | 'tenuto' | 'accent' | 'marcato';
+export type ScoreDynamic = 'pp' | 'p' | 'mp' | 'mf' | 'f' | 'ff';
+export type ScoreVoice = 1 | 2 | 3 | 4;
 export type ProcessingMode = 'raw' | 'vocal' | 'noisy' | 'custom';
 export type DurationValue = 4 | 2 | 1 | 0.5 | 0.25 | 0.125;
 export type QuantizeMode = 'free' | 4 | 8 | '8t' | 16;
@@ -38,6 +42,14 @@ export interface MusicalNoteEvent {
   tieStart?: boolean;
   tieStop?: boolean;
   isRest?: boolean;
+  voice?: ScoreVoice;
+  articulation?: ScoreArticulation;
+  dynamic?: ScoreDynamic;
+  slurStart?: boolean;
+  slurStop?: boolean;
+  tupletActual?: number;
+  tupletNormal?: number;
+  tupletGroupId?: string;
 }
 
 export interface ScoreDocument {
@@ -47,6 +59,8 @@ export interface ScoreDocument {
   tempo: number;
   timeSignature: [number, number];
   keyFifths: number;
+  clef?: ScoreClef;
+  minimumMeasures?: number;
   notes: MusicalNoteEvent[];
   createdAt: number;
   updatedAt: number;

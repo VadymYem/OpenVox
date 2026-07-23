@@ -1,6 +1,6 @@
 {
   "name": "openvox",
-  "version": "1.0.0-alpha.7",
+  "version": "1.0.0-alpha.8",
   "private": false,
   "type": "module",
   "description": "Privacy-first open-source browser studio for professional voice training, audio analysis, instrument tuning, transcription, notation and choir rehearsal.",

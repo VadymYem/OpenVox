@@ -11,6 +11,8 @@ export function importMusicXml(text: string): ScoreDocument {
     tempo: parsed.tempo,
     timeSignature: parsed.timeSignature,
     keyFifths: parsed.keyFifths,
+    clef: parsed.clef,
+    minimumMeasures: parsed.measureCount,
     notes: parsed.parts[0].notes,
     createdAt: now,
     updatedAt: now

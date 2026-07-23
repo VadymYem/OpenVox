@@ -17,7 +17,7 @@ assert.deepEqual(parseNoteSpelling('b4'), { midi: 71, note: 'B', octave: 4 });
 assert.deepEqual(parseNoteSpelling('bb4'), { midi: 70, note: 'B♭', octave: 4 });
 assert.deepEqual(
   synchronizeNotePitch({ id: 'legacy', midi: 36, note: 'C', octave: 5, start: 0, duration: 1, velocity: 96, confidence: 1 }),
-  { id: 'legacy', midi: 72, note: 'C', octave: 5, start: 0, duration: 1, velocity: 96, confidence: 1 }
+  { id: 'legacy', midi: 72, note: 'C', octave: 5, start: 0, duration: 1, velocity: 96, confidence: 1, isRest: false }
 );
 assert.equal(parseNoteSpelling('C10'), null);
 assert.equal(parseNoteSpelling('C-2'), null);
@@ -66,7 +66,7 @@ const score: ScoreDocument = {
   timeSignature: [4, 4],
   keyFifths: 0,
   notes: [
-    { id: 'n1', midi: 60, note: 'C', octave: 4, start: 0, duration: 0.5, velocity: 96, confidence: 1 },
+    { id: 'n1', midi: 60, note: 'C', octave: 4, start: 0, duration: 0.5, velocity: 96, confidence: 1, articulation: 'staccato', dynamic: 'mf', slurStart: true },
     {
       id: 'n2',
       midi: 62,
@@ -76,7 +76,8 @@ const score: ScoreDocument = {
       duration: 2.4,
       velocity: 96,
       confidence: 1,
-      tieStart: true
+      tieStart: true,
+      slurStop: true
     },
     { id: 'n3', midi: 62, note: 'D', octave: 4, start: 4.5, duration: 0.5, velocity: 96, confidence: 1, tieStop: true }
   ],
@@ -92,7 +93,10 @@ const xml = scoreToMusicXml(score);
 assert.match(xml, /<score-partwise version="4.0">/);
 assert.match(xml, /<measure number="1">/);
 assert.match(xml, /<measure number="2">/);
-assert.match(xml, /<forward><duration>/);
+assert.match(xml, /<rest(?: measure="yes")?\/>/);
 assert.match(xml, /<tie type="start"\/>/);
+assert.ok(xml.includes('<dynamics><mf/></dynamics>'));
+assert.ok(xml.includes('<staccato/>'));
+assert.ok(xml.includes('<slur type="start" number="1"/>'));
 
 console.log('Core music tests passed.');
