@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { buildNotationTimeline, scoreMeasureCount, validateScoreRhythm } from '../src/core/music/scoreModel';
+import {
+  buildNotationTimeline,
+  pitchForStaffY,
+  resolveScoreClef,
+  scoreMeasureCount,
+  staffYForEvent,
+  validateScoreRhythm
+} from '../src/core/music/scoreModel';
 import type { MusicalNoteEvent, ScoreDocument } from '../src/types';
 
 function event(
@@ -92,4 +99,16 @@ describe('measure-complete score model', () => {
     expect(generated[0].durationBeats).toBe(2);
   });
 
+  it('keeps pointer and renderer positions aligned after the automatic clef is locked', () => {
+    const automatic = score([], { clef: 'auto' });
+    const clef = resolveScoreClef(automatic);
+    const staffCenterY = 170;
+    const clickedY = 210;
+    const pitch = pitchForStaffY(clickedY, staffCenterY, clef, 'natural');
+    const inserted = event('clicked-note', 0, 1, false, pitch.note, pitch.octave, pitch.midi);
+    const locked = { ...automatic, clef, notes: [inserted] };
+
+    expect(resolveScoreClef(locked)).toBe(clef);
+    expect(staffYForEvent(inserted, staffCenterY, clef)).toBe(clickedY);
+  });
 });

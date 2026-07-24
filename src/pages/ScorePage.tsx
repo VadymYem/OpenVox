@@ -77,7 +77,7 @@ export function ScorePage() {
   const { project, setProject, persistProject } = useApp();
   const [message, setMessage] = useState('');
   const [playing, setPlaying] = useState(false);
-  const [mobilePane, setMobilePane] = useState<'edit' | 'preview'>('preview');
+  const [mobilePane, setMobilePane] = useState<'edit' | 'preview'>('edit');
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
   const [entryMode, setEntryMode] = useState<EntryMode>('note');
   const [durationBeats, setDurationBeats] = useState<number>(1);
@@ -101,6 +101,7 @@ export function ScorePage() {
   const [historyVersion, setHistoryVersion] = useState(0);
 
   const score = project.score;
+  const activeClef = useMemo(() => resolveScoreClef(score), [score]);
   const timing = useMemo(() => scoreTiming(score), [score]);
   const measureCount = useMemo(() => scoreMeasureCount(score), [score]);
   const rhythmIssues = useMemo(() => validateScoreRhythm(score), [score]);
@@ -272,6 +273,7 @@ export function ScorePage() {
           : score.notes.filter((candidate) => !(candidate.isRest && samePosition(candidate)));
       commitScore({
         ...score,
+        clef: score.clef === 'auto' || !score.clef ? activeClef : score.clef,
         notes: [...retained, event].sort((a, b) => a.start - b.start || a.midi - b.midi),
         minimumMeasures: Math.max(score.minimumMeasures || 1, Math.floor(startBeat / timing.measureBeats) + 1)
       });
@@ -282,7 +284,7 @@ export function ScorePage() {
         setInputOctave(pitch.octave);
       }
     },
-    [commitScore, cursorBeat, effectiveDurationBeats, entryArticulation, entryDynamic, entryVoice, pitchForInput, score, timing.measureBeats, tupletActual, tupletNormal, tupletRatio, writtenDurationBeats]
+    [activeClef, commitScore, cursorBeat, effectiveDurationBeats, entryArticulation, entryDynamic, entryVoice, pitchForInput, score, timing.measureBeats, tupletActual, tupletNormal, tupletRatio, writtenDurationBeats]
   );
 
   const insertEventRef = useRef(insertEvent);
@@ -343,7 +345,7 @@ export function ScorePage() {
       insertEvent('rest', null, absoluteBeat, !point.shiftKey);
       return;
     }
-    const basePitch = pitchForStaffY(point.y, point.staffTop + 20, resolveScoreClef(score), 'natural');
+    const basePitch = pitchForStaffY(point.y, point.staffTop + 20, activeClef, 'natural');
     const pitch = basePitch
       ? parseNoteSpelling(`${basePitch.note.charAt(0)}${entryAccidentalSymbol(basePitch.note.charAt(0))}${basePitch.octave}`)
       : null;
@@ -368,11 +370,12 @@ export function ScorePage() {
       if (!source.isRest) {
         const accidentalValue = noteAccidental(source);
         const accidentalChoice = accidentalValue === 1 ? 'sharp' : accidentalValue === -1 ? 'flat' : 'natural';
-        const pitch = pitchForStaffY(point.y, point.staffTop + 20, resolveScoreClef(score), accidentalChoice);
+        const pitch = pitchForStaffY(point.y, point.staffTop + 20, activeClef, accidentalChoice);
         if (pitch) moved = synchronizeNotePitch({ ...moved, ...pitch });
       }
       commitScore({
         ...score,
+        clef: score.clef === 'auto' || !score.clef ? activeClef : score.clef,
         notes: score.notes
           .map((event) => (event.id === eventId ? moved : event))
           .sort((a, b) => a.start - b.start || (a.voice || 1) - (b.voice || 1) || a.midi - b.midi),
@@ -381,7 +384,7 @@ export function ScorePage() {
       setCursorBeat(absoluteBeat);
       setSelectedEventId(eventId);
     },
-    [commitScore, pointToAbsoluteBeat, score, timing.measureBeats]
+    [activeClef, commitScore, pointToAbsoluteBeat, score, timing.measureBeats]
   );
 
   const copySelectedEvent = useCallback(() => {
@@ -971,7 +974,7 @@ export function ScorePage() {
 
       <div className="score-mobile-switch" role="tablist" aria-label="Score workspace">
         <button role="tab" aria-selected={mobilePane === 'edit'} className={mobilePane === 'edit' ? 'active' : ''} onClick={() => setMobilePane('edit')}>
-          {x('score.edit')}
+          {t('score.note')}
         </button>
         <button role="tab" aria-selected={mobilePane === 'preview'} className={mobilePane === 'preview' ? 'active' : ''} onClick={() => setMobilePane('preview')}>
           {t('score.preview')}
@@ -1013,7 +1016,7 @@ export function ScorePage() {
                 </div>
                 <div className="field">
                   <label>{x('score.clef')}</label>
-                  <select value={score.clef || 'auto'} onChange={(event) => updateScore({ clef: event.target.value as ScoreDocument['clef'] })}>
+                  <select aria-label={x('score.clef')} value={score.clef || 'auto'} onChange={(event) => updateScore({ clef: event.target.value as ScoreDocument['clef'] })}>
                     <option value="auto">{x('score.clefAuto')}</option>
                     <option value="treble">{x('score.clefTreble')}</option>
                     <option value="bass">{x('score.clefBass')}</option>
@@ -1039,21 +1042,27 @@ export function ScorePage() {
               </div>
               <button className="mini-button" onClick={() => insertEvent(entryMode)}>{entryMode === 'rest' ? t('score.addRest') : t('score.add')}</button>
             </div>
-            <div className="score-event-list" role="list">
+            <ul className="score-event-list">
               {sortedEvents.length ? sortedEvents.map((event) => {
                 const pitch = synchronizeNotePitch(event);
                 const startBeat = secondsToQuarterBeats(score, event.start);
                 const eventBeats = secondsToQuarterBeats(score, event.duration);
                 return (
-                  <button key={event.id} className={`score-event-row ${selectedEventId === event.id ? 'active' : ''}`} onClick={() => setSelectedEventId(event.id)}>
-                    <span className={`score-event-kind ${event.isRest ? 'rest' : 'note'}`}>{event.isRest ? `V${event.voice || 1} —` : `V${event.voice || 1} ${pitch.note}${pitch.octave}`}</span>
-                    <span>M{Math.floor(startBeat / timing.measureBeats) + 1}</span>
-                    <span>{(startBeat % timing.measureBeats).toFixed(2)}</span>
-                    <span>{eventBeats.toFixed(2)} ♩</span>
-                  </button>
+                  <li key={event.id} className="score-event-list-item">
+                    <button className={`score-event-row note-row ${selectedEventId === event.id ? 'active' : ''}`} onClick={() => setSelectedEventId(event.id)}>
+                      <span className={`score-event-kind ${event.isRest ? 'rest' : 'note'}`}>{event.isRest ? `V${event.voice || 1} —` : `V${event.voice || 1} ${pitch.note}${pitch.octave}`}</span>
+                      <span>M{Math.floor(startBeat / timing.measureBeats) + 1}</span>
+                      <span>{(startBeat % timing.measureBeats).toFixed(2)}</span>
+                      <span>{eventBeats.toFixed(2)} ♩</span>
+                    </button>
+                  </li>
                 );
-              }) : <div className="empty-state">{t('score.empty')}</div>}
-            </div>
+              }) : (
+                <li className="score-event-list-item">
+                  <div className="empty-state">{t('score.empty')}</div>
+                </li>
+              )}
+            </ul>
           </section>
 
           {selectedEvent && (

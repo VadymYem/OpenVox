@@ -3233,16 +3233,15 @@ svg {
   color: #eab96f;
 }
 .score-editor-layout {
-  grid-template-columns: minmax(310px, 380px) minmax(0, 1fr);
+  grid-template-columns: minmax(350px, 430px) minmax(0, 1fr);
   align-items: start;
 }
 .score-inspector-panel {
   display: grid;
   gap: 12px;
-  max-height: calc(100vh - 210px);
+  max-height: none;
   padding: 12px;
-  overflow: auto;
-  overscroll-behavior: contain;
+  overflow: visible;
 }
 .score-panel-section {
   min-width: 0;
@@ -3306,8 +3305,13 @@ svg {
   display: grid;
   gap: 5px;
   max-height: 250px;
+  margin: 0;
   overflow: auto;
-  padding-right: 3px;
+  padding: 0 3px 0 0;
+  list-style: none;
+}
+.score-event-list-item {
+  min-width: 0;
 }
 .score-event-row {
   display: grid;
@@ -3495,6 +3499,20 @@ svg {
   }
   .score-canvas-card {
     overflow: visible;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 900px) {
+  .score-mobile-switch {
+    display: none;
+  }
+  .editor-layout[data-mobile-pane='edit'] .score-preview-pane,
+  .editor-layout[data-mobile-pane='preview'] .score-preview-pane {
+    display: block;
+  }
+  .editor-layout[data-mobile-pane='edit'] .score-editor-pane,
+  .editor-layout[data-mobile-pane='preview'] .score-editor-pane {
+    display: grid;
   }
 }
 

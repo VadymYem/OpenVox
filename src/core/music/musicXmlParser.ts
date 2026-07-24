@@ -48,6 +48,7 @@ function parsePart(
     let furthestUnits = 0;
     let lastNoteStartUnits = 0;
     let activeTuplet: { id: string; actual: number; normal: number; remaining: number } | null = null;
+    let hasExplicitCursorMovement = false;
 
     for (const child of Array.from(measure.children)) {
       if (child.localName === 'attributes') {
@@ -69,11 +70,13 @@ function parsePart(
       }
 
       if (child.localName === 'backup') {
+        hasExplicitCursorMovement = true;
         cursorUnits = Math.max(0, cursorUnits - numberText(child.querySelector('duration'), 0));
         continue;
       }
 
       if (child.localName === 'forward') {
+        hasExplicitCursorMovement = true;
         cursorUnits += Math.max(0, numberText(child.querySelector('duration'), 0));
         furthestUnits = Math.max(furthestUnits, cursorUnits);
         continue;
@@ -179,7 +182,9 @@ function parsePart(
 
     const nominalMeasureUnits = currentBeats * (4 / currentBeatType) * divisions;
     const implicitMeasure = measure.getAttribute('implicit') === 'yes';
-    const elapsedUnits = implicitMeasure ? furthestUnits : Math.max(furthestUnits, nominalMeasureUnits);
+    const elapsedUnits = implicitMeasure || hasExplicitCursorMovement
+      ? furthestUnits
+      : Math.max(furthestUnits, nominalMeasureUnits);
     if (elapsedUnits > 0) absoluteSeconds += (elapsedUnits / divisions) * quarterSeconds;
   }
 
@@ -210,7 +215,7 @@ export function parseMusicXml(text: string): ParsedMusicXmlDocument {
     1,
     Number.isFinite(tempoFromSound) && tempoFromSound > 0
       ? tempoFromSound
-      : numberText(doc.querySelector('per-minute'), 90)
+      : numberText(doc.querySelector('per-minute'), 60)
   );
   const beats = Math.max(1, numberText(doc.querySelector('time > beats'), 4));
   const beatType = Math.max(1, numberText(doc.querySelector('time > beat-type'), 4));

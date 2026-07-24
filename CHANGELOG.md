@@ -1,5 +1,34 @@
 # Changelog
 
+## 1.0.0-alpha.8
+
+### Added
+
+- Rebuilt OpenVox Score as a professional notation workspace with a grouped note-input toolbar, note/rest entry modes, duration palette through 1/64 notes, dotted values, triplets and quintuplets, four voices, articulations, dynamics, slurs, direct staff input, drag editing, Web MIDI input, keyboard shortcuts, copy/paste and an event inspector.
+- Added measure-aware notation with generated rests for silent gaps, automatic barline splitting with ties, full-measure rests, chord engraving, automatic beams, rhythmic spacing and complete independent voice timing.
+- Added proper SVG-drawn rest symbols that do not depend on device music fonts, key signatures, clef-aware pitch placement, accidental state handling and collision spacing.
+- Added richer MusicXML import/export for rests, voices, clefs, empty measures, tuplets, dynamics, articulations and slurs.
+- Added dedicated score-model regression tests and expanded renderer/MusicXML coverage.
+
+### Changed
+
+- Reworked the Score workspace layout for responsive desktop and mobile use without clipped toolbar/menu text.
+- Normalized small performance-timing jitter to a notation grid during engraving/export while keeping original playback timing unchanged.
+- Expanded duration keyboard shortcuts to the familiar 1–7 notation layout (64th through whole note).
+
+### Fixed
+
+- PATCH-4: locked the resolved clef when a user inserts or drags the first note, preventing low notes from jumping to another staff position after automatic clef recalculation.
+- PATCH-4: restored the score metadata/event panel on tablet-width layouts, removed nested inspector scrolling and widened the desktop editor column.
+- PATCH-4: restored the legacy `.note-row` test contract and corrected the Score workspace tab label.
+- PATCH-4: fixed Score accessibility semantics for the event list and added an accessible name to the clef selector.
+- PATCH-4: corrected MusicXML timing for explicit `backup`/`forward` cursor movement and preserved empty measures at the standard 60 BPM fallback.
+- Fixed stale written-pitch/MIDI mismatches that could place a visible note on the wrong staff position.
+- Fixed pointer-capture drag completion on touch, stylus and mouse.
+- Fixed excessive micro-rest generation from near-grid recording jitter.
+- Fixed dynamic and lyric placement colliding with unusually low notes.
+- Fixed MusicXML empty measures collapsing later notes backward in time.
+
 ## 1.0.0-alpha.7
 
 - Fixed legacy score notes where the visible note label and stored MIDI pitch could disagree.
