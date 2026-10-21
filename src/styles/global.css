@@ -38,6 +38,7 @@
   --shadow: 0 24px 90px rgba(0, 0, 0, 0.42);
   --shadow-soft: 0 10px 34px rgba(0, 0, 0, 0.26);
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 :root[data-theme='light'] {
   color-scheme: light;
@@ -124,9 +125,28 @@ svg {
   background: rgba(200, 169, 110, 0.28);
   color: var(--text);
 }
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(200, 169, 110, 0.18);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(200, 169, 110, 0.32);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(200, 169, 110, 0.18) transparent;
+}
 :focus-visible {
   outline: 2px solid var(--gold-light);
   outline-offset: 3px;
+  border-radius: 4px;
 }
 .app-shell {
   min-height: 100vh;
@@ -191,9 +211,11 @@ svg {
   padding: 10px clamp(14px, 3vw, 34px);
   min-height: 68px;
   background: var(--bg);
-  background: color-mix(in srgb, var(--bg) 82%, transparent);
-  backdrop-filter: blur(26px) saturate(150%);
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter: blur(32px) saturate(160%);
+  -webkit-backdrop-filter: blur(32px) saturate(160%);
   border-bottom: 1px solid var(--outline);
+  transition: background 0.3s ease;
 }
 .brand {
   display: flex;
@@ -201,12 +223,23 @@ svg {
   gap: 11px;
   text-decoration: none;
   min-width: max-content;
+  transition: transform 0.2s var(--ease-spring);
+}
+.brand:hover {
+  transform: translateY(-1px);
 }
 .brand-mark {
   width: 38px;
   height: 38px;
   border-radius: 12px;
   box-shadow: 0 0 28px rgba(200, 169, 110, 0.2);
+  transition:
+    transform 0.3s var(--ease-spring),
+    box-shadow 0.3s ease;
+}
+.brand:hover .brand-mark {
+  transform: scale(1.06) rotate(-2deg);
+  box-shadow: 0 0 34px rgba(200, 169, 110, 0.35);
 }
 .brand span {
   display: flex;
@@ -241,15 +274,22 @@ svg {
   color: var(--muted);
   font-size: 12px;
   font-weight: 650;
-  transition: 0.2s var(--ease);
+  position: relative;
+  transition:
+    color 0.2s var(--ease),
+    background 0.2s var(--ease);
 }
 .nav-link svg {
   width: 16px;
   height: 16px;
+  transition: transform 0.2s var(--ease-spring);
 }
 .nav-link:hover {
   color: var(--text);
   background: rgba(200, 169, 110, 0.07);
+}
+.nav-link:hover svg {
+  transform: scale(1.12);
 }
 .nav-link.active {
   color: var(--gold-light);
@@ -276,6 +316,9 @@ svg {
   padding: 6px 8px;
   font-size: 10px;
   font-weight: 800;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 .language-switch button.active {
   background: var(--gold);
@@ -290,6 +333,17 @@ svg {
   border-radius: 50%;
   display: grid;
   place-items: center;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.15s var(--ease-spring);
+}
+.icon-button:hover {
+  border-color: var(--outline-strong);
+  background: var(--surface-strong);
+}
+.icon-button:active {
+  transform: scale(0.92);
 }
 .icon-button svg {
   width: 18px;
@@ -305,6 +359,13 @@ svg {
   width: min(1380px, 100%);
   margin: 0 auto;
   padding: clamp(24px, 4vw, 58px) clamp(16px, 3vw, 34px) 100px;
+  animation: pageEnter 0.35s var(--ease);
+}
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
 }
 .page-narrow {
   width: min(920px, 100%);
@@ -397,7 +458,10 @@ svg {
   text-decoration: none;
   font-weight: 700;
   font-size: 13px;
-  transition: 0.2s var(--ease);
+  transition:
+    transform 0.2s var(--ease-spring),
+    border-color 0.2s ease,
+    box-shadow 0.25s ease;
 }
 .button svg {
   width: 17px;
@@ -408,10 +472,19 @@ svg {
   border-color: var(--outline-strong);
   box-shadow: var(--shadow-soft);
 }
+.button:active {
+  transform: translateY(0) scale(0.97);
+  transition-duration: 0.08s;
+}
 .button-primary {
   background: linear-gradient(135deg, var(--gold-light), var(--gold));
   color: var(--bg);
   border-color: transparent;
+}
+.button-primary:hover {
+  box-shadow:
+    var(--shadow-soft),
+    0 0 28px rgba(200, 169, 110, 0.25);
 }
 .button-secondary {
   background: linear-gradient(135deg, rgba(110, 168, 255, 0.15), rgba(155, 110, 236, 0.15));
@@ -479,6 +552,15 @@ svg {
     0 0 80px rgba(200, 169, 110, 0.08);
   text-align: center;
   backdrop-filter: blur(24px);
+  animation: floatHeroCard 8s ease-in-out infinite alternate;
+}
+@keyframes floatHeroCard {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-8px);
+  }
 }
 .hero-note-card .big-note {
   font-size: clamp(5rem, 12vw, 8rem);
@@ -504,6 +586,7 @@ svg {
   height: 100%;
   background: linear-gradient(90deg, var(--blue), var(--gold), var(--violet));
   border-radius: inherit;
+  transition: width 0.35s var(--ease);
 }
 .feature-grid {
   display: grid;
@@ -521,17 +604,26 @@ svg {
   );
   border: 1px solid var(--outline);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-soft);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    var(--shadow-soft);
   backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
 }
 .feature-card {
   padding: 24px;
   min-height: 230px;
-  transition: 0.25s var(--ease);
+  transition:
+    transform 0.3s var(--ease),
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 .feature-card:hover {
   transform: translateY(-5px);
   border-color: var(--outline-strong);
+  box-shadow:
+    var(--shadow-soft),
+    0 0 32px rgba(200, 169, 110, 0.08);
 }
 .feature-icon {
   width: 48px;
@@ -542,6 +634,15 @@ svg {
   background: rgba(200, 169, 110, 0.11);
   color: var(--gold-light);
   border: 1px solid rgba(200, 169, 110, 0.18);
+  transition:
+    transform 0.25s var(--ease-spring),
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+.feature-card-link:hover .feature-icon {
+  transform: scale(1.08);
+  background: rgba(200, 169, 110, 0.18);
+  border-color: rgba(200, 169, 110, 0.32);
 }
 .feature-icon svg {
   width: 23px;
@@ -590,6 +691,10 @@ svg {
   background: rgba(110, 231, 183, 0.09);
   color: var(--green);
   border: 1px solid rgba(110, 231, 183, 0.18);
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 .badge.off {
   background: rgba(113, 128, 159, 0.08);
@@ -617,6 +722,16 @@ svg {
   color: var(--text);
   border-radius: 14px;
   padding: 11px 12px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.field select:focus,
+.field input:focus,
+.field textarea:focus {
+  border-color: rgba(200, 169, 110, 0.45);
+  box-shadow: 0 0 0 3px rgba(200, 169, 110, 0.1);
+  outline: none;
 }
 .field input[type='range'] {
   padding: 0;
@@ -635,6 +750,19 @@ svg {
   padding: 10px;
   font-size: 11px;
   font-weight: 700;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.12s var(--ease-spring);
+}
+.segmented button:hover:not(.active) {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--outline-strong);
+}
+.segmented button:active {
+  transform: scale(0.97);
 }
 .segmented button.active {
   border-color: rgba(200, 169, 110, 0.38);
@@ -733,6 +861,14 @@ svg {
   border: 1px solid var(--outline);
   border-radius: 16px;
   background: rgba(4, 9, 22, 0.38);
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.15s var(--ease-spring);
+}
+.metric:hover {
+  border-color: var(--outline-strong);
+  background: rgba(4, 9, 22, 0.55);
 }
 .metric span {
   display: block;
@@ -772,6 +908,13 @@ svg {
   border-radius: 14px;
   background: rgba(110, 168, 255, 0.06);
   border: 1px solid rgba(110, 168, 255, 0.11);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+.harmony-row:hover {
+  background: rgba(110, 168, 255, 0.1);
+  border-color: rgba(110, 168, 255, 0.2);
 }
 .harmony-row strong {
   color: var(--gold-light);
@@ -787,6 +930,7 @@ svg {
   height: 100%;
   background: linear-gradient(90deg, var(--blue), var(--violet));
   border-radius: inherit;
+  transition: width 0.25s var(--ease);
 }
 .empty-state {
   padding: 26px;
@@ -959,6 +1103,14 @@ svg {
   background: var(--surface-strong);
   font-weight: 700;
   color: var(--gold-light);
+  transition:
+    transform 0.15s var(--ease-spring),
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+.exercise-note:hover {
+  transform: translateY(-2px);
+  border-color: var(--outline-strong);
 }
 .slider-row {
   display: grid;
@@ -972,6 +1124,17 @@ svg {
 }
 .project-card {
   padding: 18px;
+  transition:
+    transform 0.25s var(--ease),
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.project-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--outline-strong);
+  box-shadow:
+    var(--shadow-soft),
+    0 0 24px rgba(200, 169, 110, 0.06);
 }
 .project-card h3 {
   margin: 0 0 5px;
@@ -1015,6 +1178,10 @@ svg {
   border-radius: 99px;
   background: var(--surface-high);
   border: 1px solid var(--outline);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+  cursor: pointer;
 }
 .switch span {
   position: absolute;
@@ -1024,7 +1191,7 @@ svg {
   left: 3px;
   top: 3px;
   background: var(--muted);
-  transition: 0.2s;
+  transition: 0.25s var(--ease-spring);
 }
 .switch.on {
   background: rgba(200, 169, 110, 0.18);
@@ -1043,6 +1210,12 @@ svg {
   display: grid;
   place-items: center;
   padding: 20px;
+  animation: modalFadeIn 0.2s ease;
+}
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
 }
 .modal-card {
   width: min(410px, 100%);
@@ -1053,6 +1226,13 @@ svg {
   box-shadow: var(--shadow);
   position: relative;
   text-align: center;
+  animation: modalSlideUp 0.25s var(--ease-spring);
+}
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
 }
 .modal-close {
   position: absolute;
@@ -1096,11 +1276,21 @@ svg {
   align-items: center;
   gap: 8px;
   font-weight: 800;
-  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.38);
-  transition: 0.2s;
+  box-shadow:
+    0 8px 24px rgba(200, 169, 110, 0.2),
+    0 16px 42px rgba(0, 0, 0, 0.32);
+  transition:
+    transform 0.2s var(--ease-spring),
+    box-shadow 0.2s ease;
 }
 .support-fab:hover {
-  transform: translateY(-3px);
+  transform: translateY(-3px) scale(1.04);
+  box-shadow:
+    0 12px 32px rgba(200, 169, 110, 0.28),
+    0 20px 50px rgba(0, 0, 0, 0.36);
+}
+.support-fab:active {
+  transform: scale(0.96);
 }
 .support-fab svg {
   width: 17px;
@@ -1114,13 +1304,19 @@ svg {
   justify-content: center;
   gap: 12px;
   flex-wrap: wrap;
-  padding: 12px 24px;
+  padding: 14px 24px;
   color: var(--faint);
   font-size: 11px;
 }
 .footer a {
   text-decoration: none;
   color: var(--gold);
+  transition: color 0.15s ease;
+}
+.footer a:hover {
+  color: var(--gold-light);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 .toast {
   position: fixed;
@@ -1214,6 +1410,13 @@ svg {
   }
   .nav-links.open {
     display: grid;
+    animation: menuSlideDown 0.25s var(--ease-spring);
+  }
+  @keyframes menuSlideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-8px) scale(0.98);
+    }
   }
   .nav-link span {
     display: block;
@@ -1520,6 +1723,21 @@ svg {
   font-size: 11px;
   font-weight: 750;
   white-space: nowrap;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.12s var(--ease-spring);
+}
+.seg-button:hover:not(.active),
+.chip:hover:not(.active) {
+  background: var(--surface-strong);
+  color: var(--text);
+  border-color: var(--outline-strong);
+}
+.seg-button:active,
+.chip:active {
+  transform: scale(0.96);
 }
 .seg-button.active,
 .chip.active {
@@ -2161,6 +2379,13 @@ svg {
   overflow: hidden;
   background: linear-gradient(180deg, rgba(110, 168, 255, 0.08), rgba(200, 169, 110, 0.03));
   cursor: crosshair;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.track-waveform:hover:not(:disabled) {
+  border-color: var(--outline-strong);
+  box-shadow: 0 0 24px rgba(110, 168, 255, 0.08);
 }
 .track-waveform:disabled {
   cursor: not-allowed;
@@ -2675,8 +2900,20 @@ svg {
     linear-gradient(145deg, color-mix(in srgb, var(--surface-strong) 94%, transparent), var(--surface));
   border: 1px solid var(--outline-strong);
   border-radius: 28px;
-  box-shadow: var(--shadow-soft);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    var(--shadow-soft);
   overflow: hidden;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.author-card:hover {
+  border-color: rgba(200, 169, 110, 0.45);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    var(--shadow-soft),
+    0 0 40px rgba(200, 169, 110, 0.08);
 }
 .author-portrait-wrap {
   aspect-ratio: 1;
@@ -2684,6 +2921,13 @@ svg {
   padding: 5px;
   background: linear-gradient(145deg, rgba(232, 208, 160, 0.85), rgba(110, 168, 255, 0.38));
   box-shadow: 0 18px 55px rgba(0, 0, 0, 0.28);
+  transition:
+    transform 0.3s var(--ease-spring),
+    box-shadow 0.3s ease;
+}
+.author-card:hover .author-portrait-wrap {
+  transform: scale(1.03) rotate(-1deg);
+  box-shadow: 0 22px 65px rgba(200, 169, 110, 0.25);
 }
 .author-portrait {
   width: 100%;
@@ -3033,7 +3277,11 @@ svg {
   border-radius: 11px;
   font: inherit;
   cursor: pointer;
-  transition: 0.15s ease;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease,
+    transform 0.1s var(--ease-spring);
 }
 .score-tool-button:hover,
 .score-duration-button:hover,
@@ -3044,6 +3292,11 @@ svg {
   border-color: rgba(200, 169, 110, 0.52);
   background: rgba(200, 169, 110, 0.12);
   color: var(--gold-light);
+}
+.score-tool-button:active,
+.score-duration-button:active,
+.score-symbol-button:active {
+  transform: scale(0.95);
 }
 .score-tool-button {
   display: grid;
