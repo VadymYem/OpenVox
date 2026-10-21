@@ -1,5 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { getInitialLanguagePreference, getInitialThemePreference, mirrorInterfacePreferences } from '../src/core/systemPreferences';
+import {
+  getInitialLanguagePreference,
+  getInitialThemePreference,
+  mirrorInterfacePreferences
+} from '../src/core/systemPreferences';
 import { detectSystemLanguage } from '../src/i18n/detectLanguage';
 
 describe('system preferences', () => {

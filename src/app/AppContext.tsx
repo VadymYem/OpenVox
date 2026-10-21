@@ -2,7 +2,11 @@ import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import type { AppSettings, OpenVoxProject, ScoreDocument } from '../types';
 import { listProjects, loadSettings, saveProject, saveSettings } from '../core/storage/database';
 import { setAnalyticsEnabled } from '../core/analytics';
-import { getInitialLanguagePreference, getInitialThemePreference, mirrorInterfacePreferences } from '../core/systemPreferences';
+import {
+  getInitialLanguagePreference,
+  getInitialThemePreference,
+  mirrorInterfacePreferences
+} from '../core/systemPreferences';
 
 const defaultScore = (): ScoreDocument => {
   const now = Date.now();
@@ -117,10 +121,13 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     root.lang = settings.language;
     mirrorInterfacePreferences(settings.language, settings.theme);
 
-    const media = typeof window.matchMedia === 'function' ? window.matchMedia('(prefers-color-scheme: light)') : undefined;
+    const media =
+      typeof window.matchMedia === 'function' ? window.matchMedia('(prefers-color-scheme: light)') : undefined;
     const syncThemeColor = () => {
       const light = settings.theme === 'light' || (settings.theme === 'system' && (media?.matches ?? false));
-      document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')?.setAttribute('content', light ? '#f8f5ef' : '#030712');
+      document
+        .querySelector<HTMLMetaElement>('meta[name="theme-color"]')
+        ?.setAttribute('content', light ? '#f8f5ef' : '#030712');
     };
     syncThemeColor();
     if (settings.theme === 'system') media?.addEventListener?.('change', syncThemeColor);

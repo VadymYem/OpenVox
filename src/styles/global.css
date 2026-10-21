@@ -3126,7 +3126,11 @@ svg {
   border-radius: 10px;
   background: color-mix(in srgb, var(--surface) 94%, transparent);
   color: var(--muted);
-  font: 800 10px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  font:
+    800 10px/1 ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    monospace;
   cursor: pointer;
 }
 .score-voice-button:hover,

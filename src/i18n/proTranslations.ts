@@ -1016,7 +1016,8 @@ const scoreWorkflowTranslations: Record<Language, Copy> = {
     'score.transposeUp': 'Transpose +1',
     'score.quantize': 'Quantize grid',
     'score.applyQuantize': 'Quantize all',
-    'score.proSubtitle': 'A measure-aware notation workspace for entering, editing, playing and exporting complete vocal scores.',
+    'score.proSubtitle':
+      'A measure-aware notation workspace for entering, editing, playing and exporting complete vocal scores.',
     'score.inputToolbar': 'Note input toolbar',
     'score.entryMode': 'Entry mode',
     'score.durationPalette': 'Duration palette',
@@ -1065,7 +1066,8 @@ const scoreWorkflowTranslations: Record<Language, Copy> = {
     'score.startBeat': 'Start (quarter-note beats)',
     'score.durationBeats': 'Duration (quarter-note beats)',
     'score.clickToEnter': 'Click or tap the staff to enter',
-    'score.keyboardHint': 'Keyboard: A–G enter pitches · Shift adds a chord tone · 0 inserts a rest · 1–6 select duration · K / + / − / = choose key/sharp/flat/natural · . toggles dot · ← / → move the cursor · Shift+S/V/N/O apply staccato/accent/tenuto/marcato · S toggles a slur start on the selection · Ctrl/Cmd+Alt+1–4 switches voice · Ctrl/Cmd+3/5 selects triplet/quintuplet entry · Ctrl/Cmd+Z/Y undo and redo · Ctrl/Cmd+C/X/V copies, cuts and pastes.',
+    'score.keyboardHint':
+      'Keyboard: A–G enter pitches · Shift adds a chord tone · 0 inserts a rest · 1–6 select duration · K / + / − / = choose key/sharp/flat/natural · . toggles dot · ← / → move the cursor · Shift+S/V/N/O apply staccato/accent/tenuto/marcato · S toggles a slur start on the selection · Ctrl/Cmd+Alt+1–4 switches voice · Ctrl/Cmd+3/5 selects triplet/quintuplet entry · Ctrl/Cmd+Z/Y undo and redo · Ctrl/Cmd+C/X/V copies, cuts and pastes.',
     'score.invalidPitch': 'Enter a valid pitch such as C4, F♯4 or B♭3.',
     'score.mergeTypeMismatch': 'A note and a rest cannot be merged into one event.'
   },
@@ -1076,7 +1078,8 @@ const scoreWorkflowTranslations: Record<Language, Copy> = {
     'score.transposeUp': 'Транспонувати +1',
     'score.quantize': 'Сітка квантизації',
     'score.applyQuantize': 'Квантизувати все',
-    'score.proSubtitle': 'Повноцінне тактове середовище для набору, редагування, відтворення та експорту завершених вокальних партитур.',
+    'score.proSubtitle':
+      'Повноцінне тактове середовище для набору, редагування, відтворення та експорту завершених вокальних партитур.',
     'score.inputToolbar': 'Панель введення нот',
     'score.entryMode': 'Режим введення',
     'score.durationPalette': 'Тривалість',
@@ -1125,7 +1128,8 @@ const scoreWorkflowTranslations: Record<Language, Copy> = {
     'score.startBeat': 'Початок (у четвертних долях)',
     'score.durationBeats': 'Тривалість (у четвертних долях)',
     'score.clickToEnter': 'Натисни на нотний стан, щоб вводити',
-    'score.keyboardHint': 'Клавіатура: A–G вводять ноти · Shift додає звук до акорду · 0 додає паузу · 1–6 обирають тривалість · K / + / − / = обирають тональність/дієз/бемоль/бекар · . додає крапку · ← / → рухають курсор · Shift+S/V/N/O застосовують стакато/акцент/тенуто/маркато · S вмикає початок ліги для вибраної ноти · Ctrl/Cmd+Alt+1–4 перемикає голос · Ctrl/Cmd+3/5 обирає тріоль/квінтоль · Ctrl/Cmd+Z/Y скасовують і повторюють · Ctrl/Cmd+C/X/V копіюють, вирізають і вставляють.',
+    'score.keyboardHint':
+      'Клавіатура: A–G вводять ноти · Shift додає звук до акорду · 0 додає паузу · 1–6 обирають тривалість · K / + / − / = обирають тональність/дієз/бемоль/бекар · . додає крапку · ← / → рухають курсор · Shift+S/V/N/O застосовують стакато/акцент/тенуто/маркато · S вмикає початок ліги для вибраної ноти · Ctrl/Cmd+Alt+1–4 перемикає голос · Ctrl/Cmd+3/5 обирає тріоль/квінтоль · Ctrl/Cmd+Z/Y скасовують і повторюють · Ctrl/Cmd+C/X/V копіюють, вирізають і вставляють.',
     'score.invalidPitch': 'Введи коректну ноту, наприклад C4, F♯4 або B♭3.',
     'score.mergeTypeMismatch': 'Ноту і паузу не можна об’єднати в одну подію.'
   },
@@ -1136,7 +1140,8 @@ const scoreWorkflowTranslations: Record<Language, Copy> = {
     'score.transposeUp': 'Transponieren +1',
     'score.quantize': 'Quantisierungsraster',
     'score.applyQuantize': 'Alles quantisieren',
-    'score.proSubtitle': 'Ein taktbezogener Notationsarbeitsbereich zum Eingeben, Bearbeiten, Abspielen und Exportieren vollständiger Gesangspartituren.',
+    'score.proSubtitle':
+      'Ein taktbezogener Notationsarbeitsbereich zum Eingeben, Bearbeiten, Abspielen und Exportieren vollständiger Gesangspartituren.',
     'score.inputToolbar': 'Noteneingabe-Werkzeugleiste',
     'score.entryMode': 'Eingabemodus',
     'score.durationPalette': 'Notenwert',
@@ -1185,7 +1190,8 @@ const scoreWorkflowTranslations: Record<Language, Copy> = {
     'score.startBeat': 'Start (Viertelschläge)',
     'score.durationBeats': 'Dauer (Viertelschläge)',
     'score.clickToEnter': 'Zum Eingeben auf das Notensystem klicken oder tippen',
-    'score.keyboardHint': 'Tastatur: A–G geben Töne ein · Shift fügt einen Akkordton hinzu · 0 fügt eine Pause ein · 1–6 wählen den Notenwert · K / + / − / = wählen Tonart/Kreuz/Be/Auflösungszeichen · . schaltet die Punktierung um · ← / → bewegen den Cursor · Shift+S/V/N/O setzen Staccato/Akzent/Tenuto/Marcato · S schaltet den Bindebogenbeginn für die Auswahl um · Ctrl/Cmd+Alt+1–4 wechselt die Stimme · Ctrl/Cmd+3/5 wählt Triole/Quintole · Ctrl/Cmd+Z/Y macht rückgängig/wiederholt · Ctrl/Cmd+C/X/V kopieren, schneiden und fügen ein.',
+    'score.keyboardHint':
+      'Tastatur: A–G geben Töne ein · Shift fügt einen Akkordton hinzu · 0 fügt eine Pause ein · 1–6 wählen den Notenwert · K / + / − / = wählen Tonart/Kreuz/Be/Auflösungszeichen · . schaltet die Punktierung um · ← / → bewegen den Cursor · Shift+S/V/N/O setzen Staccato/Akzent/Tenuto/Marcato · S schaltet den Bindebogenbeginn für die Auswahl um · Ctrl/Cmd+Alt+1–4 wechselt die Stimme · Ctrl/Cmd+3/5 wählt Triole/Quintole · Ctrl/Cmd+Z/Y macht rückgängig/wiederholt · Ctrl/Cmd+C/X/V kopieren, schneiden und fügen ein.',
     'score.invalidPitch': 'Gib eine gültige Tonhöhe wie C4, F♯4 oder B♭3 ein.',
     'score.mergeTypeMismatch': 'Eine Note und eine Pause können nicht zu einem Ereignis zusammengeführt werden.'
   }

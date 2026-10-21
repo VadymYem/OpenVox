@@ -71,7 +71,6 @@ describe('MusicXML import', () => {
   });
 });
 
-
 const ENHARMONIC_XML = `<?xml version="1.0" encoding="UTF-8"?>
 <score-partwise version="4.0">
   <part-list><score-part id="P1"><part-name>Pitch spelling</part-name></score-part></part-list>
@@ -133,7 +132,6 @@ describe('MusicXML expressive notation', () => {
     expect(score.notes[1]).toMatchObject({ dynamic: 'mf', articulation: 'accent', slurStop: true });
   });
 });
-
 
 const TUPLET_XML = `<?xml version="1.0" encoding="UTF-8"?>
 <score-partwise version="4.0">
@@ -209,7 +207,6 @@ describe('MusicXML complete-measure rests', () => {
     expect(xml).toContain('<type>whole</type>');
   });
 });
-
 
 const EMPTY_MEASURE_XML = `<?xml version="1.0" encoding="UTF-8"?>
 <score-partwise version="4.0">

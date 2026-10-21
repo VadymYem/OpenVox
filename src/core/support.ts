@@ -6,10 +6,9 @@ export function notifySupportOpportunity(): void {
 }
 
 export function shouldPromptForSupport(): boolean {
-  let count = 0;
+  let count: number;
   try {
-    count = Number.parseInt(window.localStorage.getItem(SUPPORT_COUNT_KEY) || '0', 10) || 0;
-    count += 1;
+    count = (Number.parseInt(window.localStorage.getItem(SUPPORT_COUNT_KEY) || '0', 10) || 0) + 1;
     window.localStorage.setItem(SUPPORT_COUNT_KEY, String(count));
   } catch {
     count = 1;

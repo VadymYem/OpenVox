@@ -90,7 +90,10 @@ function parsePart(
       const startUnits = chord ? lastNoteStartUnits : cursorUnits;
       if (!chord) lastNoteStartUnits = startUnits;
 
-      const voice = Math.max(1, Math.min(4, Math.round(numberText(child.querySelector(':scope > voice'), 1)))) as ScoreVoice;
+      const voice = Math.max(
+        1,
+        Math.min(4, Math.round(numberText(child.querySelector(':scope > voice'), 1)))
+      ) as ScoreVoice;
       const actualNotes = Math.round(numberText(child.querySelector('time-modification > actual-notes'), 0));
       const normalNotes = Math.round(numberText(child.querySelector('time-modification > normal-notes'), 0));
       const hasTuplet = actualNotes > 1 && normalNotes > 0;
@@ -107,13 +110,14 @@ function parsePart(
           remaining: actualNotes
         };
       }
-      const tupletData = hasTuplet && activeTuplet
-        ? {
-            tupletActual: actualNotes,
-            tupletNormal: normalNotes,
-            tupletGroupId: activeTuplet.id
-          }
-        : {};
+      const tupletData =
+        hasTuplet && activeTuplet
+          ? {
+              tupletActual: actualNotes,
+              tupletNormal: normalNotes,
+              tupletGroupId: activeTuplet.id
+            }
+          : {};
       if (hasTuplet && activeTuplet) {
         activeTuplet.remaining -= 1;
         if (tupletStop || activeTuplet.remaining <= 0) activeTuplet = null;
@@ -141,7 +145,9 @@ function parsePart(
         const midi = Math.max(0, Math.min(127, Math.round((octave + 1) * 12 + pitchClass + alter)));
         const fallback = midiToNote(midi, alter < 0);
         const preserveSimpleSpelling = Number.isInteger(alter) && Math.abs(alter) <= 1;
-        const spelledNote = preserveSimpleSpelling ? `${step}${alter === 1 ? '♯' : alter === -1 ? '♭' : ''}` : fallback.note;
+        const spelledNote = preserveSimpleSpelling
+          ? `${step}${alter === 1 ? '♯' : alter === -1 ? '♭' : ''}`
+          : fallback.note;
         const spelledOctave = preserveSimpleSpelling ? octave : fallback.octave;
         const velocity = Math.max(1, Math.min(127, Math.round(numberText(child.querySelector('velocity'), 96))));
         const articulations = child.querySelector('notations > articulations');
@@ -182,9 +188,8 @@ function parsePart(
 
     const nominalMeasureUnits = currentBeats * (4 / currentBeatType) * divisions;
     const implicitMeasure = measure.getAttribute('implicit') === 'yes';
-    const elapsedUnits = implicitMeasure || hasExplicitCursorMovement
-      ? furthestUnits
-      : Math.max(furthestUnits, nominalMeasureUnits);
+    const elapsedUnits =
+      implicitMeasure || hasExplicitCursorMovement ? furthestUnits : Math.max(furthestUnits, nominalMeasureUnits);
     if (elapsedUnits > 0) absoluteSeconds += (elapsedUnits / divisions) * quarterSeconds;
   }
 

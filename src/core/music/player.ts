@@ -107,11 +107,10 @@ export class TonePlayer {
     dry.gain.value = 1;
     dry.connect(master);
 
-    let wet: GainNode | null = null;
     if (profile.reverb > 0) {
       const convolver = this.context.createConvolver();
       convolver.buffer = this.createRoomImpulse(1.1, 2.6);
-      wet = this.context.createGain();
+      const wet = this.context.createGain();
       wet.gain.value = profile.reverb;
       convolver.connect(wet).connect(master);
       (dry as GainNode & { __reverbInput?: ConvolverNode }).__reverbInput = convolver;

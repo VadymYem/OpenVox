@@ -39,11 +39,7 @@ function score(notes: MusicalNoteEvent[], patch: Partial<ScoreDocument> = {}): S
 describe('measure-complete score model', () => {
   it('keeps a half note, quarter rest and quarter note as a complete 4/4 measure', () => {
     const timeline = buildNotationTimeline(
-      score([
-        event('half', 0, 2),
-        event('rest', 2, 1, true),
-        event('quarter', 3, 1)
-      ])
+      score([event('half', 0, 2), event('rest', 2, 1, true), event('quarter', 3, 1)])
     );
     expect(timeline.filter((item) => item.generated)).toHaveLength(0);
     expect(timeline.filter((item) => item.isRest)).toHaveLength(1);

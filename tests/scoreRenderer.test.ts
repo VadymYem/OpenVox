@@ -58,22 +58,14 @@ describe('score renderer pitch placement', () => {
   });
 
   it('keeps higher octaves visually above lower octaves', () => {
-    const svg = renderScoreSvg(
-      scoreWith([note('c2', 36, 'C', 2), note('c5', 72, 'C', 5, 1)]),
-      1200,
-      { showPitchLabels: true }
-    );
+    const svg = renderScoreSvg(scoreWith([note('c2', 36, 'C', 2), note('c5', 72, 'C', 5, 1)]), 1200, {
+      showPitchLabels: true
+    });
     expect(cyFor(svg, 'C5')).toBeLessThan(cyFor(svg, 'C2'));
   });
 
   it('draws key signatures on the staff and suppresses redundant accidentals', () => {
-    const score = scoreWith(
-      [
-        note('fs4', 66, 'F♯', 4, 0),
-        note('f4', 65, 'F', 4, 1)
-      ],
-      { keyFifths: 1, clef: 'treble' }
-    );
+    const score = scoreWith([note('fs4', 66, 'F♯', 4, 0), note('f4', 65, 'F', 4, 1)], { keyFifths: 1, clef: 'treble' });
     const svg = renderScoreSvg(score, 1200, { showPitchLabels: true });
     expect((svg.match(/>♯<\/text>/g) || []).length).toBe(1); // key signature only
     expect(svg).toContain('>♮</text>'); // F natural cancels the key signature
@@ -81,10 +73,7 @@ describe('score renderer pitch placement', () => {
 
   it('renders rests with SVG geometry rather than missing-font music glyphs', () => {
     const svg = renderScoreSvg(
-      scoreWith([
-        { ...note('half-rest', 60, 'C', 4, 0, 2), isRest: true },
-        note('quarter-note', 60, 'C', 4, 3, 1)
-      ])
+      scoreWith([{ ...note('half-rest', 60, 'C', 4, 0, 2), isRest: true }, note('quarter-note', 60, 'C', 4, 3, 1)])
     );
     expect(svg).toContain('data-event-kind="rest"');
     for (const glyph of ['𝄻', '𝄼', '𝄽', '𝄾', '𝄿']) expect(svg).not.toContain(glyph);
@@ -134,7 +123,6 @@ describe('score renderer pitch placement', () => {
     expect(svg).toContain('data-score-slur="true"');
   });
 
-
   it('uses opposing stem directions and separate rest lanes for multiple voices', () => {
     const svg = renderScoreSvg(
       scoreWith([
@@ -147,8 +135,6 @@ describe('score renderer pitch placement', () => {
     expect(svg).toContain('data-event-kind="rest" data-voice="1"');
     expect(svg).toContain('data-event-kind="rest" data-voice="2"');
   });
-
-
 });
 
 describe('score renderer tuplets', () => {

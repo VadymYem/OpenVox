@@ -5,9 +5,9 @@
   "metadata": {
     "component": {
       "type": "application",
-      "bom-ref": "pkg:npm/openvox@1.0.0-alpha.5",
+      "bom-ref": "pkg:npm/openvox@1.0.0-alpha.8",
       "name": "openvox",
-      "version": "1.0.0-alpha.5",
+      "version": "1.0.0-alpha.8",
       "licenses": [
         {
           "license": {
@@ -15,73 +15,65 @@
           }
         }
       ],
-      "purl": "pkg:npm/openvox@1.0.0-alpha.5"
+      "purl": "pkg:npm/openvox@1.0.0-alpha.8"
     },
     "properties": [
       {
         "name": "openvox:package-lock-sha256",
-        "value": "19af4de8c99c148223b2371a72a1b7a92e98ca3676e0f61dd8f69206d17b354f"
+        "value": "ce46645586d96d559e92662e42d4af312f8eef8d4d6dde3435b1be2a1d9cb311"
       },
       {
         "name": "openvox:component-count",
-        "value": "317"
+        "value": "282"
       }
     ]
   },
   "components": [
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40asamuzakjp/css-color@5.1.11",
+      "bom-ref": "pkg:npm/%40asamuzakjp/css-color@7.1.6",
       "name": "@asamuzakjp/css-color",
-      "version": "5.1.11",
-      "purl": "pkg:npm/%40asamuzakjp/css-color@5.1.11",
+      "version": "7.1.6",
+      "purl": "pkg:npm/%40asamuzakjp/css-color@7.1.6",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/asamuzaK/cssColor#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/asamuzaK/cssColor"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40asamuzakjp/dom-selector@7.1.1",
+      "bom-ref": "pkg:npm/%40asamuzakjp/dom-selector@10.0.3",
       "name": "@asamuzakjp/dom-selector",
-      "version": "7.1.1",
-      "purl": "pkg:npm/%40asamuzakjp/dom-selector@7.1.1",
+      "version": "10.0.3",
+      "purl": "pkg:npm/%40asamuzakjp/dom-selector@10.0.3",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40asamuzakjp/generational-cache@1.0.1",
-      "name": "@asamuzakjp/generational-cache",
-      "version": "1.0.1",
-      "purl": "pkg:npm/%40asamuzakjp/generational-cache@1.0.1",
-      "licenses": [
+      ],
+      "externalReferences": [
         {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40asamuzakjp/nwsapi@2.3.9",
-      "name": "@asamuzakjp/nwsapi",
-      "version": "2.3.9",
-      "purl": "pkg:npm/%40asamuzakjp/nwsapi@2.3.9",
-      "licenses": [
+          "type": "website",
+          "url": "https://github.com/asamuzaK/domSelector#readme"
+        },
         {
-          "license": {
-            "id": "MIT"
-          }
+          "type": "vcs",
+          "url": "https://github.com/asamuzaK/domSelector"
         }
       ]
     },
@@ -97,6 +89,16 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://babel.dev/docs/en/next/babel-code-frame"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/babel/babel"
+        }
       ]
     },
     {
@@ -110,6 +112,12 @@
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/babel/babel"
         }
       ]
     },
@@ -125,6 +133,16 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://babel.dev/docs/en/next/babel-core"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/babel/babel"
+        }
       ]
     },
     {
@@ -136,8 +154,18 @@
       "licenses": [
         {
           "license": {
-            "name": "NOASSERTION"
+            "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://babel.dev/docs/en/next/babel-generator"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/babel/babel"
         }
       ]
     },
@@ -153,6 +181,12 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/babel/babel"
+        }
       ]
     },
     {
@@ -164,8 +198,14 @@
       "licenses": [
         {
           "license": {
-            "name": "NOASSERTION"
+            "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/babel/babel"
         }
       ]
     },
@@ -181,6 +221,16 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://babel.dev/docs/en/next/babel-helper-module-imports"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/babel/babel"
+        }
       ]
     },
     {
@@ -195,19 +245,15 @@
             "id": "MIT"
           }
         }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40babel/helper-plugin-utils@7.29.7",
-      "name": "@babel/helper-plugin-utils",
-      "version": "7.29.7",
-      "purl": "pkg:npm/%40babel/helper-plugin-utils@7.29.7",
-      "licenses": [
+      ],
+      "externalReferences": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "type": "website",
+          "url": "https://babel.dev/docs/en/next/babel-helper-module-transforms"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/babel/babel"
         }
       ]
     },
@@ -223,6 +269,16 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://babel.dev/docs/en/next/babel-helper-string-parser"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/babel/babel"
+        }
       ]
     },
     {
@@ -236,6 +292,12 @@
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/babel/babel"
         }
       ]
     },
@@ -251,6 +313,12 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/babel/babel"
+        }
       ]
     },
     {
@@ -264,6 +332,16 @@
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://babel.dev/docs/en/next/babel-helpers"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/babel/babel"
         }
       ]
     },
@@ -279,33 +357,15 @@
             "id": "MIT"
           }
         }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40babel/plugin-transform-react-jsx-self@7.29.7",
-      "name": "@babel/plugin-transform-react-jsx-self",
-      "version": "7.29.7",
-      "purl": "pkg:npm/%40babel/plugin-transform-react-jsx-self@7.29.7",
-      "licenses": [
+      ],
+      "externalReferences": [
         {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40babel/plugin-transform-react-jsx-source@7.29.7",
-      "name": "@babel/plugin-transform-react-jsx-source",
-      "version": "7.29.7",
-      "purl": "pkg:npm/%40babel/plugin-transform-react-jsx-source@7.29.7",
-      "licenses": [
+          "type": "website",
+          "url": "https://babel.dev/docs/en/next/babel-parser"
+        },
         {
-          "license": {
-            "name": "NOASSERTION"
-          }
+          "type": "vcs",
+          "url": "https://github.com/babel/babel"
         }
       ]
     },
@@ -321,6 +381,16 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://babel.dev/docs/en/next/babel-runtime"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/babel/babel"
+        }
       ]
     },
     {
@@ -334,6 +404,16 @@
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://babel.dev/docs/en/next/babel-template"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/babel/babel"
         }
       ]
     },
@@ -349,6 +429,16 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://babel.dev/docs/en/next/babel-traverse"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/babel/babel"
+        }
       ]
     },
     {
@@ -362,6 +452,16 @@
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://babel.dev/docs/en/next/babel-types"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/babel/babel"
         }
       ]
     },
@@ -377,98 +477,208 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/bramus/specificity#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/bramus/specificity"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40csstools/color-helpers@6.1.0",
+      "bom-ref": "pkg:npm/%40cacheable/memory@2.2.0",
+      "name": "@cacheable/memory",
+      "version": "2.2.0",
+      "purl": "pkg:npm/%40cacheable/memory@2.2.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/jaredwray/cacheable"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/%40cacheable/utils@2.5.0",
+      "name": "@cacheable/utils",
+      "version": "2.5.0",
+      "purl": "pkg:npm/%40cacheable/utils@2.5.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/jaredwray/cacheable"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/%40csstools/color-helpers@6.1.2",
       "name": "@csstools/color-helpers",
-      "version": "6.1.0",
-      "purl": "pkg:npm/%40csstools/color-helpers@6.1.0",
+      "version": "6.1.2",
+      "purl": "pkg:npm/%40csstools/color-helpers@6.1.2",
       "licenses": [
         {
           "license": {
             "id": "MIT-0"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/csstools/postcss-plugins/tree/main/packages/color-helpers#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/csstools/postcss-plugins"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40csstools/css-calc@3.2.1",
+      "bom-ref": "pkg:npm/%40csstools/css-calc@3.4.3",
       "name": "@csstools/css-calc",
-      "version": "3.2.1",
-      "purl": "pkg:npm/%40csstools/css-calc@3.2.1",
+      "version": "3.4.3",
+      "purl": "pkg:npm/%40csstools/css-calc@3.4.3",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/csstools/postcss-plugins/tree/main/packages/css-calc#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/csstools/postcss-plugins"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40csstools/css-color-parser@4.1.9",
+      "bom-ref": "pkg:npm/%40csstools/css-color-parser@4.2.6",
       "name": "@csstools/css-color-parser",
-      "version": "4.1.9",
-      "purl": "pkg:npm/%40csstools/css-color-parser@4.1.9",
+      "version": "4.2.6",
+      "purl": "pkg:npm/%40csstools/css-color-parser@4.2.6",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/csstools/postcss-plugins/tree/main/packages/css-color-parser#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/csstools/postcss-plugins"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40csstools/css-parser-algorithms@4.0.0",
+      "bom-ref": "pkg:npm/%40csstools/css-parser-algorithms@4.0.2",
       "name": "@csstools/css-parser-algorithms",
-      "version": "4.0.0",
-      "purl": "pkg:npm/%40csstools/css-parser-algorithms@4.0.0",
+      "version": "4.0.2",
+      "purl": "pkg:npm/%40csstools/css-parser-algorithms@4.0.2",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/csstools/postcss-plugins/tree/main/packages/css-parser-algorithms#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/csstools/postcss-plugins"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40csstools/css-syntax-patches-for-csstree@1.1.6",
+      "bom-ref": "pkg:npm/%40csstools/css-syntax-patches-for-csstree@1.1.15",
       "name": "@csstools/css-syntax-patches-for-csstree",
-      "version": "1.1.6",
-      "purl": "pkg:npm/%40csstools/css-syntax-patches-for-csstree@1.1.6",
+      "version": "1.1.15",
+      "purl": "pkg:npm/%40csstools/css-syntax-patches-for-csstree@1.1.15",
       "licenses": [
         {
           "license": {
             "id": "MIT-0"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/csstools/postcss-plugins/tree/main/packages/css-syntax-patches-for-csstree#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/csstools/postcss-plugins"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40csstools/css-tokenizer@4.0.0",
+      "bom-ref": "pkg:npm/%40csstools/css-tokenizer@4.0.2",
       "name": "@csstools/css-tokenizer",
-      "version": "4.0.0",
-      "purl": "pkg:npm/%40csstools/css-tokenizer@4.0.0",
+      "version": "4.0.2",
+      "purl": "pkg:npm/%40csstools/css-tokenizer@4.0.2",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/csstools/postcss-plugins/tree/main/packages/css-tokenizer#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/csstools/postcss-plugins"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40esbuild/aix-ppc64@0.28.1",
+      "bom-ref": "pkg:npm/%40esbuild/aix-ppc64@0.28.2",
       "name": "@esbuild/aix-ppc64",
-      "version": "0.28.1",
-      "purl": "pkg:npm/%40esbuild/aix-ppc64@0.28.1",
+      "version": "0.28.2",
+      "purl": "pkg:npm/%40esbuild/aix-ppc64@0.28.2",
       "licenses": [
         {
           "license": {
@@ -479,10 +689,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40esbuild/android-arm@0.28.1",
+      "bom-ref": "pkg:npm/%40esbuild/android-arm@0.28.2",
       "name": "@esbuild/android-arm",
-      "version": "0.28.1",
-      "purl": "pkg:npm/%40esbuild/android-arm@0.28.1",
+      "version": "0.28.2",
+      "purl": "pkg:npm/%40esbuild/android-arm@0.28.2",
       "licenses": [
         {
           "license": {
@@ -493,10 +703,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40esbuild/android-arm64@0.28.1",
+      "bom-ref": "pkg:npm/%40esbuild/android-arm64@0.28.2",
       "name": "@esbuild/android-arm64",
-      "version": "0.28.1",
-      "purl": "pkg:npm/%40esbuild/android-arm64@0.28.1",
+      "version": "0.28.2",
+      "purl": "pkg:npm/%40esbuild/android-arm64@0.28.2",
       "licenses": [
         {
           "license": {
@@ -507,10 +717,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40esbuild/android-x64@0.28.1",
+      "bom-ref": "pkg:npm/%40esbuild/android-x64@0.28.2",
       "name": "@esbuild/android-x64",
-      "version": "0.28.1",
-      "purl": "pkg:npm/%40esbuild/android-x64@0.28.1",
+      "version": "0.28.2",
+      "purl": "pkg:npm/%40esbuild/android-x64@0.28.2",
       "licenses": [
         {
           "license": {
@@ -521,10 +731,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40esbuild/darwin-arm64@0.28.1",
+      "bom-ref": "pkg:npm/%40esbuild/darwin-arm64@0.28.2",
       "name": "@esbuild/darwin-arm64",
-      "version": "0.28.1",
-      "purl": "pkg:npm/%40esbuild/darwin-arm64@0.28.1",
+      "version": "0.28.2",
+      "purl": "pkg:npm/%40esbuild/darwin-arm64@0.28.2",
       "licenses": [
         {
           "license": {
@@ -535,10 +745,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40esbuild/darwin-x64@0.28.1",
+      "bom-ref": "pkg:npm/%40esbuild/darwin-x64@0.28.2",
       "name": "@esbuild/darwin-x64",
-      "version": "0.28.1",
-      "purl": "pkg:npm/%40esbuild/darwin-x64@0.28.1",
+      "version": "0.28.2",
+      "purl": "pkg:npm/%40esbuild/darwin-x64@0.28.2",
       "licenses": [
         {
           "license": {
@@ -549,10 +759,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40esbuild/freebsd-arm64@0.28.1",
+      "bom-ref": "pkg:npm/%40esbuild/freebsd-arm64@0.28.2",
       "name": "@esbuild/freebsd-arm64",
-      "version": "0.28.1",
-      "purl": "pkg:npm/%40esbuild/freebsd-arm64@0.28.1",
+      "version": "0.28.2",
+      "purl": "pkg:npm/%40esbuild/freebsd-arm64@0.28.2",
       "licenses": [
         {
           "license": {
@@ -563,10 +773,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40esbuild/freebsd-x64@0.28.1",
+      "bom-ref": "pkg:npm/%40esbuild/freebsd-x64@0.28.2",
       "name": "@esbuild/freebsd-x64",
-      "version": "0.28.1",
-      "purl": "pkg:npm/%40esbuild/freebsd-x64@0.28.1",
+      "version": "0.28.2",
+      "purl": "pkg:npm/%40esbuild/freebsd-x64@0.28.2",
       "licenses": [
         {
           "license": {
@@ -577,10 +787,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40esbuild/linux-arm@0.28.1",
+      "bom-ref": "pkg:npm/%40esbuild/linux-arm@0.28.2",
       "name": "@esbuild/linux-arm",
-      "version": "0.28.1",
-      "purl": "pkg:npm/%40esbuild/linux-arm@0.28.1",
+      "version": "0.28.2",
+      "purl": "pkg:npm/%40esbuild/linux-arm@0.28.2",
       "licenses": [
         {
           "license": {
@@ -591,10 +801,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40esbuild/linux-arm64@0.28.1",
+      "bom-ref": "pkg:npm/%40esbuild/linux-arm64@0.28.2",
       "name": "@esbuild/linux-arm64",
-      "version": "0.28.1",
-      "purl": "pkg:npm/%40esbuild/linux-arm64@0.28.1",
+      "version": "0.28.2",
+      "purl": "pkg:npm/%40esbuild/linux-arm64@0.28.2",
       "licenses": [
         {
           "license": {
@@ -605,10 +815,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40esbuild/linux-ia32@0.28.1",
+      "bom-ref": "pkg:npm/%40esbuild/linux-ia32@0.28.2",
       "name": "@esbuild/linux-ia32",
-      "version": "0.28.1",
-      "purl": "pkg:npm/%40esbuild/linux-ia32@0.28.1",
+      "version": "0.28.2",
+      "purl": "pkg:npm/%40esbuild/linux-ia32@0.28.2",
       "licenses": [
         {
           "license": {
@@ -619,10 +829,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40esbuild/linux-loong64@0.28.1",
+      "bom-ref": "pkg:npm/%40esbuild/linux-loong64@0.28.2",
       "name": "@esbuild/linux-loong64",
-      "version": "0.28.1",
-      "purl": "pkg:npm/%40esbuild/linux-loong64@0.28.1",
+      "version": "0.28.2",
+      "purl": "pkg:npm/%40esbuild/linux-loong64@0.28.2",
       "licenses": [
         {
           "license": {
@@ -633,10 +843,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40esbuild/linux-mips64el@0.28.1",
+      "bom-ref": "pkg:npm/%40esbuild/linux-mips64el@0.28.2",
       "name": "@esbuild/linux-mips64el",
-      "version": "0.28.1",
-      "purl": "pkg:npm/%40esbuild/linux-mips64el@0.28.1",
+      "version": "0.28.2",
+      "purl": "pkg:npm/%40esbuild/linux-mips64el@0.28.2",
       "licenses": [
         {
           "license": {
@@ -647,10 +857,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40esbuild/linux-ppc64@0.28.1",
+      "bom-ref": "pkg:npm/%40esbuild/linux-ppc64@0.28.2",
       "name": "@esbuild/linux-ppc64",
-      "version": "0.28.1",
-      "purl": "pkg:npm/%40esbuild/linux-ppc64@0.28.1",
+      "version": "0.28.2",
+      "purl": "pkg:npm/%40esbuild/linux-ppc64@0.28.2",
       "licenses": [
         {
           "license": {
@@ -661,10 +871,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40esbuild/linux-riscv64@0.28.1",
+      "bom-ref": "pkg:npm/%40esbuild/linux-riscv64@0.28.2",
       "name": "@esbuild/linux-riscv64",
-      "version": "0.28.1",
-      "purl": "pkg:npm/%40esbuild/linux-riscv64@0.28.1",
+      "version": "0.28.2",
+      "purl": "pkg:npm/%40esbuild/linux-riscv64@0.28.2",
       "licenses": [
         {
           "license": {
@@ -675,10 +885,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40esbuild/linux-s390x@0.28.1",
+      "bom-ref": "pkg:npm/%40esbuild/linux-s390x@0.28.2",
       "name": "@esbuild/linux-s390x",
-      "version": "0.28.1",
-      "purl": "pkg:npm/%40esbuild/linux-s390x@0.28.1",
+      "version": "0.28.2",
+      "purl": "pkg:npm/%40esbuild/linux-s390x@0.28.2",
       "licenses": [
         {
           "license": {
@@ -689,24 +899,30 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40esbuild/linux-x64@0.28.1",
+      "bom-ref": "pkg:npm/%40esbuild/linux-x64@0.28.2",
       "name": "@esbuild/linux-x64",
-      "version": "0.28.1",
-      "purl": "pkg:npm/%40esbuild/linux-x64@0.28.1",
+      "version": "0.28.2",
+      "purl": "pkg:npm/%40esbuild/linux-x64@0.28.2",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/evanw/esbuild"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40esbuild/netbsd-arm64@0.28.1",
+      "bom-ref": "pkg:npm/%40esbuild/netbsd-arm64@0.28.2",
       "name": "@esbuild/netbsd-arm64",
-      "version": "0.28.1",
-      "purl": "pkg:npm/%40esbuild/netbsd-arm64@0.28.1",
+      "version": "0.28.2",
+      "purl": "pkg:npm/%40esbuild/netbsd-arm64@0.28.2",
       "licenses": [
         {
           "license": {
@@ -717,10 +933,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40esbuild/netbsd-x64@0.28.1",
+      "bom-ref": "pkg:npm/%40esbuild/netbsd-x64@0.28.2",
       "name": "@esbuild/netbsd-x64",
-      "version": "0.28.1",
-      "purl": "pkg:npm/%40esbuild/netbsd-x64@0.28.1",
+      "version": "0.28.2",
+      "purl": "pkg:npm/%40esbuild/netbsd-x64@0.28.2",
       "licenses": [
         {
           "license": {
@@ -731,10 +947,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40esbuild/openbsd-arm64@0.28.1",
+      "bom-ref": "pkg:npm/%40esbuild/openbsd-arm64@0.28.2",
       "name": "@esbuild/openbsd-arm64",
-      "version": "0.28.1",
-      "purl": "pkg:npm/%40esbuild/openbsd-arm64@0.28.1",
+      "version": "0.28.2",
+      "purl": "pkg:npm/%40esbuild/openbsd-arm64@0.28.2",
       "licenses": [
         {
           "license": {
@@ -745,10 +961,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40esbuild/openbsd-x64@0.28.1",
+      "bom-ref": "pkg:npm/%40esbuild/openbsd-x64@0.28.2",
       "name": "@esbuild/openbsd-x64",
-      "version": "0.28.1",
-      "purl": "pkg:npm/%40esbuild/openbsd-x64@0.28.1",
+      "version": "0.28.2",
+      "purl": "pkg:npm/%40esbuild/openbsd-x64@0.28.2",
       "licenses": [
         {
           "license": {
@@ -759,10 +975,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40esbuild/openharmony-arm64@0.28.1",
+      "bom-ref": "pkg:npm/%40esbuild/openharmony-arm64@0.28.2",
       "name": "@esbuild/openharmony-arm64",
-      "version": "0.28.1",
-      "purl": "pkg:npm/%40esbuild/openharmony-arm64@0.28.1",
+      "version": "0.28.2",
+      "purl": "pkg:npm/%40esbuild/openharmony-arm64@0.28.2",
       "licenses": [
         {
           "license": {
@@ -773,10 +989,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40esbuild/sunos-x64@0.28.1",
+      "bom-ref": "pkg:npm/%40esbuild/sunos-x64@0.28.2",
       "name": "@esbuild/sunos-x64",
-      "version": "0.28.1",
-      "purl": "pkg:npm/%40esbuild/sunos-x64@0.28.1",
+      "version": "0.28.2",
+      "purl": "pkg:npm/%40esbuild/sunos-x64@0.28.2",
       "licenses": [
         {
           "license": {
@@ -787,10 +1003,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40esbuild/win32-arm64@0.28.1",
+      "bom-ref": "pkg:npm/%40esbuild/win32-arm64@0.28.2",
       "name": "@esbuild/win32-arm64",
-      "version": "0.28.1",
-      "purl": "pkg:npm/%40esbuild/win32-arm64@0.28.1",
+      "version": "0.28.2",
+      "purl": "pkg:npm/%40esbuild/win32-arm64@0.28.2",
       "licenses": [
         {
           "license": {
@@ -801,10 +1017,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40esbuild/win32-ia32@0.28.1",
+      "bom-ref": "pkg:npm/%40esbuild/win32-ia32@0.28.2",
       "name": "@esbuild/win32-ia32",
-      "version": "0.28.1",
-      "purl": "pkg:npm/%40esbuild/win32-ia32@0.28.1",
+      "version": "0.28.2",
+      "purl": "pkg:npm/%40esbuild/win32-ia32@0.28.2",
       "licenses": [
         {
           "license": {
@@ -815,10 +1031,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40esbuild/win32-x64@0.28.1",
+      "bom-ref": "pkg:npm/%40esbuild/win32-x64@0.28.2",
       "name": "@esbuild/win32-x64",
-      "version": "0.28.1",
-      "purl": "pkg:npm/%40esbuild/win32-x64@0.28.1",
+      "version": "0.28.2",
+      "purl": "pkg:npm/%40esbuild/win32-x64@0.28.2",
       "licenses": [
         {
           "license": {
@@ -839,6 +1055,16 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/eslint-community/eslint-utils#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/eslint-community/eslint-utils"
+        }
       ]
     },
     {
@@ -853,117 +1079,183 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/eslint-community/regexpp#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/eslint-community/regexpp"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40eslint/config-array@0.21.2",
+      "bom-ref": "pkg:npm/%40eslint/config-array@0.23.5",
       "name": "@eslint/config-array",
-      "version": "0.21.2",
-      "purl": "pkg:npm/%40eslint/config-array@0.21.2",
+      "version": "0.23.5",
+      "purl": "pkg:npm/%40eslint/config-array@0.23.5",
       "licenses": [
         {
           "license": {
-            "name": "NOASSERTION"
+            "id": "Apache-2.0"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/eslint/rewrite/tree/main/packages/config-array#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/eslint/rewrite"
         }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40eslint/config-helpers@0.4.2",
+      "bom-ref": "pkg:npm/%40eslint/config-helpers@0.7.0",
       "name": "@eslint/config-helpers",
-      "version": "0.4.2",
-      "purl": "pkg:npm/%40eslint/config-helpers@0.4.2",
+      "version": "0.7.0",
+      "purl": "pkg:npm/%40eslint/config-helpers@0.7.0",
       "licenses": [
         {
           "license": {
             "id": "Apache-2.0"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/eslint/rewrite/tree/main/packages/config-helpers#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/eslint/rewrite"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40eslint/core@0.17.0",
+      "bom-ref": "pkg:npm/%40eslint/core@1.2.1",
       "name": "@eslint/core",
-      "version": "0.17.0",
-      "purl": "pkg:npm/%40eslint/core@0.17.0",
+      "version": "1.2.1",
+      "purl": "pkg:npm/%40eslint/core@1.2.1",
       "licenses": [
         {
           "license": {
             "id": "Apache-2.0"
           }
         }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40eslint/eslintrc@3.3.6",
-      "name": "@eslint/eslintrc",
-      "version": "3.3.6",
-      "purl": "pkg:npm/%40eslint/eslintrc@3.3.6",
-      "licenses": [
+      ],
+      "externalReferences": [
         {
-          "license": {
-            "name": "NOASSERTION"
-          }
+          "type": "website",
+          "url": "https://github.com/eslint/rewrite/tree/main/packages/core#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/eslint/rewrite"
         }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40eslint/js@9.39.5",
+      "bom-ref": "pkg:npm/%40eslint/js@10.0.1",
       "name": "@eslint/js",
-      "version": "9.39.5",
-      "purl": "pkg:npm/%40eslint/js@9.39.5",
+      "version": "10.0.1",
+      "purl": "pkg:npm/%40eslint/js@10.0.1",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://eslint.org"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/eslint/eslint"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40eslint/object-schema@2.1.7",
+      "bom-ref": "pkg:npm/%40eslint/object-schema@3.0.5",
       "name": "@eslint/object-schema",
-      "version": "2.1.7",
-      "purl": "pkg:npm/%40eslint/object-schema@2.1.7",
+      "version": "3.0.5",
+      "purl": "pkg:npm/%40eslint/object-schema@3.0.5",
       "licenses": [
         {
           "license": {
             "id": "Apache-2.0"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/eslint/rewrite/tree/main/packages/object-schema#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/eslint/rewrite"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40eslint/plugin-kit@0.4.1",
+      "bom-ref": "pkg:npm/%40eslint/plugin-kit@0.7.3",
       "name": "@eslint/plugin-kit",
-      "version": "0.4.1",
-      "purl": "pkg:npm/%40eslint/plugin-kit@0.4.1",
+      "version": "0.7.3",
+      "purl": "pkg:npm/%40eslint/plugin-kit@0.7.3",
       "licenses": [
         {
           "license": {
             "id": "Apache-2.0"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/eslint/rewrite/tree/main/packages/plugin-kit#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/eslint/rewrite"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40exodus/bytes@1.15.1",
+      "bom-ref": "pkg:npm/%40exodus/bytes@1.16.0",
       "name": "@exodus/bytes",
-      "version": "1.15.1",
-      "purl": "pkg:npm/%40exodus/bytes@1.15.1",
+      "version": "1.16.0",
+      "purl": "pkg:npm/%40exodus/bytes@1.16.0",
       "licenses": [
         {
           "license": {
-            "name": "NOASSERTION"
+            "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/ExodusOSS/bytes"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/ExodusOSS/bytes"
         }
       ]
     },
@@ -979,6 +1271,16 @@
             "id": "Apache-2.0"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/humanwhocodes/humanfs#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/humanwhocodes/humanfs"
+        }
       ]
     },
     {
@@ -992,6 +1294,16 @@
           "license": {
             "id": "Apache-2.0"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/humanwhocodes/humanfs#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/humanwhocodes/humanfs"
         }
       ]
     },
@@ -1007,6 +1319,16 @@
             "id": "Apache-2.0"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/humanwhocodes/humanfs#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/humanwhocodes/humanfs"
+        }
       ]
     },
     {
@@ -1020,6 +1342,12 @@
           "license": {
             "id": "Apache-2.0"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/humanwhocodes/module-importer"
         }
       ]
     },
@@ -1035,6 +1363,12 @@
             "id": "Apache-2.0"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/humanwhocodes/retry"
+        }
       ]
     },
     {
@@ -1048,6 +1382,16 @@
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/jridgewell/sourcemaps/tree/main/packages/gen-mapping"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/jridgewell/sourcemaps"
         }
       ]
     },
@@ -1063,6 +1407,16 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/jridgewell/sourcemaps/tree/main/packages/remapping"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/jridgewell/sourcemaps"
+        }
       ]
     },
     {
@@ -1077,33 +1431,35 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/jridgewell/resolve-uri"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40jridgewell/source-map@0.3.11",
-      "name": "@jridgewell/source-map",
-      "version": "0.3.11",
-      "purl": "pkg:npm/%40jridgewell/source-map@0.3.11",
+      "bom-ref": "pkg:npm/%40jridgewell/sourcemap-codec@1.6.0",
+      "name": "@jridgewell/sourcemap-codec",
+      "version": "1.6.0",
+      "purl": "pkg:npm/%40jridgewell/sourcemap-codec@1.6.0",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40jridgewell/sourcemap-codec@1.5.5",
-      "name": "@jridgewell/sourcemap-codec",
-      "version": "1.5.5",
-      "purl": "pkg:npm/%40jridgewell/sourcemap-codec@1.5.5",
-      "licenses": [
+      ],
+      "externalReferences": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "type": "website",
+          "url": "https://github.com/jridgewell/sourcemaps/tree/main/packages/sourcemap-codec"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/jridgewell/sourcemaps"
         }
       ]
     },
@@ -1119,383 +1475,341 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/jridgewell/sourcemaps/tree/main/packages/trace-mapping"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/jridgewell/sourcemaps"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40rolldown/pluginutils@1.0.0-beta.27",
+      "bom-ref": "pkg:npm/%40keyv/bigmap@1.3.1",
+      "name": "@keyv/bigmap",
+      "version": "1.3.1",
+      "purl": "pkg:npm/%40keyv/bigmap@1.3.1",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/jaredwray/keyv"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/jaredwray/keyv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/%40keyv/serialize@1.1.1",
+      "name": "@keyv/serialize",
+      "version": "1.1.1",
+      "purl": "pkg:npm/%40keyv/serialize@1.1.1",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/jaredwray/keyv"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/jaredwray/keyv"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/%40oxc-project/types@0.154.0",
+      "name": "@oxc-project/types",
+      "version": "0.154.0",
+      "purl": "pkg:npm/%40oxc-project/types@0.154.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://oxc.rs"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/oxc-project/oxc"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/%40rolldown/binding-android-arm-eabi@1.2.14",
+      "name": "@rolldown/binding-android-arm-eabi",
+      "version": "1.2.14",
+      "purl": "pkg:npm/%40rolldown/binding-android-arm-eabi@1.2.14",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/%40rolldown/binding-android-arm64@1.2.14",
+      "name": "@rolldown/binding-android-arm64",
+      "version": "1.2.14",
+      "purl": "pkg:npm/%40rolldown/binding-android-arm64@1.2.14",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/%40rolldown/binding-darwin-arm64@1.2.14",
+      "name": "@rolldown/binding-darwin-arm64",
+      "version": "1.2.14",
+      "purl": "pkg:npm/%40rolldown/binding-darwin-arm64@1.2.14",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/%40rolldown/binding-darwin-x64@1.2.14",
+      "name": "@rolldown/binding-darwin-x64",
+      "version": "1.2.14",
+      "purl": "pkg:npm/%40rolldown/binding-darwin-x64@1.2.14",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/%40rolldown/binding-freebsd-x64@1.2.14",
+      "name": "@rolldown/binding-freebsd-x64",
+      "version": "1.2.14",
+      "purl": "pkg:npm/%40rolldown/binding-freebsd-x64@1.2.14",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/%40rolldown/binding-linux-arm-gnueabihf@1.2.14",
+      "name": "@rolldown/binding-linux-arm-gnueabihf",
+      "version": "1.2.14",
+      "purl": "pkg:npm/%40rolldown/binding-linux-arm-gnueabihf@1.2.14",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/%40rolldown/binding-linux-arm64-gnu@1.2.14",
+      "name": "@rolldown/binding-linux-arm64-gnu",
+      "version": "1.2.14",
+      "purl": "pkg:npm/%40rolldown/binding-linux-arm64-gnu@1.2.14",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/%40rolldown/binding-linux-arm64-musl@1.2.14",
+      "name": "@rolldown/binding-linux-arm64-musl",
+      "version": "1.2.14",
+      "purl": "pkg:npm/%40rolldown/binding-linux-arm64-musl@1.2.14",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/%40rolldown/binding-linux-ppc64-gnu@1.2.14",
+      "name": "@rolldown/binding-linux-ppc64-gnu",
+      "version": "1.2.14",
+      "purl": "pkg:npm/%40rolldown/binding-linux-ppc64-gnu@1.2.14",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/%40rolldown/binding-linux-s390x-gnu@1.2.14",
+      "name": "@rolldown/binding-linux-s390x-gnu",
+      "version": "1.2.14",
+      "purl": "pkg:npm/%40rolldown/binding-linux-s390x-gnu@1.2.14",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/%40rolldown/binding-linux-x64-gnu@1.2.14",
+      "name": "@rolldown/binding-linux-x64-gnu",
+      "version": "1.2.14",
+      "purl": "pkg:npm/%40rolldown/binding-linux-x64-gnu@1.2.14",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://rolldown.rs/"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/rolldown/rolldown"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/%40rolldown/binding-linux-x64-musl@1.2.14",
+      "name": "@rolldown/binding-linux-x64-musl",
+      "version": "1.2.14",
+      "purl": "pkg:npm/%40rolldown/binding-linux-x64-musl@1.2.14",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://rolldown.rs/"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/rolldown/rolldown"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/%40rolldown/binding-openharmony-arm64@1.2.14",
+      "name": "@rolldown/binding-openharmony-arm64",
+      "version": "1.2.14",
+      "purl": "pkg:npm/%40rolldown/binding-openharmony-arm64@1.2.14",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/%40rolldown/binding-win32-arm64-msvc@1.2.14",
+      "name": "@rolldown/binding-win32-arm64-msvc",
+      "version": "1.2.14",
+      "purl": "pkg:npm/%40rolldown/binding-win32-arm64-msvc@1.2.14",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/%40rolldown/binding-win32-x64-msvc@1.2.14",
+      "name": "@rolldown/binding-win32-x64-msvc",
+      "version": "1.2.14",
+      "purl": "pkg:npm/%40rolldown/binding-win32-x64-msvc@1.2.14",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/%40rolldown/pluginutils@1.0.1",
       "name": "@rolldown/pluginutils",
-      "version": "1.0.0-beta.27",
-      "purl": "pkg:npm/%40rolldown/pluginutils@1.0.0-beta.27",
+      "version": "1.0.1",
+      "purl": "pkg:npm/%40rolldown/pluginutils@1.0.1",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40rollup/rollup-android-arm-eabi@4.62.2",
-      "name": "@rollup/rollup-android-arm-eabi",
-      "version": "4.62.2",
-      "purl": "pkg:npm/%40rollup/rollup-android-arm-eabi@4.62.2",
-      "licenses": [
+      ],
+      "externalReferences": [
         {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40rollup/rollup-android-arm64@4.62.2",
-      "name": "@rollup/rollup-android-arm64",
-      "version": "4.62.2",
-      "purl": "pkg:npm/%40rollup/rollup-android-arm64@4.62.2",
-      "licenses": [
+          "type": "website",
+          "url": "https://github.com/rolldown/plugins/tree/main/packages/pluginutils#readme"
+        },
         {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40rollup/rollup-darwin-arm64@4.62.2",
-      "name": "@rollup/rollup-darwin-arm64",
-      "version": "4.62.2",
-      "purl": "pkg:npm/%40rollup/rollup-darwin-arm64@4.62.2",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40rollup/rollup-darwin-x64@4.62.2",
-      "name": "@rollup/rollup-darwin-x64",
-      "version": "4.62.2",
-      "purl": "pkg:npm/%40rollup/rollup-darwin-x64@4.62.2",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40rollup/rollup-freebsd-arm64@4.62.2",
-      "name": "@rollup/rollup-freebsd-arm64",
-      "version": "4.62.2",
-      "purl": "pkg:npm/%40rollup/rollup-freebsd-arm64@4.62.2",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40rollup/rollup-freebsd-x64@4.62.2",
-      "name": "@rollup/rollup-freebsd-x64",
-      "version": "4.62.2",
-      "purl": "pkg:npm/%40rollup/rollup-freebsd-x64@4.62.2",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40rollup/rollup-linux-arm-gnueabihf@4.62.2",
-      "name": "@rollup/rollup-linux-arm-gnueabihf",
-      "version": "4.62.2",
-      "purl": "pkg:npm/%40rollup/rollup-linux-arm-gnueabihf@4.62.2",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40rollup/rollup-linux-arm-musleabihf@4.62.2",
-      "name": "@rollup/rollup-linux-arm-musleabihf",
-      "version": "4.62.2",
-      "purl": "pkg:npm/%40rollup/rollup-linux-arm-musleabihf@4.62.2",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40rollup/rollup-linux-arm64-gnu@4.62.2",
-      "name": "@rollup/rollup-linux-arm64-gnu",
-      "version": "4.62.2",
-      "purl": "pkg:npm/%40rollup/rollup-linux-arm64-gnu@4.62.2",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40rollup/rollup-linux-arm64-musl@4.62.2",
-      "name": "@rollup/rollup-linux-arm64-musl",
-      "version": "4.62.2",
-      "purl": "pkg:npm/%40rollup/rollup-linux-arm64-musl@4.62.2",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40rollup/rollup-linux-loong64-gnu@4.62.2",
-      "name": "@rollup/rollup-linux-loong64-gnu",
-      "version": "4.62.2",
-      "purl": "pkg:npm/%40rollup/rollup-linux-loong64-gnu@4.62.2",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40rollup/rollup-linux-loong64-musl@4.62.2",
-      "name": "@rollup/rollup-linux-loong64-musl",
-      "version": "4.62.2",
-      "purl": "pkg:npm/%40rollup/rollup-linux-loong64-musl@4.62.2",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40rollup/rollup-linux-ppc64-gnu@4.62.2",
-      "name": "@rollup/rollup-linux-ppc64-gnu",
-      "version": "4.62.2",
-      "purl": "pkg:npm/%40rollup/rollup-linux-ppc64-gnu@4.62.2",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40rollup/rollup-linux-ppc64-musl@4.62.2",
-      "name": "@rollup/rollup-linux-ppc64-musl",
-      "version": "4.62.2",
-      "purl": "pkg:npm/%40rollup/rollup-linux-ppc64-musl@4.62.2",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40rollup/rollup-linux-riscv64-gnu@4.62.2",
-      "name": "@rollup/rollup-linux-riscv64-gnu",
-      "version": "4.62.2",
-      "purl": "pkg:npm/%40rollup/rollup-linux-riscv64-gnu@4.62.2",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40rollup/rollup-linux-riscv64-musl@4.62.2",
-      "name": "@rollup/rollup-linux-riscv64-musl",
-      "version": "4.62.2",
-      "purl": "pkg:npm/%40rollup/rollup-linux-riscv64-musl@4.62.2",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40rollup/rollup-linux-s390x-gnu@4.62.2",
-      "name": "@rollup/rollup-linux-s390x-gnu",
-      "version": "4.62.2",
-      "purl": "pkg:npm/%40rollup/rollup-linux-s390x-gnu@4.62.2",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40rollup/rollup-linux-x64-gnu@4.62.2",
-      "name": "@rollup/rollup-linux-x64-gnu",
-      "version": "4.62.2",
-      "purl": "pkg:npm/%40rollup/rollup-linux-x64-gnu@4.62.2",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40rollup/rollup-linux-x64-musl@4.62.2",
-      "name": "@rollup/rollup-linux-x64-musl",
-      "version": "4.62.2",
-      "purl": "pkg:npm/%40rollup/rollup-linux-x64-musl@4.62.2",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40rollup/rollup-openbsd-x64@4.62.2",
-      "name": "@rollup/rollup-openbsd-x64",
-      "version": "4.62.2",
-      "purl": "pkg:npm/%40rollup/rollup-openbsd-x64@4.62.2",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40rollup/rollup-openharmony-arm64@4.62.2",
-      "name": "@rollup/rollup-openharmony-arm64",
-      "version": "4.62.2",
-      "purl": "pkg:npm/%40rollup/rollup-openharmony-arm64@4.62.2",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40rollup/rollup-win32-arm64-msvc@4.62.2",
-      "name": "@rollup/rollup-win32-arm64-msvc",
-      "version": "4.62.2",
-      "purl": "pkg:npm/%40rollup/rollup-win32-arm64-msvc@4.62.2",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40rollup/rollup-win32-ia32-msvc@4.62.2",
-      "name": "@rollup/rollup-win32-ia32-msvc",
-      "version": "4.62.2",
-      "purl": "pkg:npm/%40rollup/rollup-win32-ia32-msvc@4.62.2",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40rollup/rollup-win32-x64-gnu@4.62.2",
-      "name": "@rollup/rollup-win32-x64-gnu",
-      "version": "4.62.2",
-      "purl": "pkg:npm/%40rollup/rollup-win32-x64-gnu@4.62.2",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40rollup/rollup-win32-x64-msvc@4.62.2",
-      "name": "@rollup/rollup-win32-x64-msvc",
-      "version": "4.62.2",
-      "purl": "pkg:npm/%40rollup/rollup-win32-x64-msvc@4.62.2",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40standard-schema/spec@1.1.0",
-      "name": "@standard-schema/spec",
-      "version": "1.1.0",
-      "purl": "pkg:npm/%40standard-schema/spec@1.1.0",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
+          "type": "vcs",
+          "url": "https://github.com/rolldown/plugins"
         }
       ]
     },
@@ -1511,33 +1825,63 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/testing-library/dom-testing-library#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/testing-library/dom-testing-library"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40testing-library/react@16.3.2",
+      "bom-ref": "pkg:npm/%40testing-library/react@16.3.3",
       "name": "@testing-library/react",
-      "version": "16.3.2",
-      "purl": "pkg:npm/%40testing-library/react@16.3.2",
+      "version": "16.3.3",
+      "purl": "pkg:npm/%40testing-library/react@16.3.3",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/testing-library/react-testing-library#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/testing-library/react-testing-library"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40testing-library/user-event@14.6.1",
+      "bom-ref": "pkg:npm/%40testing-library/user-event@14.6.8",
       "name": "@testing-library/user-event",
-      "version": "14.6.1",
-      "purl": "pkg:npm/%40testing-library/user-event@14.6.1",
+      "version": "14.6.8",
+      "purl": "pkg:npm/%40testing-library/user-event@14.6.8",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/testing-library/user-event#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/testing-library/user-event"
         }
       ]
     },
@@ -1553,6 +1897,16 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://tonejs.github.com/Midi/"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/Tonejs/Midi"
+        }
       ]
     },
     {
@@ -1567,61 +1921,15 @@
             "id": "MIT"
           }
         }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40types/babel__core@7.20.5",
-      "name": "@types/babel__core",
-      "version": "7.20.5",
-      "purl": "pkg:npm/%40types/babel__core@7.20.5",
-      "licenses": [
+      ],
+      "externalReferences": [
         {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40types/babel__generator@7.27.0",
-      "name": "@types/babel__generator",
-      "version": "7.27.0",
-      "purl": "pkg:npm/%40types/babel__generator@7.27.0",
-      "licenses": [
+          "type": "website",
+          "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/aria-query"
+        },
         {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40types/babel__template@7.4.4",
-      "name": "@types/babel__template",
-      "version": "7.4.4",
-      "purl": "pkg:npm/%40types/babel__template@7.4.4",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40types/babel__traverse@7.28.0",
-      "name": "@types/babel__traverse",
-      "version": "7.28.0",
-      "purl": "pkg:npm/%40types/babel__traverse@7.28.0",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
+          "type": "vcs",
+          "url": "https://github.com/DefinitelyTyped/DefinitelyTyped"
         }
       ]
     },
@@ -1637,6 +1945,16 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/chai"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/DefinitelyTyped/DefinitelyTyped"
+        }
       ]
     },
     {
@@ -1650,6 +1968,40 @@
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/deep-eql"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/DefinitelyTyped/DefinitelyTyped"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/%40types/esrecurse@4.3.1",
+      "name": "@types/esrecurse",
+      "version": "4.3.1",
+      "purl": "pkg:npm/%40types/esrecurse@4.3.1",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/esrecurse"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/DefinitelyTyped/DefinitelyTyped"
         }
       ]
     },
@@ -1665,6 +2017,16 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/estree"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/DefinitelyTyped/DefinitelyTyped"
+        }
       ]
     },
     {
@@ -1678,6 +2040,16 @@
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/json-schema"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/DefinitelyTyped/DefinitelyTyped"
         }
       ]
     },
@@ -1693,6 +2065,16 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react-dom"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/DefinitelyTyped/DefinitelyTyped"
+        }
       ]
     },
     {
@@ -1704,260 +2086,330 @@
       "licenses": [
         {
           "license": {
-            "name": "NOASSERTION"
+            "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/DefinitelyTyped/DefinitelyTyped"
         }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40typescript-eslint/eslint-plugin@8.64.0",
+      "bom-ref": "pkg:npm/%40typescript-eslint/eslint-plugin@8.71.2",
       "name": "@typescript-eslint/eslint-plugin",
-      "version": "8.64.0",
-      "purl": "pkg:npm/%40typescript-eslint/eslint-plugin@8.64.0",
+      "version": "8.71.2",
+      "purl": "pkg:npm/%40typescript-eslint/eslint-plugin@8.71.2",
       "licenses": [
         {
           "license": {
-            "name": "NOASSERTION"
+            "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://typescript-eslint.io/packages/eslint-plugin"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/typescript-eslint/typescript-eslint"
         }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40typescript-eslint/parser@8.64.0",
+      "bom-ref": "pkg:npm/%40typescript-eslint/parser@8.71.2",
       "name": "@typescript-eslint/parser",
-      "version": "8.64.0",
-      "purl": "pkg:npm/%40typescript-eslint/parser@8.64.0",
+      "version": "8.71.2",
+      "purl": "pkg:npm/%40typescript-eslint/parser@8.71.2",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://typescript-eslint.io/packages/parser"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/typescript-eslint/typescript-eslint"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40typescript-eslint/project-service@8.64.0",
+      "bom-ref": "pkg:npm/%40typescript-eslint/project-service@8.71.2",
       "name": "@typescript-eslint/project-service",
-      "version": "8.64.0",
-      "purl": "pkg:npm/%40typescript-eslint/project-service@8.64.0",
+      "version": "8.71.2",
+      "purl": "pkg:npm/%40typescript-eslint/project-service@8.71.2",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://typescript-eslint.io"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/typescript-eslint/typescript-eslint"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40typescript-eslint/scope-manager@8.64.0",
+      "bom-ref": "pkg:npm/%40typescript-eslint/scope-manager@8.71.2",
       "name": "@typescript-eslint/scope-manager",
-      "version": "8.64.0",
-      "purl": "pkg:npm/%40typescript-eslint/scope-manager@8.64.0",
+      "version": "8.71.2",
+      "purl": "pkg:npm/%40typescript-eslint/scope-manager@8.71.2",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://typescript-eslint.io/packages/scope-manager"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/typescript-eslint/typescript-eslint"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40typescript-eslint/tsconfig-utils@8.64.0",
+      "bom-ref": "pkg:npm/%40typescript-eslint/tsconfig-utils@8.71.2",
       "name": "@typescript-eslint/tsconfig-utils",
-      "version": "8.64.0",
-      "purl": "pkg:npm/%40typescript-eslint/tsconfig-utils@8.64.0",
+      "version": "8.71.2",
+      "purl": "pkg:npm/%40typescript-eslint/tsconfig-utils@8.71.2",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://typescript-eslint.io"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/typescript-eslint/typescript-eslint"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40typescript-eslint/type-utils@8.64.0",
+      "bom-ref": "pkg:npm/%40typescript-eslint/type-utils@8.71.2",
       "name": "@typescript-eslint/type-utils",
-      "version": "8.64.0",
-      "purl": "pkg:npm/%40typescript-eslint/type-utils@8.64.0",
+      "version": "8.71.2",
+      "purl": "pkg:npm/%40typescript-eslint/type-utils@8.71.2",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://typescript-eslint.io"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/typescript-eslint/typescript-eslint"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40typescript-eslint/types@8.64.0",
+      "bom-ref": "pkg:npm/%40typescript-eslint/types@8.71.2",
       "name": "@typescript-eslint/types",
-      "version": "8.64.0",
-      "purl": "pkg:npm/%40typescript-eslint/types@8.64.0",
+      "version": "8.71.2",
+      "purl": "pkg:npm/%40typescript-eslint/types@8.71.2",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://typescript-eslint.io"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/typescript-eslint/typescript-eslint"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40typescript-eslint/typescript-estree@8.64.0",
+      "bom-ref": "pkg:npm/%40typescript-eslint/typescript-estree@8.71.2",
       "name": "@typescript-eslint/typescript-estree",
-      "version": "8.64.0",
-      "purl": "pkg:npm/%40typescript-eslint/typescript-estree@8.64.0",
+      "version": "8.71.2",
+      "purl": "pkg:npm/%40typescript-eslint/typescript-estree@8.71.2",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://typescript-eslint.io/packages/typescript-estree"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/typescript-eslint/typescript-eslint"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40typescript-eslint/utils@8.64.0",
+      "bom-ref": "pkg:npm/%40typescript-eslint/utils@8.71.2",
       "name": "@typescript-eslint/utils",
-      "version": "8.64.0",
-      "purl": "pkg:npm/%40typescript-eslint/utils@8.64.0",
+      "version": "8.71.2",
+      "purl": "pkg:npm/%40typescript-eslint/utils@8.71.2",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://typescript-eslint.io/packages/utils"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/typescript-eslint/typescript-eslint"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40typescript-eslint/visitor-keys@8.64.0",
+      "bom-ref": "pkg:npm/%40typescript-eslint/visitor-keys@8.71.2",
       "name": "@typescript-eslint/visitor-keys",
-      "version": "8.64.0",
-      "purl": "pkg:npm/%40typescript-eslint/visitor-keys@8.64.0",
+      "version": "8.71.2",
+      "purl": "pkg:npm/%40typescript-eslint/visitor-keys@8.71.2",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://typescript-eslint.io"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/typescript-eslint/typescript-eslint"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40vitejs/plugin-react@4.7.0",
+      "bom-ref": "pkg:npm/%40vitejs/plugin-react@6.1.2",
       "name": "@vitejs/plugin-react",
-      "version": "4.7.0",
-      "purl": "pkg:npm/%40vitejs/plugin-react@4.7.0",
-      "licenses": [
-        {
-          "license": {
-            "name": "NOASSERTION"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40vitest/expect@4.1.10",
-      "name": "@vitest/expect",
-      "version": "4.1.10",
-      "purl": "pkg:npm/%40vitest/expect@4.1.10",
+      "version": "6.1.2",
+      "purl": "pkg:npm/%40vitejs/plugin-react@6.1.2",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/vitejs/vite-plugin-react"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40vitest/mocker@4.1.10",
+      "bom-ref": "pkg:npm/%40vitest/mocker@5.0.5",
       "name": "@vitest/mocker",
-      "version": "4.1.10",
-      "purl": "pkg:npm/%40vitest/mocker@4.1.10",
+      "version": "5.0.5",
+      "purl": "pkg:npm/%40vitest/mocker@5.0.5",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40vitest/pretty-format@4.1.10",
-      "name": "@vitest/pretty-format",
-      "version": "4.1.10",
-      "purl": "pkg:npm/%40vitest/pretty-format@4.1.10",
-      "licenses": [
+      ],
+      "externalReferences": [
         {
-          "license": {
-            "name": "NOASSERTION"
-          }
+          "type": "website",
+          "url": "https://github.com/vitest-dev/vitest/tree/main/packages/mocker"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/vitest-dev/vitest"
         }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/%40vitest/runner@4.1.10",
-      "name": "@vitest/runner",
-      "version": "4.1.10",
-      "purl": "pkg:npm/%40vitest/runner@4.1.10",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40vitest/snapshot@4.1.10",
-      "name": "@vitest/snapshot",
-      "version": "4.1.10",
-      "purl": "pkg:npm/%40vitest/snapshot@4.1.10",
-      "licenses": [
-        {
-          "license": {
-            "name": "NOASSERTION"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40vitest/spy@4.1.10",
+      "bom-ref": "pkg:npm/%40vitest/spy@5.0.5",
       "name": "@vitest/spy",
-      "version": "4.1.10",
-      "purl": "pkg:npm/%40vitest/spy@4.1.10",
+      "version": "5.0.5",
+      "purl": "pkg:npm/%40vitest/spy@5.0.5",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/%40vitest/utils@4.1.10",
-      "name": "@vitest/utils",
-      "version": "4.1.10",
-      "purl": "pkg:npm/%40vitest/utils@4.1.10",
-      "licenses": [
+      ],
+      "externalReferences": [
         {
-          "license": {
-            "name": "NOASSERTION"
-          }
+          "type": "website",
+          "url": "https://vitest.dev/api/mock"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/vitest-dev/vitest"
         }
       ]
     },
@@ -1973,19 +2425,39 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/acornjs/acorn-jsx"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/acornjs/acorn-jsx"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/acorn@8.17.0",
+      "bom-ref": "pkg:npm/acorn@8.18.0",
       "name": "acorn",
-      "version": "8.17.0",
-      "purl": "pkg:npm/acorn@8.17.0",
+      "version": "8.18.0",
+      "purl": "pkg:npm/acorn@8.18.0",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/acornjs/acorn"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/acornjs/acorn"
         }
       ]
     },
@@ -2001,6 +2473,16 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/ajv-validator/ajv"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/ajv-validator/ajv"
+        }
       ]
     },
     {
@@ -2009,20 +2491,6 @@
       "name": "ansi-regex",
       "version": "5.0.1",
       "purl": "pkg:npm/ansi-regex@5.0.1",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/ansi-styles@4.3.0",
-      "name": "ansi-styles",
-      "version": "4.3.0",
-      "purl": "pkg:npm/ansi-styles@4.3.0",
       "licenses": [
         {
           "license": {
@@ -2047,20 +2515,6 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/argparse@2.0.1",
-      "name": "argparse",
-      "version": "2.0.1",
-      "purl": "pkg:npm/argparse@2.0.1",
-      "licenses": [
-        {
-          "license": {
-            "id": "Python-2.0"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
       "bom-ref": "pkg:npm/aria-query@5.3.0",
       "name": "aria-query",
       "version": "5.3.0",
@@ -2070,6 +2524,16 @@
           "license": {
             "id": "Apache-2.0"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/A11yance/aria-query#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/A11yance/aria-query"
         }
       ]
     },
@@ -2082,8 +2546,14 @@
       "licenses": [
         {
           "license": {
-            "name": "NOASSERTION"
+            "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/blakeembrey/array-flatten"
         }
       ]
     },
@@ -2103,29 +2573,25 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/axe-core@4.12.1",
+      "bom-ref": "pkg:npm/axe-core@4.14.0",
       "name": "axe-core",
-      "version": "4.12.1",
-      "purl": "pkg:npm/axe-core@4.12.1",
+      "version": "4.14.0",
+      "purl": "pkg:npm/axe-core@4.14.0",
       "licenses": [
         {
           "license": {
             "id": "MPL-2.0"
           }
         }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/balanced-match@1.0.2",
-      "name": "balanced-match",
-      "version": "1.0.2",
-      "purl": "pkg:npm/balanced-match@1.0.2",
-      "licenses": [
+      ],
+      "externalReferences": [
         {
-          "license": {
-            "name": "NOASSERTION"
-          }
+          "type": "website",
+          "url": "https://www.deque.com/axe/"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/dequelabs/axe-core"
         }
       ]
     },
@@ -2145,66 +2611,70 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/baseline-browser-mapping@2.10.43",
+      "bom-ref": "pkg:npm/baseline-browser-mapping@2.11.30",
       "name": "baseline-browser-mapping",
-      "version": "2.10.43",
-      "purl": "pkg:npm/baseline-browser-mapping@2.10.43",
+      "version": "2.11.30",
+      "purl": "pkg:npm/baseline-browser-mapping@2.11.30",
       "licenses": [
         {
           "license": {
             "id": "Apache-2.0"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/web-platform-dx/baseline-browser-mapping"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/bidi-js@1.0.3",
+      "bom-ref": "pkg:npm/bidi-js@1.1.0",
       "name": "bidi-js",
-      "version": "1.0.3",
-      "purl": "pkg:npm/bidi-js@1.0.3",
-      "licenses": [
-        {
-          "license": {
-            "name": "NOASSERTION"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/brace-expansion@1.1.16",
-      "name": "brace-expansion",
-      "version": "1.1.16",
-      "purl": "pkg:npm/brace-expansion@1.1.16",
+      "version": "1.1.0",
+      "purl": "pkg:npm/bidi-js@1.1.0",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/lojjic/bidi-js"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/brace-expansion@5.0.7",
+      "bom-ref": "pkg:npm/brace-expansion@5.0.12",
       "name": "brace-expansion",
-      "version": "5.0.7",
-      "purl": "pkg:npm/brace-expansion@5.0.7",
+      "version": "5.0.12",
+      "purl": "pkg:npm/brace-expansion@5.0.12",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/juliangruber/brace-expansion"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/browserslist@4.28.6",
+      "bom-ref": "pkg:npm/browserslist@4.29.4",
       "name": "browserslist",
-      "version": "4.28.6",
-      "purl": "pkg:npm/browserslist@4.28.6",
+      "version": "4.29.4",
+      "purl": "pkg:npm/browserslist@4.29.4",
       "licenses": [
         {
           "license": {
@@ -2215,38 +2685,30 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/buffer-from@1.1.2",
-      "name": "buffer-from",
-      "version": "1.1.2",
-      "purl": "pkg:npm/buffer-from@1.1.2",
+      "bom-ref": "pkg:npm/cacheable@2.5.0",
+      "name": "cacheable",
+      "version": "2.5.0",
+      "purl": "pkg:npm/cacheable@2.5.0",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/callsites@3.1.0",
-      "name": "callsites",
-      "version": "3.1.0",
-      "purl": "pkg:npm/callsites@3.1.0",
-      "licenses": [
+      ],
+      "externalReferences": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "type": "vcs",
+          "url": "https://github.com/jaredwray/cacheable"
         }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/caniuse-lite@1.0.30001806",
+      "bom-ref": "pkg:npm/caniuse-lite@1.0.30001818",
       "name": "caniuse-lite",
-      "version": "1.0.30001806",
-      "purl": "pkg:npm/caniuse-lite@1.0.30001806",
+      "version": "1.0.30001818",
+      "purl": "pkg:npm/caniuse-lite@1.0.30001818",
       "licenses": [
         {
           "license": {
@@ -2257,85 +2719,25 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/chai@6.2.2",
+      "bom-ref": "pkg:npm/chai@6.3.0",
       "name": "chai",
-      "version": "6.2.2",
-      "purl": "pkg:npm/chai@6.2.2",
+      "version": "6.3.0",
+      "purl": "pkg:npm/chai@6.3.0",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/chalk@4.1.2",
-      "name": "chalk",
-      "version": "4.1.2",
-      "purl": "pkg:npm/chalk@4.1.2",
-      "licenses": [
+      ],
+      "externalReferences": [
         {
-          "license": {
-            "name": "NOASSERTION"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/color-convert@2.0.1",
-      "name": "color-convert",
-      "version": "2.0.1",
-      "purl": "pkg:npm/color-convert@2.0.1",
-      "licenses": [
+          "type": "website",
+          "url": "http://chaijs.com"
+        },
         {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/color-name@1.1.4",
-      "name": "color-name",
-      "version": "1.1.4",
-      "purl": "pkg:npm/color-name@1.1.4",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/commander@2.20.3",
-      "name": "commander",
-      "version": "2.20.3",
-      "purl": "pkg:npm/commander@2.20.3",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/concat-map@0.0.1",
-      "name": "concat-map",
-      "version": "0.0.1",
-      "purl": "pkg:npm/concat-map@0.0.1",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
+          "type": "vcs",
+          "url": "https://github.com/chaijs/chai"
         }
       ]
     },
@@ -2348,8 +2750,14 @@
       "licenses": [
         {
           "license": {
-            "name": "NOASSERTION"
+            "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/thlorenz/convert-source-map"
         }
       ]
     },
@@ -2362,7 +2770,7 @@
       "licenses": [
         {
           "license": {
-            "name": "NOASSERTION"
+            "id": "MIT"
           }
         }
       ]
@@ -2379,6 +2787,12 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/moxystudio/node-cross-spawn"
+        }
       ]
     },
     {
@@ -2390,7 +2804,7 @@
       "licenses": [
         {
           "license": {
-            "name": "NOASSERTION"
+            "id": "MIT"
           }
         }
       ]
@@ -2404,22 +2818,34 @@
       "licenses": [
         {
           "license": {
-            "name": "NOASSERTION"
+            "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/frenic/csstype"
         }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/data-urls@7.0.0",
+      "bom-ref": "pkg:npm/data-urls@8.0.0",
       "name": "data-urls",
-      "version": "7.0.0",
-      "purl": "pkg:npm/data-urls@7.0.0",
+      "version": "8.0.0",
+      "purl": "pkg:npm/data-urls@8.0.0",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/jsdom/data-urls"
         }
       ]
     },
@@ -2446,8 +2872,14 @@
       "licenses": [
         {
           "license": {
-            "name": "NOASSERTION"
+            "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/MikeMcl/decimal.js"
         }
       ]
     },
@@ -2462,6 +2894,12 @@
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "http://github.com/thlorenz/deep-is"
         }
       ]
     },
@@ -2481,6 +2919,20 @@
     },
     {
       "type": "library",
+      "bom-ref": "pkg:npm/detect-libc@2.1.2",
+      "name": "detect-libc",
+      "version": "2.1.2",
+      "purl": "pkg:npm/detect-libc@2.1.2",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ]
+    },
+    {
+      "type": "library",
       "bom-ref": "pkg:npm/dom-accessibility-api@0.5.16",
       "name": "dom-accessibility-api",
       "version": "0.5.16",
@@ -2491,19 +2943,31 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/eps1lon/dom-accessibility-api"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/electron-to-chromium@1.5.393",
+      "bom-ref": "pkg:npm/electron-to-chromium@1.5.463",
       "name": "electron-to-chromium",
-      "version": "1.5.393",
-      "purl": "pkg:npm/electron-to-chromium@1.5.393",
+      "version": "1.5.463",
+      "purl": "pkg:npm/electron-to-chromium@1.5.463",
       "licenses": [
         {
           "license": {
             "id": "ISC"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/Kilian/electron-to-chromium"
         }
       ]
     },
@@ -2519,33 +2983,55 @@
             "id": "BSD-2-Clause"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/fb55/entities"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/es-module-lexer@2.3.1",
+      "bom-ref": "pkg:npm/es-module-lexer@2.3.2",
       "name": "es-module-lexer",
-      "version": "2.3.1",
-      "purl": "pkg:npm/es-module-lexer@2.3.1",
+      "version": "2.3.2",
+      "purl": "pkg:npm/es-module-lexer@2.3.2",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/guybedford/es-module-lexer#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/guybedford/es-module-lexer"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/esbuild@0.28.1",
+      "bom-ref": "pkg:npm/esbuild@0.28.2",
       "name": "esbuild",
-      "version": "0.28.1",
-      "purl": "pkg:npm/esbuild@0.28.1",
+      "version": "0.28.2",
+      "purl": "pkg:npm/esbuild@0.28.2",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/evanw/esbuild"
         }
       ]
     },
@@ -2589,33 +3075,53 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://react.dev/"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/facebook/react"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/eslint-plugin-react-refresh@0.4.26",
+      "bom-ref": "pkg:npm/eslint-plugin-react-refresh@0.5.7",
       "name": "eslint-plugin-react-refresh",
-      "version": "0.4.26",
-      "purl": "pkg:npm/eslint-plugin-react-refresh@0.4.26",
+      "version": "0.5.7",
+      "purl": "pkg:npm/eslint-plugin-react-refresh@0.5.7",
       "licenses": [
         {
           "license": {
-            "name": "NOASSERTION"
+            "id": "MIT"
           }
         }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/eslint-scope@8.4.0",
+      "bom-ref": "pkg:npm/eslint-scope@9.1.2",
       "name": "eslint-scope",
-      "version": "8.4.0",
-      "purl": "pkg:npm/eslint-scope@8.4.0",
+      "version": "9.1.2",
+      "purl": "pkg:npm/eslint-scope@9.1.2",
       "licenses": [
         {
           "license": {
             "id": "BSD-2-Clause"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/eslint/js/blob/main/packages/eslint-scope/README.md"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/eslint/js"
         }
       ]
     },
@@ -2631,19 +3137,11 @@
             "id": "Apache-2.0"
           }
         }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/eslint-visitor-keys@4.2.1",
-      "name": "eslint-visitor-keys",
-      "version": "4.2.1",
-      "purl": "pkg:npm/eslint-visitor-keys@4.2.1",
-      "licenses": [
+      ],
+      "externalReferences": [
         {
-          "license": {
-            "id": "Apache-2.0"
-          }
+          "type": "website",
+          "url": "https://github.com/eslint/eslint-visitor-keys#readme"
         }
       ]
     },
@@ -2659,33 +3157,59 @@
             "id": "Apache-2.0"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/eslint/js/blob/main/packages/eslint-visitor-keys/README.md"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/eslint/js"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/eslint@9.39.5",
+      "bom-ref": "pkg:npm/eslint@10.13.0",
       "name": "eslint",
-      "version": "9.39.5",
-      "purl": "pkg:npm/eslint@9.39.5",
+      "version": "10.13.0",
+      "purl": "pkg:npm/eslint@10.13.0",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://eslint.org"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/espree@10.4.0",
+      "bom-ref": "pkg:npm/espree@11.2.0",
       "name": "espree",
-      "version": "10.4.0",
-      "purl": "pkg:npm/espree@10.4.0",
+      "version": "11.2.0",
+      "purl": "pkg:npm/espree@11.2.0",
       "licenses": [
         {
           "license": {
             "id": "BSD-2-Clause"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/eslint/js/blob/main/packages/espree/README.md"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/eslint/js"
         }
       ]
     },
@@ -2701,6 +3225,16 @@
             "id": "BSD-3-Clause"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/estools/esquery/"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/estools/esquery"
+        }
       ]
     },
     {
@@ -2714,6 +3248,16 @@
           "license": {
             "id": "BSD-2-Clause"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/estools/esrecurse"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/estools/esrecurse"
         }
       ]
     },
@@ -2729,6 +3273,16 @@
             "id": "BSD-2-Clause"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/estools/estraverse"
+        },
+        {
+          "type": "vcs",
+          "url": "http://github.com/estools/estraverse"
+        }
       ]
     },
     {
@@ -2742,6 +3296,12 @@
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/Rich-Harris/estree-walker"
         }
       ]
     },
@@ -2757,6 +3317,16 @@
             "id": "BSD-2-Clause"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/estools/esutils"
+        },
+        {
+          "type": "vcs",
+          "url": "http://github.com/estools/esutils"
+        }
       ]
     },
     {
@@ -2771,19 +3341,35 @@
             "id": "Apache-2.0"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/mmkal/expect-type#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/mmkal/expect-type"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/fake-indexeddb@6.2.5",
+      "bom-ref": "pkg:npm/fake-indexeddb@6.2.6",
       "name": "fake-indexeddb",
-      "version": "6.2.5",
-      "purl": "pkg:npm/fake-indexeddb@6.2.5",
+      "version": "6.2.6",
+      "purl": "pkg:npm/fake-indexeddb@6.2.6",
       "licenses": [
         {
           "license": {
             "id": "Apache-2.0"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/dumbmatter/fakeIndexedDB"
         }
       ]
     },
@@ -2799,6 +3385,16 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/epoberezkin/fast-deep-equal#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/epoberezkin/fast-deep-equal"
+        }
       ]
     },
     {
@@ -2812,6 +3408,12 @@
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/epoberezkin/fast-json-stable-stringify"
         }
       ]
     },
@@ -2827,6 +3429,12 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/hiddentao/fast-levenshtein"
+        }
       ]
     },
     {
@@ -2841,19 +3449,35 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/thecodrr/fdir#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/thecodrr/fdir"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/file-entry-cache@8.0.0",
+      "bom-ref": "pkg:npm/file-entry-cache@11.1.5",
       "name": "file-entry-cache",
-      "version": "8.0.0",
-      "purl": "pkg:npm/file-entry-cache@8.0.0",
+      "version": "11.1.5",
+      "purl": "pkg:npm/file-entry-cache@11.1.5",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/jaredwray/cacheable"
         }
       ]
     },
@@ -2873,29 +3497,45 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/flat-cache@4.0.1",
+      "bom-ref": "pkg:npm/flat-cache@6.1.23",
       "name": "flat-cache",
-      "version": "4.0.1",
-      "purl": "pkg:npm/flat-cache@4.0.1",
+      "version": "6.1.23",
+      "purl": "pkg:npm/flat-cache@6.1.23",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/jaredwray/cacheable"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/flatted@3.4.2",
+      "bom-ref": "pkg:npm/flatted@3.4.4",
       "name": "flatted",
-      "version": "3.4.2",
-      "purl": "pkg:npm/flatted@3.4.2",
+      "version": "3.4.4",
+      "purl": "pkg:npm/flatted@3.4.4",
       "licenses": [
         {
           "license": {
             "id": "ISC"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/WebReflection/flatted#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/WebReflection/flatted"
         }
       ]
     },
@@ -2925,6 +3565,16 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/loganfsmyth/gensync"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/loganfsmyth/gensync"
+        }
       ]
     },
     {
@@ -2943,29 +3593,21 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/globals@14.0.0",
-      "name": "globals",
-      "version": "14.0.0",
-      "purl": "pkg:npm/globals@14.0.0",
+      "bom-ref": "pkg:npm/hashery@1.5.1",
+      "name": "hashery",
+      "version": "1.5.1",
+      "purl": "pkg:npm/hashery@1.5.1",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/has-flag@4.0.0",
-      "name": "has-flag",
-      "version": "4.0.0",
-      "purl": "pkg:npm/has-flag@4.0.0",
-      "licenses": [
+      ],
+      "externalReferences": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "type": "vcs",
+          "url": "https://github.com/jaredwray/hashery"
         }
       ]
     },
@@ -2999,15 +3641,69 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/html-encoding-sniffer@6.0.0",
-      "name": "html-encoding-sniffer",
-      "version": "6.0.0",
-      "purl": "pkg:npm/html-encoding-sniffer@6.0.0",
+      "bom-ref": "pkg:npm/hookified@1.15.1",
+      "name": "hookified",
+      "version": "1.15.1",
+      "purl": "pkg:npm/hookified@1.15.1",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/jaredwray/hookified#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/jaredwray/hookified"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/hookified@2.2.0",
+      "name": "hookified",
+      "version": "2.2.0",
+      "purl": "pkg:npm/hookified@2.2.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/jaredwray/hookified#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/jaredwray/hookified"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/html-encoding-sniffer@7.0.0",
+      "name": "html-encoding-sniffer",
+      "version": "7.0.0",
+      "purl": "pkg:npm/html-encoding-sniffer@7.0.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/jsdom/html-encoding-sniffer"
         }
       ]
     },
@@ -3027,29 +3723,21 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/ignore@7.0.6",
+      "bom-ref": "pkg:npm/ignore@7.0.12",
       "name": "ignore",
-      "version": "7.0.6",
-      "purl": "pkg:npm/ignore@7.0.6",
+      "version": "7.0.12",
+      "purl": "pkg:npm/ignore@7.0.12",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/import-fresh@3.3.1",
-      "name": "import-fresh",
-      "version": "3.3.1",
-      "purl": "pkg:npm/import-fresh@3.3.1",
-      "licenses": [
+      ],
+      "externalReferences": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "type": "vcs",
+          "url": "https://github.com/kaelzhang/node-ignore"
         }
       ]
     },
@@ -3065,6 +3753,16 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/jensyt/imurmurhash-js"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/jensyt/imurmurhash-js"
+        }
       ]
     },
     {
@@ -3078,6 +3776,12 @@
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/jonschlinkert/is-extglob"
         }
       ]
     },
@@ -3093,6 +3797,12 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/micromatch/is-glob"
+        }
       ]
     },
     {
@@ -3107,6 +3817,16 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/mathiasbynens/is-potential-custom-element-name"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/mathiasbynens/is-potential-custom-element-name"
+        }
       ]
     },
     {
@@ -3120,6 +3840,16 @@
           "license": {
             "id": "ISC"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/isaacs/isexe#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/isaacs/isexe"
         }
       ]
     },
@@ -3139,29 +3869,21 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/js-yaml@4.3.0",
-      "name": "js-yaml",
-      "version": "4.3.0",
-      "purl": "pkg:npm/js-yaml@4.3.0",
+      "bom-ref": "pkg:npm/jsdom@30.1.3",
+      "name": "jsdom",
+      "version": "30.1.3",
+      "purl": "pkg:npm/jsdom@30.1.3",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/jsdom@29.1.1",
-      "name": "jsdom",
-      "version": "29.1.1",
-      "purl": "pkg:npm/jsdom@29.1.1",
-      "licenses": [
+      ],
+      "externalReferences": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "type": "vcs",
+          "url": "https://github.com/jsdom/jsdom"
         }
       ]
     },
@@ -3177,19 +3899,15 @@
             "id": "MIT"
           }
         }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/json-buffer@3.0.1",
-      "name": "json-buffer",
-      "version": "3.0.1",
-      "purl": "pkg:npm/json-buffer@3.0.1",
-      "licenses": [
+      ],
+      "externalReferences": [
         {
-          "license": {
-            "name": "NOASSERTION"
-          }
+          "type": "website",
+          "url": "https://mths.be/jsesc"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/mathiasbynens/jsesc"
         }
       ]
     },
@@ -3205,6 +3923,16 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/epoberezkin/json-schema-traverse#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/epoberezkin/json-schema-traverse"
+        }
       ]
     },
     {
@@ -3219,6 +3947,12 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/samn/json-stable-stringify"
+        }
       ]
     },
     {
@@ -3230,22 +3964,42 @@
       "licenses": [
         {
           "license": {
-            "name": "NOASSERTION"
+            "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "http://json5.org/"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/json5/json5"
         }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/keyv@4.5.4",
+      "bom-ref": "pkg:npm/keyv@5.6.0",
       "name": "keyv",
-      "version": "4.5.4",
-      "purl": "pkg:npm/keyv@4.5.4",
+      "version": "5.6.0",
+      "purl": "pkg:npm/keyv@5.6.0",
       "licenses": [
         {
           "license": {
-            "name": "NOASSERTION"
+            "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/jaredwray/keyv"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/jaredwray/keyv"
         }
       ]
     },
@@ -3260,6 +4014,198 @@
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/gkz/levn"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/lightningcss-android-arm64@1.33.0",
+      "name": "lightningcss-android-arm64",
+      "version": "1.33.0",
+      "purl": "pkg:npm/lightningcss-android-arm64@1.33.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "MPL-2.0"
+          }
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/lightningcss-darwin-arm64@1.33.0",
+      "name": "lightningcss-darwin-arm64",
+      "version": "1.33.0",
+      "purl": "pkg:npm/lightningcss-darwin-arm64@1.33.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "MPL-2.0"
+          }
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/lightningcss-darwin-x64@1.33.0",
+      "name": "lightningcss-darwin-x64",
+      "version": "1.33.0",
+      "purl": "pkg:npm/lightningcss-darwin-x64@1.33.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "MPL-2.0"
+          }
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/lightningcss-freebsd-x64@1.33.0",
+      "name": "lightningcss-freebsd-x64",
+      "version": "1.33.0",
+      "purl": "pkg:npm/lightningcss-freebsd-x64@1.33.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "MPL-2.0"
+          }
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/lightningcss-linux-arm-gnueabihf@1.33.0",
+      "name": "lightningcss-linux-arm-gnueabihf",
+      "version": "1.33.0",
+      "purl": "pkg:npm/lightningcss-linux-arm-gnueabihf@1.33.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "MPL-2.0"
+          }
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/lightningcss-linux-arm64-gnu@1.33.0",
+      "name": "lightningcss-linux-arm64-gnu",
+      "version": "1.33.0",
+      "purl": "pkg:npm/lightningcss-linux-arm64-gnu@1.33.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "MPL-2.0"
+          }
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/lightningcss-linux-arm64-musl@1.33.0",
+      "name": "lightningcss-linux-arm64-musl",
+      "version": "1.33.0",
+      "purl": "pkg:npm/lightningcss-linux-arm64-musl@1.33.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "MPL-2.0"
+          }
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/lightningcss-linux-x64-gnu@1.33.0",
+      "name": "lightningcss-linux-x64-gnu",
+      "version": "1.33.0",
+      "purl": "pkg:npm/lightningcss-linux-x64-gnu@1.33.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "MPL-2.0"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/parcel-bundler/lightningcss"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/lightningcss-linux-x64-musl@1.33.0",
+      "name": "lightningcss-linux-x64-musl",
+      "version": "1.33.0",
+      "purl": "pkg:npm/lightningcss-linux-x64-musl@1.33.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "MPL-2.0"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/parcel-bundler/lightningcss"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/lightningcss-win32-arm64-msvc@1.33.0",
+      "name": "lightningcss-win32-arm64-msvc",
+      "version": "1.33.0",
+      "purl": "pkg:npm/lightningcss-win32-arm64-msvc@1.33.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "MPL-2.0"
+          }
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/lightningcss-win32-x64-msvc@1.33.0",
+      "name": "lightningcss-win32-x64-msvc",
+      "version": "1.33.0",
+      "purl": "pkg:npm/lightningcss-win32-x64-msvc@1.33.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "MPL-2.0"
+          }
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/lightningcss@1.33.0",
+      "name": "lightningcss",
+      "version": "1.33.0",
+      "purl": "pkg:npm/lightningcss@1.33.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "MPL-2.0"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/parcel-bundler/lightningcss"
         }
       ]
     },
@@ -3279,24 +4225,10 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/lodash.merge@4.6.2",
-      "name": "lodash.merge",
-      "version": "4.6.2",
-      "purl": "pkg:npm/lodash.merge@4.6.2",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/lru-cache@11.5.2",
+      "bom-ref": "pkg:npm/lru-cache@11.5.3",
       "name": "lru-cache",
-      "version": "11.5.2",
-      "purl": "pkg:npm/lru-cache@11.5.2",
+      "version": "11.5.3",
+      "purl": "pkg:npm/lru-cache@11.5.3",
       "licenses": [
         {
           "license": {
@@ -3331,19 +4263,35 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "http://pieroxy.net/blog/pages/lz-string/index.html"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/pieroxy/lz-string"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/magic-string@0.30.21",
+      "bom-ref": "pkg:npm/magic-string@1.4.3",
       "name": "magic-string",
-      "version": "0.30.21",
-      "purl": "pkg:npm/magic-string@0.30.21",
+      "version": "1.4.3",
+      "purl": "pkg:npm/magic-string@1.4.3",
       "licenses": [
         {
           "license": {
-            "name": "NOASSERTION"
+            "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/Rich-Harris/magic-string"
         }
       ]
     },
@@ -3356,8 +4304,18 @@
       "licenses": [
         {
           "license": {
-            "name": "NOASSERTION"
+            "id": "CC0-1.0"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://developer.mozilla.org"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/mdn/data"
         }
       ]
     },
@@ -3373,6 +4331,16 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/carter-thaxton/midi-file#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/carter-thaxton/midi-file"
+        }
       ]
     },
     {
@@ -3384,21 +4352,7 @@
       "licenses": [
         {
           "license": {
-            "name": "NOASSERTION"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/minimatch@3.1.5",
-      "name": "minimatch",
-      "version": "3.1.5",
-      "purl": "pkg:npm/minimatch@3.1.5",
-      "licenses": [
-        {
-          "license": {
-            "name": "NOASSERTION"
+            "id": "BlueOak-1.0.0"
           }
         }
       ]
@@ -3412,17 +4366,17 @@
       "licenses": [
         {
           "license": {
-            "name": "NOASSERTION"
+            "id": "MIT"
           }
         }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/nanoid@3.3.16",
+      "bom-ref": "pkg:npm/nanoid@3.3.20",
       "name": "nanoid",
-      "version": "3.3.16",
-      "purl": "pkg:npm/nanoid@3.3.16",
+      "version": "3.3.20",
+      "purl": "pkg:npm/nanoid@3.3.20",
       "licenses": [
         {
           "license": {
@@ -3447,29 +4401,45 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/node-releases@2.0.51",
+      "bom-ref": "pkg:npm/node-releases@2.0.59",
       "name": "node-releases",
-      "version": "2.0.51",
-      "purl": "pkg:npm/node-releases@2.0.51",
-      "licenses": [
-        {
-          "license": {
-            "name": "NOASSERTION"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/obug@2.1.4",
-      "name": "obug",
-      "version": "2.1.4",
-      "purl": "pkg:npm/obug@2.1.4",
+      "version": "2.0.59",
+      "purl": "pkg:npm/node-releases@2.0.59",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/chicoxyzzy/node-releases"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/obug@3.0.0",
+      "name": "obug",
+      "version": "3.0.0",
+      "purl": "pkg:npm/obug@3.0.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/sxzz/obug#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/sxzz/obug"
         }
       ]
     },
@@ -3482,8 +4452,14 @@
       "licenses": [
         {
           "license": {
-            "name": "NOASSERTION"
+            "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/gkz/optionator"
         }
       ]
     },
@@ -3510,20 +4486,6 @@
       "licenses": [
         {
           "license": {
-            "name": "NOASSERTION"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/parent-module@1.0.1",
-      "name": "parent-module",
-      "version": "1.0.1",
-      "purl": "pkg:npm/parent-module@1.0.1",
-      "licenses": [
-        {
-          "license": {
             "id": "MIT"
           }
         }
@@ -3540,6 +4502,12 @@
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://parse5.js.org"
         }
       ]
     },
@@ -3573,20 +4541,6 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/pathe@2.0.3",
-      "name": "pathe",
-      "version": "2.0.3",
-      "purl": "pkg:npm/pathe@2.0.3",
-      "licenses": [
-        {
-          "license": {
-            "name": "NOASSERTION"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
       "bom-ref": "pkg:npm/picocolors@1.1.1",
       "name": "picocolors",
       "version": "1.1.1",
@@ -3601,29 +4555,41 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/picomatch@4.0.5",
+      "bom-ref": "pkg:npm/picomatch@4.0.7",
       "name": "picomatch",
-      "version": "4.0.5",
-      "purl": "pkg:npm/picomatch@4.0.5",
+      "version": "4.0.7",
+      "purl": "pkg:npm/picomatch@4.0.7",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/micromatch/picomatch"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/postcss@8.5.19",
+      "bom-ref": "pkg:npm/postcss@8.5.30",
       "name": "postcss",
-      "version": "8.5.19",
-      "purl": "pkg:npm/postcss@8.5.19",
+      "version": "8.5.30",
+      "purl": "pkg:npm/postcss@8.5.30",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://postcss.org/"
         }
       ]
     },
@@ -3639,19 +4605,31 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "http://preludels.com"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/prettier@3.9.5",
+      "bom-ref": "pkg:npm/prettier@3.9.10",
       "name": "prettier",
-      "version": "3.9.5",
-      "purl": "pkg:npm/prettier@3.9.5",
+      "version": "3.9.10",
+      "purl": "pkg:npm/prettier@3.9.10",
       "licenses": [
         {
           "license": {
-            "name": "NOASSERTION"
+            "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://prettier.io"
         }
       ]
     },
@@ -3667,6 +4645,12 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/facebook/jest"
+        }
       ]
     },
     {
@@ -3680,6 +4664,40 @@
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://mths.be/punycode"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/mathiasbynens/punycode.js"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/qified@0.10.1",
+      "name": "qified",
+      "version": "0.10.1",
+      "purl": "pkg:npm/qified@0.10.1",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/jaredwray/qified#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/jaredwray/qified"
         }
       ]
     },
@@ -3695,6 +4713,16 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://react.dev/"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/facebook/react"
+        }
       ]
     },
     {
@@ -3709,47 +4737,55 @@
             "id": "MIT"
           }
         }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/react-refresh@0.17.0",
-      "name": "react-refresh",
-      "version": "0.17.0",
-      "purl": "pkg:npm/react-refresh@0.17.0",
-      "licenses": [
+      ],
+      "externalReferences": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "type": "website",
+          "url": "https://reactjs.org/"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/facebook/react"
         }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/react-router-dom@7.18.1",
+      "bom-ref": "pkg:npm/react-router-dom@7.18.4",
       "name": "react-router-dom",
-      "version": "7.18.1",
-      "purl": "pkg:npm/react-router-dom@7.18.1",
+      "version": "7.18.4",
+      "purl": "pkg:npm/react-router-dom@7.18.4",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/remix-run/react-router"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/react-router@7.18.1",
+      "bom-ref": "pkg:npm/react-router@7.18.4",
       "name": "react-router",
-      "version": "7.18.1",
-      "purl": "pkg:npm/react-router@7.18.1",
+      "version": "7.18.4",
+      "purl": "pkg:npm/react-router@7.18.4",
       "licenses": [
         {
           "license": {
-            "name": "NOASSERTION"
+            "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/remix-run/react-router"
         }
       ]
     },
@@ -3764,6 +4800,16 @@
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://react.dev/"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/facebook/react"
         }
       ]
     },
@@ -3783,29 +4829,25 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/resolve-from@4.0.0",
-      "name": "resolve-from",
-      "version": "4.0.0",
-      "purl": "pkg:npm/resolve-from@4.0.0",
+      "bom-ref": "pkg:npm/rolldown@1.2.14",
+      "name": "rolldown",
+      "version": "1.2.14",
+      "purl": "pkg:npm/rolldown@1.2.14",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/rollup@4.62.2",
-      "name": "rollup",
-      "version": "4.62.2",
-      "purl": "pkg:npm/rollup@4.62.2",
-      "licenses": [
+      ],
+      "externalReferences": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "type": "website",
+          "url": "https://rolldown.rs/"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/rolldown/rolldown"
         }
       ]
     },
@@ -3821,6 +4863,12 @@
             "id": "ISC"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/lddubeau/saxes"
+        }
       ]
     },
     {
@@ -3834,6 +4882,16 @@
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://react.dev/"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/facebook/react"
         }
       ]
     },
@@ -3849,6 +4907,12 @@
             "id": "ISC"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/npm/node-semver"
+        }
       ]
     },
     {
@@ -3862,6 +4926,12 @@
           "license": {
             "id": "ISC"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/npm/node-semver"
         }
       ]
     },
@@ -3877,6 +4947,12 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/nfriedly/set-cookie-parser"
+        }
       ]
     },
     {
@@ -3888,7 +4964,7 @@
       "licenses": [
         {
           "license": {
-            "name": "NOASSERTION"
+            "id": "MIT"
           }
         }
       ]
@@ -3909,80 +4985,30 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/siginfo@2.0.0",
-      "name": "siginfo",
-      "version": "2.0.0",
-      "purl": "pkg:npm/siginfo@2.0.0",
-      "licenses": [
-        {
-          "license": {
-            "name": "NOASSERTION"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/source-map-js@1.2.1",
+      "bom-ref": "pkg:npm/source-map-js@1.2.2",
       "name": "source-map-js",
-      "version": "1.2.1",
-      "purl": "pkg:npm/source-map-js@1.2.1",
+      "version": "1.2.2",
+      "purl": "pkg:npm/source-map-js@1.2.2",
       "licenses": [
         {
           "license": {
             "id": "BSD-3-Clause"
           }
         }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/source-map-support@0.5.21",
-      "name": "source-map-support",
-      "version": "0.5.21",
-      "purl": "pkg:npm/source-map-support@0.5.21",
-      "licenses": [
+      ],
+      "externalReferences": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "type": "website",
+          "url": "https://github.com/7rulnik/source-map-js"
         }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/source-map@0.6.1",
-      "name": "source-map",
-      "version": "0.6.1",
-      "purl": "pkg:npm/source-map@0.6.1",
-      "licenses": [
-        {
-          "license": {
-            "name": "NOASSERTION"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/stackback@0.0.2",
-      "name": "stackback",
-      "version": "0.0.2",
-      "purl": "pkg:npm/stackback@0.0.2",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/std-env@4.2.0",
+      "bom-ref": "pkg:npm/std-env@4.3.0",
       "name": "std-env",
-      "version": "4.2.0",
-      "purl": "pkg:npm/std-env@4.2.0",
+      "version": "4.3.0",
+      "purl": "pkg:npm/std-env@4.3.0",
       "licenses": [
         {
           "license": {
@@ -3993,85 +5019,45 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/strip-json-comments@3.1.1",
-      "name": "strip-json-comments",
-      "version": "3.1.1",
-      "purl": "pkg:npm/strip-json-comments@3.1.1",
-      "licenses": [
-        {
-          "license": {
-            "name": "NOASSERTION"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/supports-color@7.2.0",
-      "name": "supports-color",
-      "version": "7.2.0",
-      "purl": "pkg:npm/supports-color@7.2.0",
-      "licenses": [
-        {
-          "license": {
-            "name": "NOASSERTION"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/symbol-tree@3.2.4",
-      "name": "symbol-tree",
-      "version": "3.2.4",
-      "purl": "pkg:npm/symbol-tree@3.2.4",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/terser@5.49.0",
-      "name": "terser",
-      "version": "5.49.0",
-      "purl": "pkg:npm/terser@5.49.0",
-      "licenses": [
-        {
-          "license": {
-            "id": "BSD-2-Clause"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/tinybench@2.9.0",
+      "bom-ref": "pkg:npm/tinybench@6.2.2",
       "name": "tinybench",
-      "version": "2.9.0",
-      "purl": "pkg:npm/tinybench@2.9.0",
-      "licenses": [
-        {
-          "license": {
-            "name": "NOASSERTION"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/tinyexec@1.2.4",
-      "name": "tinyexec",
-      "version": "1.2.4",
-      "purl": "pkg:npm/tinyexec@1.2.4",
+      "version": "6.2.2",
+      "purl": "pkg:npm/tinybench@6.2.2",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/tinylibs/tinybench#readme"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/tinyexec@1.3.1",
+      "name": "tinyexec",
+      "version": "1.3.1",
+      "purl": "pkg:npm/tinyexec@1.3.1",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/tinylibs/tinyexec#readme"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/tinylibs/tinyexec"
         }
       ]
     },
@@ -4087,19 +5073,15 @@
             "id": "MIT"
           }
         }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/tinyrainbow@3.1.0",
-      "name": "tinyrainbow",
-      "version": "3.1.0",
-      "purl": "pkg:npm/tinyrainbow@3.1.0",
-      "licenses": [
+      ],
+      "externalReferences": [
         {
-          "license": {
-            "id": "MIT"
-          }
+          "type": "website",
+          "url": "https://superchupu.dev/tinyglobby"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/SuperchupuDev/tinyglobby"
         }
       ]
     },
@@ -4115,6 +5097,12 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/remusao/tldts#readme"
+        }
       ]
     },
     {
@@ -4128,6 +5116,12 @@
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/remusao/tldts#readme"
         }
       ]
     },
@@ -4143,19 +5137,31 @@
             "id": "BSD-3-Clause"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/salesforce/tough-cookie"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/tr46@6.0.0",
+      "bom-ref": "pkg:npm/tr46@7.0.0",
       "name": "tr46",
-      "version": "6.0.0",
-      "purl": "pkg:npm/tr46@6.0.0",
+      "version": "7.0.0",
+      "purl": "pkg:npm/tr46@7.0.0",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/jsdom/tr46"
         }
       ]
     },
@@ -4171,6 +5177,12 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/JoshuaKGoldberg/ts-api-utils"
+        }
       ]
     },
     {
@@ -4185,56 +5197,92 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/gkz/type-check"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/typescript-eslint@8.64.0",
+      "bom-ref": "pkg:npm/typescript-eslint@8.71.2",
       "name": "typescript-eslint",
-      "version": "8.64.0",
-      "purl": "pkg:npm/typescript-eslint@8.64.0",
-      "licenses": [
-        {
-          "license": {
-            "name": "NOASSERTION"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/typescript@5.9.3",
-      "name": "typescript",
-      "version": "5.9.3",
-      "purl": "pkg:npm/typescript@5.9.3",
-      "licenses": [
-        {
-          "license": {
-            "id": "Apache-2.0"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/undici@7.28.0",
-      "name": "undici",
-      "version": "7.28.0",
-      "purl": "pkg:npm/undici@7.28.0",
+      "version": "8.71.2",
+      "purl": "pkg:npm/typescript-eslint@8.71.2",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://typescript-eslint.io/packages/typescript-eslint"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/typescript-eslint/typescript-eslint"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/update-browserslist-db@1.2.3",
+      "bom-ref": "pkg:npm/typescript@6.0.3",
+      "name": "typescript",
+      "version": "6.0.3",
+      "purl": "pkg:npm/typescript@6.0.3",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://www.typescriptlang.org/"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/microsoft/TypeScript"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/undici@8.12.2",
+      "name": "undici",
+      "version": "8.12.2",
+      "purl": "pkg:npm/undici@8.12.2",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://undici.nodejs.org"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/nodejs/undici"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/update-browserslist-db@1.3.4",
       "name": "update-browserslist-db",
-      "version": "1.2.3",
-      "purl": "pkg:npm/update-browserslist-db@1.2.3",
+      "version": "1.3.4",
+      "purl": "pkg:npm/update-browserslist-db@1.3.4",
       "licenses": [
         {
           "license": {
@@ -4255,47 +5303,83 @@
             "id": "BSD-2-Clause"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/garycourt/uri-js"
+        },
+        {
+          "type": "vcs",
+          "url": "http://github.com/garycourt/uri-js"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/vite@7.3.6",
+      "bom-ref": "pkg:npm/vite@8.3.4",
       "name": "vite",
-      "version": "7.3.6",
-      "purl": "pkg:npm/vite@7.3.6",
+      "version": "8.3.4",
+      "purl": "pkg:npm/vite@8.3.4",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://vite.dev"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/vitejs/vite"
+        }
       ]
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/vitest@4.1.10",
+      "bom-ref": "pkg:npm/vitest@5.0.5",
       "name": "vitest",
-      "version": "4.1.10",
-      "purl": "pkg:npm/vitest@4.1.10",
-      "licenses": [
-        {
-          "license": {
-            "name": "NOASSERTION"
-          }
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "bom-ref": "pkg:npm/w3c-xmlserializer@5.0.0",
-      "name": "w3c-xmlserializer",
-      "version": "5.0.0",
-      "purl": "pkg:npm/w3c-xmlserializer@5.0.0",
+      "version": "5.0.5",
+      "purl": "pkg:npm/vitest@5.0.5",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://vitest.dev"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/vitest-dev/vitest"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:npm/w3c-xmlserializer@6.0.0",
+      "name": "w3c-xmlserializer",
+      "version": "6.0.0",
+      "purl": "pkg:npm/w3c-xmlserializer@6.0.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/jsdom/w3c-xmlserializer"
         }
       ]
     },
@@ -4308,8 +5392,14 @@
       "licenses": [
         {
           "license": {
-            "name": "NOASSERTION"
+            "id": "BSD-2-Clause"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/jsdom/webidl-conversions"
         }
       ]
     },
@@ -4329,15 +5419,21 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/whatwg-url@16.0.1",
+      "bom-ref": "pkg:npm/whatwg-url@17.3.0",
       "name": "whatwg-url",
-      "version": "16.0.1",
-      "purl": "pkg:npm/whatwg-url@16.0.1",
+      "version": "17.3.0",
+      "purl": "pkg:npm/whatwg-url@17.3.0",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/jsdom/whatwg-url"
         }
       ]
     },
@@ -4357,15 +5453,25 @@
     },
     {
       "type": "library",
-      "bom-ref": "pkg:npm/why-is-node-running@2.3.0",
+      "bom-ref": "pkg:npm/why-is-node-running@3.2.1",
       "name": "why-is-node-running",
-      "version": "2.3.0",
-      "purl": "pkg:npm/why-is-node-running@2.3.0",
+      "version": "3.2.1",
+      "purl": "pkg:npm/why-is-node-running@3.2.1",
       "licenses": [
         {
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/mafintosh/why-is-node-running"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/mafintosh/why-is-node-running"
         }
       ]
     },
@@ -4381,6 +5487,12 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/jonschlinkert/word-wrap"
+        }
       ]
     },
     {
@@ -4392,7 +5504,7 @@
       "licenses": [
         {
           "license": {
-            "name": "NOASSERTION"
+            "id": "Apache-2.0"
           }
         }
       ]
@@ -4409,6 +5521,12 @@
             "id": "MIT"
           }
         }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/lddubeau/xmlchars"
+        }
       ]
     },
     {
@@ -4422,6 +5540,12 @@
           "license": {
             "id": "ISC"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/isaacs/yallist"
         }
       ]
     },
@@ -4464,6 +5588,16 @@
           "license": {
             "id": "MIT"
           }
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://zod.dev"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/colinhacks/zod"
         }
       ]
     }

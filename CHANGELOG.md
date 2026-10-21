@@ -57,8 +57,6 @@
 - Removed CI-side automatic Prettier rewriting from the Pages deployment workflow; committed source must now pass the formatting gate without being modified during deployment.
 - Synchronized release metadata and public version references.
 
-
-
 ## 1.0.0-alpha.4
 
 - Fixed system-theme handling in test and non-browser environments where `window.matchMedia` is unavailable.
@@ -75,7 +73,6 @@
 - Added production verification that rejects raw `/src/main.tsx` entries and incorrect manifest/icon base paths.
 - Updated the Pages workflow checkout action and added an explicit raw-source artifact gate.
 - Added dedicated GitHub Pages troubleshooting documentation.
-
 
 All notable project changes are recorded here.
 
@@ -180,4 +177,3 @@ All notable project changes are recorded here.
 ### Fixed
 
 - Removed unnecessary escaped quotation marks from the theme-color meta selector in `AppContext.tsx`, allowing the strict ESLint `no-useless-escape` gate to pass.
-

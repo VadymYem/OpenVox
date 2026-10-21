@@ -69,7 +69,10 @@ export function parseNoteLabel(label: string): number | null {
  * enharmonic notation (B♭ vs A♯) and also repairs legacy projects where the
  * visible label and the stored MIDI value drifted apart.
  */
-export function resolveNoteSpelling(note: { midi: number; note: string; octave: number }): { note: string; octave: number } {
+export function resolveNoteSpelling(note: { midi: number; note: string; octave: number }): {
+  note: string;
+  octave: number;
+} {
   const stored = parseNoteSpelling(`${note.note}${note.octave}`);
   if (stored) return { note: stored.note, octave: stored.octave };
   return midiToNote(note.midi);

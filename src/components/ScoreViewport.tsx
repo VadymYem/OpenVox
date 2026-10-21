@@ -86,7 +86,8 @@ export function ScoreViewport({
         const startPosition = positions[index];
         const endPosition = positions[index + 1];
         if (innerRatio <= endPosition + 0.000001) {
-          const ratio = endPosition - startPosition <= 0.000001 ? 0 : (innerRatio - startPosition) / (endPosition - startPosition);
+          const ratio =
+            endPosition - startPosition <= 0.000001 ? 0 : (innerRatio - startPosition) / (endPosition - startPosition);
           beatInMeasure = anchors[index] + Math.max(0, Math.min(1, ratio)) * (anchors[index + 1] - anchors[index]);
           break;
         }
@@ -143,7 +144,8 @@ export function ScoreViewport({
     const drag = dragRef.current;
     if (!drag || drag.pointerId !== event.pointerId || !onEventMove) return;
     dragRef.current = null;
-    if (event.currentTarget.hasPointerCapture?.(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
+    if (event.currentTarget.hasPointerCapture?.(event.pointerId))
+      event.currentTarget.releasePointerCapture(event.pointerId);
     const distance = Math.hypot(event.clientX - drag.startX, event.clientY - drag.startY);
     if (distance < 5) return;
     const point = resolveStaffPoint(event.clientX, event.clientY, event.shiftKey, event.target as Element);

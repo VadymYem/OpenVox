@@ -46,7 +46,16 @@ function durationAppearance(durationBeats: number): DurationAppearance {
     dotted: best.dotted,
     open: best.baseBeats >= 2,
     stem: best.baseBeats < 4,
-    flags: best.baseBeats <= 0.0625 ? 4 : best.baseBeats <= 0.125 ? 3 : best.baseBeats <= 0.25 ? 2 : best.baseBeats <= 0.5 ? 1 : 0
+    flags:
+      best.baseBeats <= 0.0625
+        ? 4
+        : best.baseBeats <= 0.125
+          ? 3
+          : best.baseBeats <= 0.25
+            ? 2
+            : best.baseBeats <= 0.5
+              ? 1
+              : 0
   };
 }
 
@@ -56,7 +65,6 @@ function notationDurationBeats(event: { durationBeats: number; tupletActual?: nu
   }
   return event.durationBeats;
 }
-
 
 interface MeasureSpacingMap {
   anchors: number[];
@@ -75,7 +83,9 @@ function buildMeasureSpacingMap(
       anchors.add(Math.max(0, Math.min(measureBeats, event.startBeatInMeasure)));
       anchors.add(Math.max(0, Math.min(measureBeats, event.startBeatInMeasure + event.durationBeats)));
     });
-  const ordered = [...anchors].sort((a, b) => a - b).filter((value, index, values) => index === 0 || value - values[index - 1] > 0.000001);
+  const ordered = [...anchors]
+    .sort((a, b) => a - b)
+    .filter((value, index, values) => index === 0 || value - values[index - 1] > 0.000001);
   if (ordered.length < 2) return { anchors: [0, measureBeats], positions: [0, 1] };
 
   const weights = ordered.slice(0, -1).map((value, index) => {
@@ -149,10 +159,14 @@ function drawRest(
 
   if (measureRest || appearance.baseBeats >= 4) {
     // Whole / full-measure rest: hangs from the second line from the top.
-    fragments.push(`<rect x="${x - 8}" y="${staffTop + 10 + voiceOffset}" width="16" height="5.5" rx="0.8" fill="#19161d"/>`);
+    fragments.push(
+      `<rect x="${x - 8}" y="${staffTop + 10 + voiceOffset}" width="16" height="5.5" rx="0.8" fill="#19161d"/>`
+    );
   } else if (appearance.baseBeats >= 2) {
     // Half rest: sits on the middle staff line.
-    fragments.push(`<rect x="${x - 8}" y="${staffTop + 14.5 + voiceOffset}" width="16" height="5.5" rx="0.8" fill="#19161d"/>`);
+    fragments.push(
+      `<rect x="${x - 8}" y="${staffTop + 14.5 + voiceOffset}" width="16" height="5.5" rx="0.8" fill="#19161d"/>`
+    );
   } else if (appearance.baseBeats >= 1) {
     // Quarter rest: a narrow zig-zag body with the characteristic lower hook.
     // It is drawn from SVG strokes instead of a font glyph, so exports are
@@ -168,7 +182,9 @@ function drawRest(
     // Eighth through sixty-fourth rest with one to four flags.
     const y = staffTop + 20 + voiceOffset;
     const flagCount = appearance.flags;
-    fragments.push(`<path d="M ${x + 2} ${y - 15} L ${x - 4} ${y + 18}" stroke="#19161d" stroke-width="2.2" stroke-linecap="round"/>`);
+    fragments.push(
+      `<path d="M ${x + 2} ${y - 15} L ${x - 4} ${y + 18}" stroke="#19161d" stroke-width="2.2" stroke-linecap="round"/>`
+    );
     for (let flag = 0; flag < flagCount; flag += 1) {
       const fy = y - 13 + flag * 8;
       fragments.push(`<circle cx="${x - 2}" cy="${fy}" r="4.2" fill="#19161d"/>`);
@@ -392,7 +408,8 @@ function buildBeamGroups(
       )
       .sort((a, b) => a.startBeatInMeasure - b.startBeatInMeasure || a.midi - b.midi);
     const representatives = shortNotes.filter(
-      (event, index) => index === 0 || Math.abs(event.startBeatInMeasure - shortNotes[index - 1].startBeatInMeasure) > 0.00001
+      (event, index) =>
+        index === 0 || Math.abs(event.startBeatInMeasure - shortNotes[index - 1].startBeatInMeasure) > 0.00001
     );
     let current: typeof representatives = [];
 
@@ -476,7 +493,9 @@ export function renderScoreSvg(score: ScoreDocument, width = 1200, options: Scor
 
     for (let line = 0; line < 5; line += 1) {
       const y = staffTop + line * 10;
-      fragments.push(`<line x1="${staffLeft}" y1="${y}" x2="${staffRight}" y2="${y}" stroke="#332f38" stroke-width="1.15"/>`);
+      fragments.push(
+        `<line x1="${staffLeft}" y1="${y}" x2="${staffRight}" y2="${y}" stroke="#332f38" stroke-width="1.15"/>`
+      );
     }
     drawClef(fragments, clef, clefX, staffTop);
     drawKeySignature(fragments, score.keyFifths, clef, keyX, staffTop);
@@ -506,7 +525,10 @@ export function renderScoreSvg(score: ScoreDocument, width = 1200, options: Scor
       const xEnd = xStart + measureWidth;
       fragments.push(
         (() => {
-          const spacing = spacingByMeasure.get(measureIndex) || { anchors: [0, timing.measureBeats], positions: [0, 1] };
+          const spacing = spacingByMeasure.get(measureIndex) || {
+            anchors: [0, timing.measureBeats],
+            positions: [0, 1]
+          };
           return `<rect x="${xStart}" y="${staffTop - 34}" width="${measureWidth}" height="112" fill="#ffffff" fill-opacity="0" pointer-events="all" data-score-hitbox="true" data-measure-index="${measureIndex}" data-system-index="${system}" data-measure-x="${xStart}" data-measure-width="${measureWidth}" data-staff-top="${staffTop}" data-beat-anchors="${spacing.anchors.map((value) => value.toFixed(6)).join(',')}" data-beat-positions="${spacing.positions.map((value) => value.toFixed(6)).join(',')}"/>`;
         })()
       );
@@ -534,7 +556,10 @@ export function renderScoreSvg(score: ScoreDocument, width = 1200, options: Scor
       const measureX = firstMeasureLeft + localMeasure * measureWidth;
       const innerPadding = 18;
       const usableWidth = Math.max(24, measureWidth - innerPadding * 2);
-      const spacing = spacingByMeasure.get(event.measureIndex) || { anchors: [0, timing.measureBeats], positions: [0, 1] };
+      const spacing = spacingByMeasure.get(event.measureIndex) || {
+        anchors: [0, timing.measureBeats],
+        positions: [0, 1]
+      };
       const x = measureX + innerPadding + spacingPosition(spacing, event.startBeatInMeasure) * usableWidth;
       const selected = Boolean(options.selectedEventId && options.selectedEventId === event.sourceId);
 
@@ -665,7 +690,9 @@ export function renderScoreSvg(score: ScoreDocument, width = 1200, options: Scor
     }
 
     for (const group of beamGroups) {
-      const stems = group.eventIds.map((id) => stemPositions.get(id)).filter((stem): stem is StemGeometry => Boolean(stem));
+      const stems = group.eventIds
+        .map((id) => stemPositions.get(id))
+        .filter((stem): stem is StemGeometry => Boolean(stem));
       if (stems.length < 2) continue;
       const first = stems[0];
       const last = stems[stems.length - 1];
@@ -699,7 +726,9 @@ export function renderScoreSvg(score: ScoreDocument, width = 1200, options: Scor
     const positioned = group
       .filter((event) => !event.isRest)
       .map((event) => ({ event, position: notePositions.get(event.id) }))
-      .filter((item): item is { event: (typeof group)[number]; position: { x: number; y: number; system: number } } => Boolean(item.position))
+      .filter((item): item is { event: (typeof group)[number]; position: { x: number; y: number; system: number } } =>
+        Boolean(item.position)
+      )
       .sort((a, b) => a.event.start - b.event.start || a.event.midi - b.event.midi);
     if (positioned.length < 2) return;
     const first = positioned[0];
@@ -712,9 +741,7 @@ export function renderScoreSvg(score: ScoreDocument, width = 1200, options: Scor
     fragments.push(
       `<path d="M ${left} ${y + 7} L ${left} ${y} L ${right} ${y} L ${right} ${y + 7}" fill="none" stroke="#19161d" stroke-width="1.2" data-score-tuplet="${escapeXml(groupId)}"/>`
     );
-    fragments.push(
-      `<rect x="${(left + right) / 2 - 9}" y="${y - 8}" width="18" height="15" rx="4" fill="#fffdf8"/>`
-    );
+    fragments.push(`<rect x="${(left + right) / 2 - 9}" y="${y - 8}" width="18" height="15" rx="4" fill="#fffdf8"/>`);
     fragments.push(
       `<text x="${(left + right) / 2}" y="${y + 4}" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="13" font-weight="700" fill="#19161d">${actual}</text>`
     );
@@ -739,8 +766,7 @@ export function renderScoreSvg(score: ScoreDocument, width = 1200, options: Scor
   for (let index = 0; index < pitchedTimeline.length - 1; index += 1) {
     const event = pitchedTimeline[index];
     if (!event.slurStart) continue;
-    const next =
-      pitchedTimeline.slice(index + 1).find((candidate) => candidate.slurStop) || pitchedTimeline[index + 1];
+    const next = pitchedTimeline.slice(index + 1).find((candidate) => candidate.slurStop) || pitchedTimeline[index + 1];
     if (!next) continue;
     const a = notePositions.get(event.id);
     const b = notePositions.get(next.id);

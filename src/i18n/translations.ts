@@ -152,7 +152,8 @@ export const translations: Record<Language, Record<string, string>> = {
     'settings.a4': 'Reference A4',
     'settings.gate': 'Noise gate strength',
     'settings.analytics': 'Google Analytics',
-    'settings.analyticsInfo': 'Google Analytics is enabled by default for usage measurement and can be disabled here. Audio, recordings and musical project content are never intentionally sent to analytics.',
+    'settings.analyticsInfo':
+      'Google Analytics is enabled by default for usage measurement and can be disabled here. Audio, recordings and musical project content are never intentionally sent to analytics.',
     'privacy.title': 'Privacy',
     'privacy.body':
       'OpenVox Studio processes microphone audio in your browser. The core application does not upload voice recordings, pitch data or project content to a server. The standard web build loads Google Analytics for page-visit telemetry by default; it can be disabled in Settings.',
@@ -331,7 +332,8 @@ export const translations: Record<Language, Record<string, string>> = {
     'settings.a4': 'Еталон A4',
     'settings.gate': 'Сила шумового порогу',
     'settings.analytics': 'Google Analytics',
-    'settings.analyticsInfo': 'Google Analytics увімкнено за замовчуванням для вимірювання використання і його можна вимкнути тут. Аудіо, записи та вміст музичних проєктів навмисно не передаються в аналітику.',
+    'settings.analyticsInfo':
+      'Google Analytics увімкнено за замовчуванням для вимірювання використання і його можна вимкнути тут. Аудіо, записи та вміст музичних проєктів навмисно не передаються в аналітику.',
     'privacy.title': 'Приватність',
     'privacy.body':
       'OpenVox Studio обробляє звук мікрофона у твоєму браузері. Основна програма не завантажує записи голосу, дані висоти або вміст проєктів на сервер. Стандартна вебверсія завантажує Google Analytics для телеметрії переглядів сторінок за замовчуванням; його можна вимкнути в Налаштуваннях.',
@@ -513,7 +515,8 @@ export const translations: Record<Language, Record<string, string>> = {
     'settings.a4': 'Referenz A4',
     'settings.gate': 'Noise-Gate-Stärke',
     'settings.analytics': 'Google Analytics',
-    'settings.analyticsInfo': 'Google Analytics ist standardmäßig zur Nutzungsmessung aktiviert und kann hier deaktiviert werden. Audio, Aufnahmen und Inhalte musikalischer Projekte werden nicht absichtlich an Analytics gesendet.',
+    'settings.analyticsInfo':
+      'Google Analytics ist standardmäßig zur Nutzungsmessung aktiviert und kann hier deaktiviert werden. Audio, Aufnahmen und Inhalte musikalischer Projekte werden nicht absichtlich an Analytics gesendet.',
     'privacy.title': 'Datenschutz',
     'privacy.body':
       'OpenVox Studio verarbeitet Mikrofonaudio im Browser. Die Kernanwendung lädt keine Sprachaufnahmen, Tonhöhendaten oder Projektinhalte auf einen Server. Die Standard-Webversion lädt Google Analytics standardmäßig für Seitenaufruf-Telemetrie; es kann in den Einstellungen deaktiviert werden.',

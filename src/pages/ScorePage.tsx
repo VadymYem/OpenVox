@@ -110,7 +110,10 @@ export function ScorePage() {
     [score.notes, selectedEventId]
   );
   const sortedEvents = useMemo(
-    () => [...score.notes].sort((a, b) => a.start - b.start || Number(Boolean(a.isRest)) - Number(Boolean(b.isRest)) || a.midi - b.midi),
+    () =>
+      [...score.notes].sort(
+        (a, b) => a.start - b.start || Number(Boolean(a.isRest)) - Number(Boolean(b.isRest)) || a.midi - b.midi
+      ),
     [score.notes]
   );
   const writtenDurationBeats = durationBeats * (dotted ? 1.5 : 1);
@@ -163,7 +166,9 @@ export function ScorePage() {
 
   const updateNote = useCallback(
     (id: string, patch: Partial<MusicalNoteEvent>) =>
-      updateScore({ notes: score.notes.map((note) => (note.id === id ? synchronizeNotePitch({ ...note, ...patch }) : note)) }),
+      updateScore({
+        notes: score.notes.map((note) => (note.id === id ? synchronizeNotePitch({ ...note, ...patch }) : note))
+      }),
     [score.notes, updateScore]
   );
 
@@ -227,7 +232,11 @@ export function ScorePage() {
       const candidates = [normalizedPrevious.octave - 1, normalizedPrevious.octave, normalizedPrevious.octave + 1]
         .map((octave) => parseNoteSpelling(`${letter}${symbol}${octave}`))
         .filter((pitch): pitch is { midi: number; note: string; octave: number } => Boolean(pitch));
-      return candidates.sort((a, b) => Math.abs(a.midi - normalizedPrevious.midi) - Math.abs(b.midi - normalizedPrevious.midi))[0] || null;
+      return (
+        candidates.sort(
+          (a, b) => Math.abs(a.midi - normalizedPrevious.midi) - Math.abs(b.midi - normalizedPrevious.midi)
+        )[0] || null
+      );
     },
     [cursorBeat, entryAccidentalSymbol, entryVoice, inputOctave, score]
   );
@@ -284,7 +293,22 @@ export function ScorePage() {
         setInputOctave(pitch.octave);
       }
     },
-    [activeClef, commitScore, cursorBeat, effectiveDurationBeats, entryArticulation, entryDynamic, entryVoice, pitchForInput, score, timing.measureBeats, tupletActual, tupletNormal, tupletRatio, writtenDurationBeats]
+    [
+      activeClef,
+      commitScore,
+      cursorBeat,
+      effectiveDurationBeats,
+      entryArticulation,
+      entryDynamic,
+      entryVoice,
+      pitchForInput,
+      score,
+      timing.measureBeats,
+      tupletActual,
+      tupletNormal,
+      tupletRatio,
+      writtenDurationBeats
+    ]
   );
 
   const insertEventRef = useRef(insertEvent);
@@ -347,7 +371,9 @@ export function ScorePage() {
     }
     const basePitch = pitchForStaffY(point.y, point.staffTop + 20, activeClef, 'natural');
     const pitch = basePitch
-      ? parseNoteSpelling(`${basePitch.note.charAt(0)}${entryAccidentalSymbol(basePitch.note.charAt(0))}${basePitch.octave}`)
+      ? parseNoteSpelling(
+          `${basePitch.note.charAt(0)}${entryAccidentalSymbol(basePitch.note.charAt(0))}${basePitch.octave}`
+        )
       : null;
     if (pitch) insertEvent('note', pitch, absoluteBeat, !point.shiftKey);
   };
@@ -681,7 +707,9 @@ export function ScorePage() {
       tieStart: false,
       tieStop: false
     };
-    updateScore({ notes: score.notes.filter((note) => note.id !== current.id && note.id !== following.id).concat(merged) });
+    updateScore({
+      notes: score.notes.filter((note) => note.id !== current.id && note.id !== following.id).concat(merged)
+    });
   };
 
   const transposeScore = (semitones: number) => {
@@ -757,24 +785,43 @@ export function ScorePage() {
 
       <div className="score-command-bar" aria-label={x('score.inputToolbar')}>
         <div className="score-command-group score-command-transport">
-          <button className={`button ${playing ? 'button-danger' : 'button-primary'}`} onClick={() => void togglePlayback()}>
+          <button
+            className={`button ${playing ? 'button-danger' : 'button-primary'}`}
+            onClick={() => void togglePlayback()}
+          >
             <Icon name={playing ? 'stop' : 'play'} />
             {playing ? t('common.stop') : t('score.play')}
           </button>
-          <button className="icon-button" disabled={!undoStack.current.length} onClick={undo} aria-label={x('score.undo')}>
+          <button
+            className="icon-button"
+            disabled={!undoStack.current.length}
+            onClick={undo}
+            aria-label={x('score.undo')}
+          >
             <Icon name="undo" />
           </button>
-          <button className="icon-button" disabled={!redoStack.current.length} onClick={redo} aria-label={x('score.redo')}>
+          <button
+            className="icon-button"
+            disabled={!redoStack.current.length}
+            onClick={redo}
+            aria-label={x('score.redo')}
+          >
             <Icon name="redo" />
           </button>
         </div>
 
         <div className="score-command-group score-mode-switch" aria-label={x('score.entryMode')}>
-          <button className={`score-tool-button ${entryMode === 'note' ? 'active' : ''}`} onClick={() => setEntryMode('note')}>
+          <button
+            className={`score-tool-button ${entryMode === 'note' ? 'active' : ''}`}
+            onClick={() => setEntryMode('note')}
+          >
             <span className="score-tool-symbol">♪</span>
             <span>{t('score.note')}</span>
           </button>
-          <button className={`score-tool-button ${entryMode === 'rest' ? 'active' : ''}`} onClick={() => setEntryMode('rest')}>
+          <button
+            className={`score-tool-button ${entryMode === 'rest' ? 'active' : ''}`}
+            onClick={() => setEntryMode('rest')}
+          >
             <span className="score-tool-rest-icon" aria-hidden="true" />
             <span>{t('score.rest')}</span>
           </button>
@@ -792,19 +839,23 @@ export function ScorePage() {
               <span className="score-duration-label">{choice.label}</span>
             </button>
           ))}
-          <button className={`score-duration-button score-dot-button ${dotted ? 'active' : ''}`} onClick={() => setDotted((value) => !value)} title=".">
+          <button
+            className={`score-duration-button score-dot-button ${dotted ? 'active' : ''}`}
+            onClick={() => setDotted((value) => !value)}
+            title="."
+          >
             •
           </button>
           <button
             className={`score-duration-button score-tuplet-button ${tupletRatio === '3:2' ? 'active' : ''}`}
-            onClick={() => setTupletRatio((value) => value === '3:2' ? 'none' : '3:2')}
+            onClick={() => setTupletRatio((value) => (value === '3:2' ? 'none' : '3:2'))}
             title={`${x('score.triplet')} · Ctrl/Cmd+3`}
           >
             3:2
           </button>
           <button
             className={`score-duration-button score-tuplet-button ${tupletRatio === '5:4' ? 'active' : ''}`}
-            onClick={() => setTupletRatio((value) => value === '5:4' ? 'none' : '5:4')}
+            onClick={() => setTupletRatio((value) => (value === '5:4' ? 'none' : '5:4'))}
             title={`${x('score.quintuplet')} · Ctrl/Cmd+5`}
           >
             5:4
@@ -812,16 +863,32 @@ export function ScorePage() {
         </div>
 
         <div className="score-command-group score-accidental-tools" aria-label={x('score.accidentals')}>
-          <button className={`score-symbol-button score-key-accidental ${accidental === 'key' ? 'active' : ''}`} onClick={() => setAccidental('key')} title="K">
+          <button
+            className={`score-symbol-button score-key-accidental ${accidental === 'key' ? 'active' : ''}`}
+            onClick={() => setAccidental('key')}
+            title="K"
+          >
             {x('score.keyAccidental')}
           </button>
-          <button className={`score-symbol-button ${accidental === 'flat' ? 'active' : ''}`} onClick={() => setAccidental('flat')} title="-">
+          <button
+            className={`score-symbol-button ${accidental === 'flat' ? 'active' : ''}`}
+            onClick={() => setAccidental('flat')}
+            title="-"
+          >
             ♭
           </button>
-          <button className={`score-symbol-button ${accidental === 'natural' ? 'active' : ''}`} onClick={() => setAccidental('natural')} title="=">
+          <button
+            className={`score-symbol-button ${accidental === 'natural' ? 'active' : ''}`}
+            onClick={() => setAccidental('natural')}
+            title="="
+          >
             ♮
           </button>
-          <button className={`score-symbol-button ${accidental === 'sharp' ? 'active' : ''}`} onClick={() => setAccidental('sharp')} title="+">
+          <button
+            className={`score-symbol-button ${accidental === 'sharp' ? 'active' : ''}`}
+            onClick={() => setAccidental('sharp')}
+            title="+"
+          >
             ♯
           </button>
         </div>
@@ -869,7 +936,9 @@ export function ScorePage() {
             >
               <option value="none">—</option>
               {(['pp', 'p', 'mp', 'mf', 'f', 'ff'] as ScoreDynamic[]).map((value) => (
-                <option key={value} value={value}>{value}</option>
+                <option key={value} value={value}>
+                  {value}
+                </option>
               ))}
             </select>
           </label>
@@ -897,11 +966,19 @@ export function ScorePage() {
               ))}
             </select>
           </label>
-          <button className="score-symbol-button" onClick={() => setInputOctave((value) => Math.max(-1, value - 1))} aria-label={x('score.octaveDown')}>
+          <button
+            className="score-symbol-button"
+            onClick={() => setInputOctave((value) => Math.max(-1, value - 1))}
+            aria-label={x('score.octaveDown')}
+          >
             −8
           </button>
           <span className="score-octave-value">{inputOctave}</span>
-          <button className="score-symbol-button" onClick={() => setInputOctave((value) => Math.min(9, value + 1))} aria-label={x('score.octaveUp')}>
+          <button
+            className="score-symbol-button"
+            onClick={() => setInputOctave((value) => Math.min(9, value + 1))}
+            aria-label={x('score.octaveUp')}
+          >
             +8
           </button>
           <button className="button button-primary score-insert-button" onClick={() => insertEvent(entryMode)}>
@@ -942,17 +1019,34 @@ export function ScorePage() {
             <label className="button file-button">
               <Icon name="upload" />
               {t('score.import')}
-              <input type="file" accept=".musicxml,.xml,.mid,.midi" onChange={(event) => event.target.files?.[0] && void importFile(event.target.files[0])} />
+              <input
+                type="file"
+                accept=".musicxml,.xml,.mid,.midi"
+                onChange={(event) => event.target.files?.[0] && void importFile(event.target.files[0])}
+              />
             </label>
-            <button className="button" onClick={() => exportMusicXml(score)}>{t('score.musicxml')}</button>
-            <button className="button" onClick={() => exportMidi(score)}>{t('score.midi')}</button>
-            <button className="button" onClick={() => exportSvg(score)}>{t('score.svg')}</button>
-            <button className="button" onClick={() => void exportPng(score)}>{t('score.png')}</button>
-            <button className="button" onClick={() => printScore(score)}>{t('score.pdf')}</button>
+            <button className="button" onClick={() => exportMusicXml(score)}>
+              {t('score.musicxml')}
+            </button>
+            <button className="button" onClick={() => exportMidi(score)}>
+              {t('score.midi')}
+            </button>
+            <button className="button" onClick={() => exportSvg(score)}>
+              {t('score.svg')}
+            </button>
+            <button className="button" onClick={() => void exportPng(score)}>
+              {t('score.png')}
+            </button>
+            <button className="button" onClick={() => printScore(score)}>
+              {t('score.pdf')}
+            </button>
           </div>
         </details>
 
-        <button className="button score-save-button" onClick={() => void persistProject().then(() => setMessage(t('status.saved')))}>
+        <button
+          className="button score-save-button"
+          onClick={() => void persistProject().then(() => setMessage(t('status.saved')))}
+        >
           <Icon name="save" />
           {t('common.save')}
         </button>
@@ -962,21 +1056,40 @@ export function ScorePage() {
         <span>
           {x('score.cursor')}: {cursorMeasure + 1}.{cursorBeatInMeasure.toFixed(2)}
         </span>
-        <span>{x('score.duration')}: {effectiveDurationBeats.toFixed(3).replace(/\.?0+$/, '')} ♩{tupletRatio !== 'none' ? ` · ${tupletRatio}` : ''}</span>
-        <span>{measureCount} {x('score.measures')}</span>
+        <span>
+          {x('score.duration')}: {effectiveDurationBeats.toFixed(3).replace(/\.?0+$/, '')} ♩
+          {tupletRatio !== 'none' ? ` · ${tupletRatio}` : ''}
+        </span>
+        <span>
+          {measureCount} {x('score.measures')}
+        </span>
         <button className="score-status-action" onClick={() => setShowPitchLabels((value) => !value)}>
           {showPitchLabels ? x('score.hidePitchLabels') : x('score.showPitchLabels')}
         </button>
-        {rhythmIssues.length > 0 && <span className="score-status-warning">{rhythmIssues.length} {x('score.rhythmWarnings')}</span>}
+        {rhythmIssues.length > 0 && (
+          <span className="score-status-warning">
+            {rhythmIssues.length} {x('score.rhythmWarnings')}
+          </span>
+        )}
       </div>
 
       {message && <div className="toast">{message}</div>}
 
       <div className="score-mobile-switch" role="tablist" aria-label="Score workspace">
-        <button role="tab" aria-selected={mobilePane === 'edit'} className={mobilePane === 'edit' ? 'active' : ''} onClick={() => setMobilePane('edit')}>
+        <button
+          role="tab"
+          aria-selected={mobilePane === 'edit'}
+          className={mobilePane === 'edit' ? 'active' : ''}
+          onClick={() => setMobilePane('edit')}
+        >
           {t('score.note')}
         </button>
-        <button role="tab" aria-selected={mobilePane === 'preview'} className={mobilePane === 'preview' ? 'active' : ''} onClick={() => setMobilePane('preview')}>
+        <button
+          role="tab"
+          aria-selected={mobilePane === 'preview'}
+          className={mobilePane === 'preview' ? 'active' : ''}
+          onClick={() => setMobilePane('preview')}
+        >
           {t('score.preview')}
         </button>
       </div>
@@ -988,35 +1101,75 @@ export function ScorePage() {
             <div className="score-panel-section-body">
               <div className="field">
                 <label>{t('score.metaTitle')}</label>
-                <input aria-label={t('score.metaTitle')} value={score.title} onChange={(event) => updateScore({ title: event.target.value })} />
+                <input
+                  aria-label={t('score.metaTitle')}
+                  value={score.title}
+                  onChange={(event) => updateScore({ title: event.target.value })}
+                />
               </div>
               <div className="field">
                 <label>{t('score.composer')}</label>
-                <input aria-label={t('score.composer')} value={score.composer} onChange={(event) => updateScore({ composer: event.target.value })} />
+                <input
+                  aria-label={t('score.composer')}
+                  value={score.composer}
+                  onChange={(event) => updateScore({ composer: event.target.value })}
+                />
               </div>
               <div className="field">
-                <label>{t('score.tempo')} · {score.tempo} BPM</label>
-                <input aria-label={t('score.tempo')} type="range" min="40" max="220" value={score.tempo} onChange={(event) => updateScore({ tempo: Number(event.target.value) })} />
+                <label>
+                  {t('score.tempo')} · {score.tempo} BPM
+                </label>
+                <input
+                  aria-label={t('score.tempo')}
+                  type="range"
+                  min="40"
+                  max="220"
+                  value={score.tempo}
+                  onChange={(event) => updateScore({ tempo: Number(event.target.value) })}
+                />
               </div>
               <div className="field-row score-settings-grid">
                 <div className="field">
                   <label>{t('score.timeSignature')}</label>
-                  <select aria-label={t('score.timeSignature')} value={`${score.timeSignature[0]}/${score.timeSignature[1]}`} onChange={(event) => {
-                    const [a, b] = event.target.value.split('/').map(Number);
-                    updateScore({ timeSignature: [a, b] });
-                  }}>
-                    <option>2/4</option><option>3/4</option><option>4/4</option><option>5/4</option><option>6/8</option><option>7/8</option><option>9/8</option><option>12/8</option>
+                  <select
+                    aria-label={t('score.timeSignature')}
+                    value={`${score.timeSignature[0]}/${score.timeSignature[1]}`}
+                    onChange={(event) => {
+                      const [a, b] = event.target.value.split('/').map(Number);
+                      updateScore({ timeSignature: [a, b] });
+                    }}
+                  >
+                    <option>2/4</option>
+                    <option>3/4</option>
+                    <option>4/4</option>
+                    <option>5/4</option>
+                    <option>6/8</option>
+                    <option>7/8</option>
+                    <option>9/8</option>
+                    <option>12/8</option>
                   </select>
                 </div>
                 <div className="field">
                   <label>{t('score.keySignature')}</label>
-                  <select aria-label={t('score.keySignature')} value={score.keyFifths} onChange={(event) => updateScore({ keyFifths: Number(event.target.value) })}>
-                    {KEY_SIGNATURE_LABELS.map((key) => <option key={key.fifths} value={key.fifths}>{key.label}</option>)}
+                  <select
+                    aria-label={t('score.keySignature')}
+                    value={score.keyFifths}
+                    onChange={(event) => updateScore({ keyFifths: Number(event.target.value) })}
+                  >
+                    {KEY_SIGNATURE_LABELS.map((key) => (
+                      <option key={key.fifths} value={key.fifths}>
+                        {key.label}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <div className="field">
                   <label>{x('score.clef')}</label>
-                  <select aria-label={x('score.clef')} value={score.clef || 'auto'} onChange={(event) => updateScore({ clef: event.target.value as ScoreDocument['clef'] })}>
+                  <select
+                    aria-label={x('score.clef')}
+                    value={score.clef || 'auto'}
+                    onChange={(event) => updateScore({ clef: event.target.value as ScoreDocument['clef'] })}
+                  >
                     <option value="auto">{x('score.clefAuto')}</option>
                     <option value="treble">{x('score.clefTreble')}</option>
                     <option value="bass">{x('score.clefBass')}</option>
@@ -1025,9 +1178,16 @@ export function ScorePage() {
                 <div className="field">
                   <label>{x('score.measures')}</label>
                   <div className="score-stepper">
-                    <button className="mini-button" onClick={() => updateScore({ minimumMeasures: Math.max(1, measureCount - 1) })}>−</button>
+                    <button
+                      className="mini-button"
+                      onClick={() => updateScore({ minimumMeasures: Math.max(1, measureCount - 1) })}
+                    >
+                      −
+                    </button>
                     <span>{measureCount}</span>
-                    <button className="mini-button" onClick={() => updateScore({ minimumMeasures: measureCount + 1 })}>+</button>
+                    <button className="mini-button" onClick={() => updateScore({ minimumMeasures: measureCount + 1 })}>
+                      +
+                    </button>
                   </div>
                 </div>
               </div>
@@ -1038,26 +1198,39 @@ export function ScorePage() {
             <div className="score-panel-heading">
               <div>
                 <span className="eyebrow">{x('score.timeline')}</span>
-                <h2>{score.notes.length} {x('score.explicitEvents')}</h2>
+                <h2>
+                  {score.notes.length} {x('score.explicitEvents')}
+                </h2>
               </div>
-              <button className="mini-button" onClick={() => insertEvent(entryMode)}>{entryMode === 'rest' ? t('score.addRest') : t('score.add')}</button>
+              <button className="mini-button" onClick={() => insertEvent(entryMode)}>
+                {entryMode === 'rest' ? t('score.addRest') : t('score.add')}
+              </button>
             </div>
             <ul className="score-event-list">
-              {sortedEvents.length ? sortedEvents.map((event) => {
-                const pitch = synchronizeNotePitch(event);
-                const startBeat = secondsToQuarterBeats(score, event.start);
-                const eventBeats = secondsToQuarterBeats(score, event.duration);
-                return (
-                  <li key={event.id} className="score-event-list-item">
-                    <button className={`score-event-row note-row ${selectedEventId === event.id ? 'active' : ''}`} onClick={() => setSelectedEventId(event.id)}>
-                      <span className={`score-event-kind ${event.isRest ? 'rest' : 'note'}`}>{event.isRest ? `V${event.voice || 1} —` : `V${event.voice || 1} ${pitch.note}${pitch.octave}`}</span>
-                      <span>M{Math.floor(startBeat / timing.measureBeats) + 1}</span>
-                      <span>{(startBeat % timing.measureBeats).toFixed(2)}</span>
-                      <span>{eventBeats.toFixed(2)} ♩</span>
-                    </button>
-                  </li>
-                );
-              }) : (
+              {sortedEvents.length ? (
+                sortedEvents.map((event) => {
+                  const pitch = synchronizeNotePitch(event);
+                  const startBeat = secondsToQuarterBeats(score, event.start);
+                  const eventBeats = secondsToQuarterBeats(score, event.duration);
+                  return (
+                    <li key={event.id} className="score-event-list-item">
+                      <button
+                        className={`score-event-row note-row ${selectedEventId === event.id ? 'active' : ''}`}
+                        onClick={() => setSelectedEventId(event.id)}
+                      >
+                        <span className={`score-event-kind ${event.isRest ? 'rest' : 'note'}`}>
+                          {event.isRest
+                            ? `V${event.voice || 1} —`
+                            : `V${event.voice || 1} ${pitch.note}${pitch.octave}`}
+                        </span>
+                        <span>M{Math.floor(startBeat / timing.measureBeats) + 1}</span>
+                        <span>{(startBeat % timing.measureBeats).toFixed(2)}</span>
+                        <span>{eventBeats.toFixed(2)} ♩</span>
+                      </button>
+                    </li>
+                  );
+                })
+              ) : (
                 <li className="score-event-list-item">
                   <div className="empty-state">{t('score.empty')}</div>
                 </li>
@@ -1072,21 +1245,32 @@ export function ScorePage() {
                   <span className="eyebrow">{x('score.selection')}</span>
                   <h2>{selectedEvent.isRest ? t('score.rest') : `${selectedEvent.note}${selectedEvent.octave}`}</h2>
                 </div>
-                <button className="icon-button" onClick={() => removeNote(selectedEvent.id)} aria-label={t('common.delete')}><Icon name="trash" /></button>
+                <button
+                  className="icon-button"
+                  onClick={() => removeNote(selectedEvent.id)}
+                  aria-label={t('common.delete')}
+                >
+                  <Icon name="trash" />
+                </button>
               </div>
               <div className="score-inspector-grid">
                 <div className="field">
                   <label>{t('score.type')}</label>
-                  <select value={selectedEvent.isRest ? 'rest' : 'note'} onChange={(event) => updateNote(selectedEvent.id, {
-                    isRest: event.target.value === 'rest',
-                    velocity: event.target.value === 'rest' ? 1 : Math.max(1, selectedEvent.velocity),
-                    tieStart: event.target.value === 'rest' ? false : selectedEvent.tieStart,
-                    tieStop: event.target.value === 'rest' ? false : selectedEvent.tieStop,
-                    slurStart: event.target.value === 'rest' ? false : selectedEvent.slurStart,
-                    slurStop: event.target.value === 'rest' ? false : selectedEvent.slurStop,
-                    articulation: event.target.value === 'rest' ? undefined : selectedEvent.articulation,
-                    dynamic: event.target.value === 'rest' ? undefined : selectedEvent.dynamic
-                  })}>
+                  <select
+                    value={selectedEvent.isRest ? 'rest' : 'note'}
+                    onChange={(event) =>
+                      updateNote(selectedEvent.id, {
+                        isRest: event.target.value === 'rest',
+                        velocity: event.target.value === 'rest' ? 1 : Math.max(1, selectedEvent.velocity),
+                        tieStart: event.target.value === 'rest' ? false : selectedEvent.tieStart,
+                        tieStop: event.target.value === 'rest' ? false : selectedEvent.tieStop,
+                        slurStart: event.target.value === 'rest' ? false : selectedEvent.slurStart,
+                        slurStop: event.target.value === 'rest' ? false : selectedEvent.slurStop,
+                        articulation: event.target.value === 'rest' ? undefined : selectedEvent.articulation,
+                        dynamic: event.target.value === 'rest' ? undefined : selectedEvent.dynamic
+                      })
+                    }
+                  >
                     <option value="note">{t('score.note')}</option>
                     <option value="rest">{t('score.rest')}</option>
                   </select>
@@ -1095,10 +1279,14 @@ export function ScorePage() {
                   <label>{x('score.voice')}</label>
                   <select
                     value={selectedEvent.voice || 1}
-                    onChange={(event) => updateNote(selectedEvent.id, { voice: Number(event.target.value) as ScoreVoice })}
+                    onChange={(event) =>
+                      updateNote(selectedEvent.id, { voice: Number(event.target.value) as ScoreVoice })
+                    }
                   >
                     {([1, 2, 3, 4] as ScoreVoice[]).map((voice) => (
-                      <option key={voice} value={voice}>{x('score.voice')} {voice}</option>
+                      <option key={voice} value={voice}>
+                        {x('score.voice')} {voice}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -1107,28 +1295,65 @@ export function ScorePage() {
                   <input
                     key={`${selectedEvent.id}-${selectedEvent.note}-${selectedEvent.octave}-${selectedEvent.isRest ? 'rest' : 'note'}`}
                     disabled={Boolean(selectedEvent.isRest)}
-                    defaultValue={selectedEvent.isRest ? t('score.rest') : `${selectedEvent.note}${selectedEvent.octave}`}
+                    defaultValue={
+                      selectedEvent.isRest ? t('score.rest') : `${selectedEvent.note}${selectedEvent.octave}`
+                    }
                     onBlur={(event) => !selectedEvent.isRest && changeNoteLabel(selectedEvent.id, event.target.value)}
                   />
                 </div>
                 <div className="field">
                   <label>{x('score.startBeat')}</label>
-                  <input type="number" min="0" step="0.125" value={Number(selectedStartBeat.toFixed(4))} onChange={(event) => updateNote(selectedEvent.id, { start: quarterBeatsToSeconds(score, Math.max(0, Number(event.target.value))) })} />
+                  <input
+                    type="number"
+                    min="0"
+                    step="0.125"
+                    value={Number(selectedStartBeat.toFixed(4))}
+                    onChange={(event) =>
+                      updateNote(selectedEvent.id, {
+                        start: quarterBeatsToSeconds(score, Math.max(0, Number(event.target.value)))
+                      })
+                    }
+                  />
                 </div>
                 <div className="field">
                   <label>{x('score.durationBeats')}</label>
-                  <input type="number" min="0.125" step="0.125" value={Number(selectedDurationBeats.toFixed(4))} onChange={(event) => updateNote(selectedEvent.id, { duration: quarterBeatsToSeconds(score, Math.max(0.125, Number(event.target.value))) })} />
+                  <input
+                    type="number"
+                    min="0.125"
+                    step="0.125"
+                    value={Number(selectedDurationBeats.toFixed(4))}
+                    onChange={(event) =>
+                      updateNote(selectedEvent.id, {
+                        duration: quarterBeatsToSeconds(score, Math.max(0.125, Number(event.target.value)))
+                      })
+                    }
+                  />
                 </div>
                 <div className="field">
                   <label>{t('score.velocity')}</label>
-                  <input type="number" min="1" max="127" disabled={Boolean(selectedEvent.isRest)} value={selectedEvent.velocity} onChange={(event) => updateNote(selectedEvent.id, { velocity: Math.max(1, Math.min(127, Number(event.target.value))) })} />
+                  <input
+                    type="number"
+                    min="1"
+                    max="127"
+                    disabled={Boolean(selectedEvent.isRest)}
+                    value={selectedEvent.velocity}
+                    onChange={(event) =>
+                      updateNote(selectedEvent.id, { velocity: Math.max(1, Math.min(127, Number(event.target.value))) })
+                    }
+                  />
                 </div>
                 <div className="field">
                   <label>{t('score.tie')}</label>
-                  <select disabled={Boolean(selectedEvent.isRest)} value={`${selectedEvent.tieStop ? 'stop' : ''}${selectedEvent.tieStart ? 'start' : ''}`} onChange={(event) => updateNote(selectedEvent.id, {
-                    tieStart: event.target.value.includes('start'),
-                    tieStop: event.target.value.includes('stop')
-                  })}>
+                  <select
+                    disabled={Boolean(selectedEvent.isRest)}
+                    value={`${selectedEvent.tieStop ? 'stop' : ''}${selectedEvent.tieStart ? 'start' : ''}`}
+                    onChange={(event) =>
+                      updateNote(selectedEvent.id, {
+                        tieStart: event.target.value.includes('start'),
+                        tieStop: event.target.value.includes('stop')
+                      })
+                    }
+                  >
                     <option value="">{t('score.none')}</option>
                     <option value="start">{t('score.tieStart')}</option>
                     <option value="stop">{t('score.tieStop')}</option>
@@ -1140,9 +1365,12 @@ export function ScorePage() {
                   <select
                     disabled={Boolean(selectedEvent.isRest)}
                     value={selectedEvent.articulation || 'none'}
-                    onChange={(event) => updateNote(selectedEvent.id, {
-                      articulation: event.target.value === 'none' ? undefined : event.target.value as ScoreArticulation
-                    })}
+                    onChange={(event) =>
+                      updateNote(selectedEvent.id, {
+                        articulation:
+                          event.target.value === 'none' ? undefined : (event.target.value as ScoreArticulation)
+                      })
+                    }
                   >
                     <option value="none">{t('score.none')}</option>
                     <option value="staccato">{x('score.staccato')}</option>
@@ -1156,13 +1384,17 @@ export function ScorePage() {
                   <select
                     disabled={Boolean(selectedEvent.isRest)}
                     value={selectedEvent.dynamic || 'none'}
-                    onChange={(event) => updateNote(selectedEvent.id, {
-                      dynamic: event.target.value === 'none' ? undefined : event.target.value as ScoreDynamic
-                    })}
+                    onChange={(event) =>
+                      updateNote(selectedEvent.id, {
+                        dynamic: event.target.value === 'none' ? undefined : (event.target.value as ScoreDynamic)
+                      })
+                    }
                   >
                     <option value="none">{t('score.none')}</option>
                     {(['pp', 'p', 'mp', 'mf', 'f', 'ff'] as ScoreDynamic[]).map((value) => (
-                      <option key={value} value={value}>{value}</option>
+                      <option key={value} value={value}>
+                        {value}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -1171,10 +1403,12 @@ export function ScorePage() {
                   <select
                     disabled={Boolean(selectedEvent.isRest)}
                     value={`${selectedEvent.slurStop ? 'stop' : ''}${selectedEvent.slurStart ? 'start' : ''}`}
-                    onChange={(event) => updateNote(selectedEvent.id, {
-                      slurStart: event.target.value.includes('start'),
-                      slurStop: event.target.value.includes('stop')
-                    })}
+                    onChange={(event) =>
+                      updateNote(selectedEvent.id, {
+                        slurStart: event.target.value.includes('start'),
+                        slurStop: event.target.value.includes('stop')
+                      })
+                    }
                   >
                     <option value="">{t('score.none')}</option>
                     <option value="start">{x('score.slurStart')}</option>
@@ -1185,14 +1419,22 @@ export function ScorePage() {
                 <div className="field">
                   <label>{x('score.tuplet')}</label>
                   <select
-                    value={selectedEvent.tupletActual && selectedEvent.tupletNormal ? `${selectedEvent.tupletActual}:${selectedEvent.tupletNormal}` : 'none'}
+                    value={
+                      selectedEvent.tupletActual && selectedEvent.tupletNormal
+                        ? `${selectedEvent.tupletActual}:${selectedEvent.tupletNormal}`
+                        : 'none'
+                    }
                     onChange={(event) => {
                       const value = event.target.value as TupletRatio;
-                      const [actual, normal] = value === '3:2' ? [3, 2] : value === '5:4' ? [5, 4] : [undefined, undefined];
+                      const [actual, normal] =
+                        value === '3:2' ? [3, 2] : value === '5:4' ? [5, 4] : [undefined, undefined];
                       updateNote(selectedEvent.id, {
                         tupletActual: actual,
                         tupletNormal: normal,
-                        tupletGroupId: value === 'none' ? undefined : selectedEvent.tupletGroupId || `tuplet-manual-${crypto.randomUUID()}`
+                        tupletGroupId:
+                          value === 'none'
+                            ? undefined
+                            : selectedEvent.tupletGroupId || `tuplet-manual-${crypto.randomUUID()}`
                       });
                     }}
                   >
@@ -1203,13 +1445,23 @@ export function ScorePage() {
                 </div>
                 <div className="field score-inspector-lyric">
                   <label>{t('score.lyric')}</label>
-                  <input disabled={Boolean(selectedEvent.isRest)} value={selectedEvent.lyric || ''} onChange={(event) => updateNote(selectedEvent.id, { lyric: event.target.value })} />
+                  <input
+                    disabled={Boolean(selectedEvent.isRest)}
+                    value={selectedEvent.lyric || ''}
+                    onChange={(event) => updateNote(selectedEvent.id, { lyric: event.target.value })}
+                  />
                 </div>
               </div>
               <div className="score-inspector-actions">
-                <button className="mini-button" onClick={() => duplicateNote(selectedEvent.id)}>{t('score.copy')}</button>
-                <button className="mini-button" onClick={() => splitNote(selectedEvent.id)}>{t('score.split')}</button>
-                <button className="mini-button" onClick={() => mergeNext(selectedEvent.id)}>{t('score.merge')}</button>
+                <button className="mini-button" onClick={() => duplicateNote(selectedEvent.id)}>
+                  {t('score.copy')}
+                </button>
+                <button className="mini-button" onClick={() => splitNote(selectedEvent.id)}>
+                  {t('score.split')}
+                </button>
+                <button className="mini-button" onClick={() => mergeNext(selectedEvent.id)}>
+                  {t('score.merge')}
+                </button>
               </div>
             </section>
           )}
@@ -1221,7 +1473,9 @@ export function ScorePage() {
               <span className="eyebrow">{x('score.clickToEnter')}</span>
               <h2>{t('score.preview')}</h2>
             </div>
-            <span className="badge">{measureCount} {x('score.measures')}</span>
+            <span className="badge">
+              {measureCount} {x('score.measures')}
+            </span>
           </div>
           <ScoreViewport
             svg={svg}
